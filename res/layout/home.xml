@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@drawable/mainscreen">
+
+        <TextView
+	        android:id="@+id/newGame"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="132dp"
+	        android:text="New Game"
+	        android:textColor="#FF0000"
+	        android:textSize="35sp"
+	        android:textAppearance="?android:attr/textAppearanceLarge" 
+	        android:clickable="true"
+	        android:onClick="changeLayout" />  
+	          
+        <TextView
+	        android:id="@+id/cntinue"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="230dp"
+	        android:text="Continue"
+	        android:textColor="#FF0000"
+	        android:textSize="35sp"
+	        android:textAppearance="?android:attr/textAppearanceLarge" 
+	        android:clickable="true"
+	        android:onClick="changeLayout"/>
+        
+        <TextView
+	        android:id="@+id/highScore"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="328dp"
+	        android:text="High Score"
+	        android:textColor="#FF0000"
+	        android:textSize="35sp"
+	        android:textAppearance="?android:attr/textAppearanceLarge" 
+	        android:clickable="true"
+	        android:onClick="changeLayout" />
+        
+</RelativeLayout>
