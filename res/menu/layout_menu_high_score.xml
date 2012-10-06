@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    		android:background="#FFFFFF">
+	<item android:id="@+id/newGame"
+		android:title="@string/new_game" 
+  		android:onClick="changeLayout" /> 
+  	<item android:id="@id/cntinue"
+  	    android:title="@string/continuee" 
+  	    android:onClick="changeLayout" />
+  	
+</menu>
