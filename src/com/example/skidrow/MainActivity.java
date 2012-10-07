@@ -148,7 +148,8 @@ public class MainActivity extends Activity {
     	int fightSkills = Integer.parseInt(fighterSkills.getText().toString());
     	int drivSkills = Integer.parseInt(driverSkills.getText().toString());
     	int dealSkills = Integer.parseInt(dealerSkills.getText().toString());
-    	game.createPlayer(playerName.getText().toString(), comSkills, fightSkills, drivSkills, dealSkills);
+    	String difficLevel = String.valueOf(difficulty.getSelectedItem());
+    	game.createPlayer(playerName.getText().toString(), comSkills, fightSkills, drivSkills, dealSkills, difficLevel);
     }
     
     /**

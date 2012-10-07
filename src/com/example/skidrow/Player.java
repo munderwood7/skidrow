@@ -10,17 +10,19 @@ public class Player {
 	
 	private String name;
 	private int communicationSkills,fighterSkills, driverSkills, dealerSkills;
+	private String difficultyLevel;
 
-	public Player(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills)
+	public Player(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String  difficultyLevel)
 	{
 		this.name = name;
 		this.communicationSkills = communicationSkills;
 		this.fighterSkills = fighterSkills;
 		this.driverSkills = driverSkills;
 		this.dealerSkills = dealerSkills;
+		this.difficultyLevel= difficultyLevel;
 		System.out.println("Name: " + name + " ComSkills: " + communicationSkills + 
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
-				+ " DealSkills: " + dealerSkills);
+				+ " DealSkills: " + dealerSkills + "difficultyLevel"+ difficultyLevel);
 	}
 	
 

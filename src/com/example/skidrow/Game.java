@@ -17,8 +17,9 @@ public class Game {
 	 * @param fighterSkills Fighter skill points
 	 * @param driverSkills Driver skill points
 	 * @param dealerSkills Dealer skill Points
+	 * @param difficultyLevel the level of difficulty
 	 */
-	public void createPlayer(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills){
-		player = new Player(name, communicationSkills, fighterSkills, driverSkills, dealerSkills);
+	public void createPlayer(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String difficultyLevel){
+		player = new Player(name, communicationSkills, fighterSkills, driverSkills, dealerSkills, difficultyLevel);
 	}
 }
