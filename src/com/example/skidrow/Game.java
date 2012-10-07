@@ -1,13 +1,12 @@
 package com.example.skidrow;
 
 public class Game {
-	//private Player player;
+	private Player player;
 	
 	/**
 	 * Constructor for the game class
 	 */
 	public Game(){
-		
 	}
 	
 	/**
@@ -20,6 +19,6 @@ public class Game {
 	 * @param dealerSkills Dealer skill Points
 	 */
 	public void createPlayer(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills){
-		
+		player = new Player(name, communicationSkills, fighterSkills, driverSkills, dealerSkills);
 	}
 }

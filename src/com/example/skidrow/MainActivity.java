@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
 
 	//Intsance of SkidRow game 
 	private Game game;
+	private Player player;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -137,13 +138,17 @@ public class MainActivity extends Activity {
      * @param view Button clicked by the user
      */
     public void createPlayer(View view){
+    	EditText playerName = (EditText) this.findViewById(R.id.nameInput);
     	EditText communicationSkills = (EditText)this.findViewById(R.id.communicationSkillsInput);
     	EditText fighterSkills = (EditText)this.findViewById(R.id.fighterSkillsInput);
     	EditText driverSkills = (EditText)this.findViewById(R.id.driverSkillsInput);
     	EditText dealerSkills = (EditText)this.findViewById(R.id.dealerSkillsInput);
     	Spinner difficulty = (Spinner)this.findViewById(R.id.difficultyLevel);
-    	
-    	
+    	int comSkills = Integer.parseInt(communicationSkills.getText().toString());
+    	int fightSkills = Integer.parseInt(fighterSkills.getText().toString());
+    	int drivSkills = Integer.parseInt(driverSkills.getText().toString());
+    	int dealSkills = Integer.parseInt(dealerSkills.getText().toString());
+    	game.createPlayer(playerName.getText().toString(), comSkills, fightSkills, drivSkills, dealSkills);
     }
     
     /**
