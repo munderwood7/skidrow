@@ -1,5 +1,11 @@
 package com.example.skidrow;
 
+/**
+ * This class will contain the players information -- information holder.
+ * @author Michael Underwood
+ * @version 0.1
+ */
+
 public class Player {
 	
 	private String name;
