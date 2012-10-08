@@ -152,11 +152,12 @@ public class MainActivity extends Activity {
     public void createPlayer(View view){
         EditText playerName = (EditText) this.findViewById(R.id.nameInput);
         Spinner difficulty = (Spinner)this.findViewById(R.id.difficultyLevel);
+        String difficLevel = String.valueOf(difficulty.getSelectedItem());
         int[] skill=getArrayOfSkillPoints();
         int sum=sumSkillPoints();
         if(ensureSkillPointsArePositiveIntegers()){
             if(sum==16){
-                game.createPlayer(playerName.getText().toString(), skill[0], skill[1], skill[2], skill[3],null);
+                game.createPlayer(playerName.getText().toString(), skill[0], skill[1], skill[2], skill[3],difficLevel);
             }
             else if(sum>16){
                 displayError("You have currently allocated "+sum+ " points. You only have 16 points.");

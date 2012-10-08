@@ -22,7 +22,7 @@ public class Player {
 		this.difficultyLevel= difficultyLevel;
 		System.out.println("Name: " + name + " ComSkills: " + communicationSkills + 
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
-				+ " DealSkills: " + dealerSkills + "difficultyLevel"+ difficultyLevel);
+				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
 	}
 	
 
