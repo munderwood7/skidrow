@@ -166,8 +166,12 @@ public class MainActivity extends Activity {
         String difficLevel = String.valueOf(difficulty.getSelectedItem());
         int[] skill=getArrayOfSkillPoints();
         int sum=sumSkillPoints();
+        if (playerName.getText().toString().equals(""))
+        {
+        	displayError("You have not entered a player name. Please enter a name to continue.");
+        }
         if(ensureSkillPointsArePositiveIntegers()){
-            if(sum==16){
+            if(sum==16 && !playerName.getText().toString().equals("")){
                 game.createPlayer(playerName.getText().toString(), skill[0], skill[1], skill[2], skill[3],difficLevel);
             }
             else if(sum>16){
