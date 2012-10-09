@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextWatcher;
@@ -47,6 +49,15 @@ public class MainActivity extends Activity {
         game = new Game();
         
         
+        //Gets the size of the phone/tablet using the app
+        int layout = this.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        //Forces the layout to landscape if it is a tablet (5-10 inches). Otherwise forces portrait
+        if(layout == Configuration.SCREENLAYOUT_SIZE_XLARGE || layout == Configuration.SCREENLAYOUT_SIZE_LARGE){
+        	this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+        else{
+        	this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
     
     /**
