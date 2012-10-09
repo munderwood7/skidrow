@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:background="#34282C" >
+        <TextView
+            android:id="@+id/newGame"
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="130dp"
+            android:text="New Game"
+            android:textAppearance="?android:attr/textAppearanceLarge" 
+            android:gravity="center_vertical" 
+            android:clickable="true"
+            android:onClick="changeLayout" />
+
+        <TextView
+            android:id="@+id/cntinue"
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/newGame"
+            android:text="Continue"
+            android:textAppearance="?android:attr/textAppearanceLarge" 
+            android:gravity="center_vertical" 
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/highScore"
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/cntinue"
+            android:gravity="center_vertical"
+            android:text="High Scores"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:clickable="true"
+	        android:onClick="changeLayout" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/newGame"
+            android:background="#FFFFFF" />
+
+        <View
+            android:id="@+id/View01"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/newGame"
+            android:background="#FFFFFF" />
+
+        <View
+            android:id="@+id/View02"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/highScore"
+            android:background="#FFFFFF" />
+
+        <View
+            android:id="@+id/View03"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/highScore"
+            android:background="#FFFFFF" />
+
+    </RelativeLayout>
+    
+</RelativeLayout>
