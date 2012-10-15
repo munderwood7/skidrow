@@ -25,5 +25,22 @@ public class Player {
 				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
 	}
 	
-
+	/**
+	 * Getter for player name.
+	 * 
+	 * @return player name
+	 */
+	public String getName(){
+		return name;
+	}
+	
+	/**
+	 * Getter for all player skills. Returns an array of the skills organized as follows:
+	 * [0]=communicationSkills,[1]=fighterSkills,[2]=driverSkills.[3]=dealerSkills
+	 * 
+	 * @return Array of player skills
+	 */
+	public int[] getSkillsArray(){
+		return new int[]{communicationSkills,fighterSkills, driverSkills, dealerSkills};
+	}
 }

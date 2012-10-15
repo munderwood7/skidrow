@@ -15,5 +15,21 @@ public class City {
 		Name = CityName;
 	}
 	
-
+	/**
+	 * Getter for the name of the city]
+	 * 
+	 * @return The name of the city
+	 */
+	public String getName(){
+		return Name;
+	}
+	
+	/**
+	 * Getter for the tech level of the city
+	 * 
+	 * @return Tech level of the city
+	 */
+	public int getTechLevel(){
+		return TechLevel;
+	}
 }

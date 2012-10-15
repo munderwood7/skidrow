@@ -3,6 +3,14 @@ package com.example.skidrow;
 public class Game {
 	private Player player;
 	private City[] citiesList;
+	//List of top 50 Most Dangerous cities in the country (USA)
+	private final String[] cityNames = {"Poughkeepsie", "New Bedford","Fall River","Cincinnat","Miami","Alexandria",
+			"Bridgeton","Springfield","Lake Worth","Hartford","Washington","Daytona Beach","Springfield","Battle Creek",
+			"Compton","Buffalo","Cleveland","Atlanta","Pine Bluff","Trenton","Stockton","Homestead","Desert Hot Springs",
+			"Texarkana","Rockford","Baltimore","Little Rock","New Haven","Salisbury","Harvey","Harrisburg",",Memphis",
+			"Oakland","Spartanburg","Inkster","Myrtle Beach","Chelsea","Riviera Beach","Newburgh","Pontiac","St. Louis",
+			"Atlantic City","Wilmington","Flint","Detroit","Camden","Saginaw","West Memphis","Chester","East St. Louis",
+	};
 	
 	/**
 	 * Constructor for the game class
@@ -28,67 +36,14 @@ public class Game {
 	 * Method used to generate all cities in the country. 
 	 */
 	private void generateCountry(){
-		//List of top 50 Most Dangerous cities in the country (USA)
-		final String[] CityNames= {
-				"Poughkeepsie",
-				"New Bedford",
-				"Fall River",
-				"Cincinnat",
-				"Miami",
-				"Alexandria",
-				"Bridgeton",
-				"Springfield",
-				"Lake Worth",
-				"Hartford",
-				"Washington",
-				"Daytona Beach",
-				"Springfield",
-				"Battle Creek",
-				"Compton",
-				"uffalo",
-				"Cleveland",
-				"Atlanta",
-				"Pine Bluff",
-				"Trenton",
-				"Stockton",
-				"Homestead",
-				"Desert Hot Springs",
-				"Texarkana",
-				"Rockford",
-				"Baltimore",
-				"Little Rock",
-				"New Haven",
-				"Salisbury",
-				"Harvey",
-				"Harrisburg",
-				",Memphis",
-				"Oakland",
-				"Spartanburg",
-				"Inkster",
-				"Myrtle Beach",
-				"Chelsea",
-				"Riviera Beach",
-				"Newburgh",
-				"Pontiac",
-				"St. Louis",
-				"Atlantic City",
-				"Wilmington",
-				"Flint",
-				"Detroit",
-				"Camden",
-				"Saginaw",
-				"West Memphis",
-				"Chester",
-				"East St. Louis",
-		};
 		//Checks the total number of city NAMES
-		int numCities = CityNames.length;
+		int numCities = cityNames.length;
 		//initialize the total NUMBER of countries that will be in the game
 		citiesList = new City[numCities];
 		int checkNumCities = 0;
 		//Instantiate the Cities in the country
 		for (int i = 0; i < numCities; i++){
-			citiesList[i] = new City(CityNames[i]);
+			citiesList[i] = new City(cityNames[i]);
 			//maintains track of how many cities are actually created
 			checkNumCities++;
 		}
@@ -98,6 +53,52 @@ public class Game {
 		} else{
 			System.out.println("Not all cities were instanciated");
 		}
+	}
+	
+	/**
+	 * Method to get the list of all the cities
+	 * 
+	 * @return the list of cities
+	 */
+	public String[] getCityList(){
+		return cityNames;
+	}
+	
+	/**
+	 * Gets the information about a given city. The city is determined by its index in the citiesList.
+	 * It returns all the information needed by the UI in a String array
+	 * 
+	 * @param index The index of the city
+	 * @return String of information needed by the UI with the following format: [0]=name, [1]=techLevel, [2]=politicalSystem, [3]=distance
+	 */
+	public String[] getCityInfo(int index){
+		String[] info = new String[4];
+		City city = citiesList[index];
 		
+		info[0]=city.getName();
+		info[1]=Integer.toString(city.getTechLevel());
+		
+		return info;
+	}
+	
+	/**
+	 * Grabs the necessary information for the UI from the player and packages it in a String array.
+	 * The information is as follows(from index 0 to 7):communicationSkills, fighterSkills, driverSkills, dealerSkills, currentCity, playerHealth, playerName, playerMoney
+	 * 
+	 * @return Returns an array of player information for the UI
+	 */
+	public String[] getPlayerStatInfo(){
+		String[] info = new String[8];
+		int[] playerLevels = player.getSkillsArray();
+		
+		for(int x=0; x<4; x+=1){
+			info[x] = Integer.toString(playerLevels[x]);
+		}
+		//info[4] = city
+		//info[5] = health
+		info[6] = player.getName();
+		//info[7] = money;
+		
+		return info;
 	}
 }
