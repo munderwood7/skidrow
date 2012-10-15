@@ -7,10 +7,17 @@
     <string name="continuee">Continue</string>
     <string name="new_game">New Game</string>
     <string name="high_score">High Score</string>
-	<string-array name="difficulty">
-	    <item>Easy</item>
-	    <item>Medium</item>
-	    <item>Hard</item>
-	</string-array>
-    
+
+    <string-array name="difficulty">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string name="title_activity_cntinue">CntinueActivity</string>
+    <string name="title_activity_new_game">NewGameActivity</string>
+    <string name="title_activity_high_score">HighScoreActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_player_stats">PlayerStatsActivity</string>
+
 </resources>
