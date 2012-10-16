@@ -76,7 +76,7 @@ public class Game {
 		City city = citiesList[index];
 		
 		info[0]=city.getName();
-		info[1]=Integer.toString(city.getTechLevel());
+		info[1]=city.getTechLevel();
 		
 		return info;
 	}
