@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.text.DecimalFormat;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -65,7 +67,7 @@ public class MapActivity extends Activity {
     	int[] displayedCityLocation=city.getLocation();
 		int[] currentCityLocation=AppUtil.game.getCurrentCity().getLocation();
 		double hypotenuse= Math.sqrt(Math.pow(displayedCityLocation[0]-currentCityLocation[0], 2)+Math.pow(displayedCityLocation[1]-currentCityLocation[1], 2));
-    	return Double.toString(hypotenuse);
+    	return String.format("%.3f", hypotenuse);
     }
     
     /**
