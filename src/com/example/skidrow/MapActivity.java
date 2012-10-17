@@ -49,11 +49,23 @@ public class MapActivity extends Activity {
     	TextView politicalSystem = (TextView)this.findViewById(R.id.crntPoliticalSystem);
     	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
     	String[] info = AppUtil.game.getCityInfo(index);
+    	City city=AppUtil.game.getCity(index);
     	
     	name.setText(info[0]);
     	techLevel.setText(info[1]);
     	//politicalSystem.setText(info[2]);
-    	//distance.setText(info[3]);
+    	distance.setText(getDistance(city));
+    }
+    /**
+     * Gets the distance between the current city and the city being investigated
+     * @return String containing the distance between the current city and the selected city
+     * @author apavia3
+     */
+    public String getDistance(City city){
+    	int[] displayedCityLocation=city.getLocation();
+		int[] currentCityLocation=AppUtil.game.getCurrentCity().getLocation();
+		double hypotenuse= Math.sqrt(Math.pow(displayedCityLocation[0]-currentCityLocation[0], 2)+Math.pow(displayedCityLocation[1]-currentCityLocation[1], 2));
+    	return Double.toString(hypotenuse);
     }
     
     /**

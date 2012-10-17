@@ -9,11 +9,17 @@ import java.util.Random;
  */
 public class City {
 	
-	private String Name= " ";
+	private String Name;
+	private int xLocation;
+	private int yLocation;
+	private String techLevel;
+	private static boolean[][] locationTaken = new boolean[50][50];
 
 	
 	public City(String CityName){
 		Name = CityName;
+		setTechLevel();
+		setLocation();
 	}
 	
 	/**
@@ -28,34 +34,67 @@ public class City {
 	/**
 	 * Generates a random number between 0 and 7 and based on that we assign the associated Tech Level
 	 * 
-	 * @return Tech level of the city
 	 */
-	public String getTechLevel(){
+	public void setTechLevel(){
 		Random rand = new Random();
-		String TechLevel=" ";
+		String techLevel=" ";
 		int randTechLevel = rand.nextInt(8);
 		
 		switch(randTechLevel){
-			case 0:  TechLevel = "Pre-Agriculture";
+			case 0:  techLevel = "Pre-Agriculture";
 					break;
-			case 1:  TechLevel = "Agriculture";
+			case 1:  techLevel = "Agriculture";
 					break;
-			case 2:  TechLevel = "Medieval";
+			case 2:  techLevel = "Medieval";
 					break;
-			case 3:  TechLevel = "Renaissance";
+			case 3:  techLevel = "Renaissance";
 					break;
-			case 4:  TechLevel = "Early Industrial";
+			case 4:  techLevel = "Early Industrial";
 					break;
-			case 5:  TechLevel = "Industrial";
+			case 5:  techLevel = "Industrial";
 					break;
-			case 6:  TechLevel = "Post-Industrial";
+			case 6:  techLevel = "Post-Industrial";
 					break;
-			case 7:  TechLevel = "Hi-Tech";
+			case 7:  techLevel = "Hi-Tech";
 					break;
-			
-			
 		}
-		
-		return TechLevel;
+		this.techLevel= techLevel;
 	}
+	/**
+	 * Assigns a unique point in a 50-by-50 grid using a random number generator
+	 * 
+	 */
+	public void setLocation(){
+		boolean flag=true;
+		Random rand = new Random();
+		while(flag){
+			xLocation = rand.nextInt(50);
+			yLocation = rand.nextInt(50);
+			if(City.locationTaken[xLocation][yLocation]==false){
+				City.locationTaken[xLocation][yLocation]=true;
+				flag=false;
+			}
+		}
+		this.yLocation=yLocation;
+		this.xLocation=xLocation;
+	}
+	/**
+	 * Returns the x and y location of the city
+	 * @return an array of ints where the first value corresponds to the x location and the second value
+	 * corresponds to the y location
+	 */
+	 public int[] getLocation(){
+		 int[] location=new int[2];
+		 location[0]=xLocation;
+		 location[1]=yLocation;
+		return location;
+		 
+	 }
+	 /**
+	 * Returns the tech level of the city
+	 * @return a string with the tech level of the city
+	 */
+	 public String getTechLevel(){
+		 return techLevel;
+	 }
 }

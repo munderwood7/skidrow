@@ -2,12 +2,13 @@ package com.example.skidrow;
 
 public class Game {
 	private Player player;
+	private City currentCity;
 	private City[] citiesList;
 	//List of top 50 Most Dangerous cities in the country (USA)
-	private final String[] cityNames = {"Poughkeepsie", "New Bedford","Fall River","Cincinnat","Miami","Alexandria",
+	private final String[] cityNames = {"Poughkeepsie", "New Bedford","Fall River","Cincinnati","Miami","Alexandria",
 			"Bridgeton","Springfield","Lake Worth","Hartford","Washington","Daytona Beach","Springfield","Battle Creek",
 			"Compton","Buffalo","Cleveland","Atlanta","Pine Bluff","Trenton","Stockton","Homestead","Desert Hot Springs",
-			"Texarkana","Rockford","Baltimore","Little Rock","New Haven","Salisbury","Harvey","Harrisburg",",Memphis",
+			"Texarkana","Rockford","Baltimore","Little Rock","New Haven","Salisbury","Harvey","Harrisburg","Memphis",
 			"Oakland","Spartanburg","Inkster","Myrtle Beach","Chelsea","Riviera Beach","Newburgh","Pontiac","St. Louis",
 			"Atlantic City","Wilmington","Flint","Detroit","Camden","Saginaw","West Memphis","Chester","East St. Louis",
 	};
@@ -31,6 +32,7 @@ public class Game {
 	public void createGame(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String difficultyLevel){
 		player = new Player(name, communicationSkills, fighterSkills, driverSkills, dealerSkills, difficultyLevel);
 		generateCountry();
+		currentCity=citiesList[17];//Atlanta is set as the default starting location
 	}
 	/**
 	 * Method used to generate all cities in the country. 
@@ -62,6 +64,23 @@ public class Game {
 	 */
 	public String[] getCityList(){
 		return cityNames;
+	}
+	
+	/**
+	 * Returns the city where the player is currently located
+	 * @return City where the player is currently at
+	 */
+	public City getCurrentCity(){
+		return currentCity;
+	}
+	
+	/**
+	 * Method to get a city based on an index of CityList
+	 * @param the index of the city list
+	 * @return the city that is stored on the city list
+	 */
+	public City getCity(int index){
+		return citiesList[index];
 	}
 	
 	/**
