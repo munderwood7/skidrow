@@ -48,14 +48,14 @@ public class MapActivity extends Activity {
     public void updateDisplayCity(int index){
     	TextView name = (TextView)this.findViewById(R.id.crntCityName);
     	TextView techLevel = (TextView)this.findViewById(R.id.crntTechLevel);
-    	TextView politicalSystem = (TextView)this.findViewById(R.id.crntPoliticalSystem);
+    	TextView resources = (TextView)this.findViewById(R.id.crntResources);
     	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
     	String[] info = AppUtil.game.getCityInfo(index);
     	City city=AppUtil.game.getCity(index);
     	
     	name.setText(info[0]);
     	techLevel.setText(info[1]);
-    	//politicalSystem.setText(info[2]);
+    	resources.setText(info[2]);
     	distance.setText(getDistance(city));
     }
     /**

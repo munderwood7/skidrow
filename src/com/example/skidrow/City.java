@@ -14,12 +14,17 @@ public class City {
 	private int yLocation;
 	private String techLevel;
 	private static boolean[][] locationTaken = new boolean[50][50];
+	private String resources = " ";
+	private final String[] listOfResources={"NOSPECIAL", "MINERALRICH", "MINERALPOOR", "DESERT", "LOTSOFWATER", 
+											"RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS", "WEIRDMUSHROOMS", "LOTSOFHERBS",
+											"ARTISTIC", "WARLIKE"};
 
-	
+
 	public City(String CityName){
 		Name = CityName;
 		setTechLevel();
 		setLocation();
+		setResources();
 	}
 	
 	/**
@@ -96,5 +101,22 @@ public class City {
 	 */
 	 public String getTechLevel(){
 		 return techLevel;
+	 }
+	 /**
+	  * Assigns resources to the city randomly from the array of resources
+	  * 
+	  */ 
+	 public void setResources(){
+		 Random rand = new Random();
+		 int randResources = rand.nextInt(listOfResources.length);
+		 resources = listOfResources[randResources]; 
+		 
+	 }
+	 /**
+	  * Returns the resources of the city
+	  * @return a string of the resources of the city
+	  */
+	 public String getResources(){
+		 return resources;
 	 }
 }

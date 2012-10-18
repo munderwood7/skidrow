@@ -96,6 +96,7 @@ public class Game {
 		
 		info[0]=city.getName();
 		info[1]=city.getTechLevel();
+		info[2]=city.getResources();
 		
 		return info;
 	}
