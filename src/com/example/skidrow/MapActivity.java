@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,12 +47,17 @@ public class MapActivity extends Activity {
      * @param index Index of the city in the citiesList
      */
     public void updateDisplayCity(int index){
+    	RelativeLayout cityInfo = (RelativeLayout)this.findViewById(R.id.cityInfo);
     	TextView name = (TextView)this.findViewById(R.id.crntCityName);
     	TextView techLevel = (TextView)this.findViewById(R.id.crntTechLevel);
     	TextView resources = (TextView)this.findViewById(R.id.crntResources);
     	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
     	String[] info = AppUtil.game.getCityInfo(index);
     	City city=AppUtil.game.getCity(index);
+    	
+    	if(cityInfo.getVisibility()==View.GONE){
+    		cityInfo.setVisibility(View.VISIBLE);
+    	}
     	
     	name.setText(info[0]);
     	techLevel.setText(info[1]);
