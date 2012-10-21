@@ -213,7 +213,8 @@ public class NewGameActivity extends Activity {
             // If the action is a key-up event on the return key, send the message
             updateAvailablePoints();
             if(D) Log.i(TAG, "END onEditorAction");
-            return true;
+            
+            return false;
         }
     };
     /**

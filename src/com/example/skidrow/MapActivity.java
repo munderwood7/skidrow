@@ -107,4 +107,15 @@ public class MapActivity extends Activity {
     	}
     	startActivity(intent);
     }
+    
+    /**
+     * Overrides the back button to use as a function in the activity. Pressing the back button
+     * closes the city preview and puts the city list in fullview.
+     */
+    @Override
+    public void onBackPressed(){
+    	RelativeLayout cityInfo = (RelativeLayout)this.findViewById(R.id.cityInfo);
+    	
+    	cityInfo.setVisibility(View.GONE);
+    }
 }
