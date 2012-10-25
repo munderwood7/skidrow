@@ -112,6 +112,22 @@ public class Game {
 	}
 	
 	/**
+	 * Returns the information about a city which is passed in as a parameter.
+	 * 
+	 * @param city City who's information is being returned
+	 * @return String of information needed by the UI with the following format: [0]=name, [1]=techLevel, [2]=politicalSystem, [3]=distance
+	 */
+	public String[] getCityInfo(City city){
+		String[] info = new String[4];
+		
+		info[0]=city.getName();
+		info[1]=city.getTechLevel();
+		info[2]=city.getResources();
+		
+		return info;
+	}
+	
+	/**
 	 * Grabs the necessary information for the UI from the player and packages it in a String array.
 	 * The information is as follows(from index 0 to 7):communicationSkills, fighterSkills, driverSkills, dealerSkills, currentCity, playerHealth, playerName, playerMoney
 	 * 

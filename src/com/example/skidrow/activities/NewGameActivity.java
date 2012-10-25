@@ -1,4 +1,10 @@
-package com.example.skidrow;
+package com.example.skidrow.activities;
+
+import com.example.skidrow.AppUtil;
+import com.example.skidrow.R;
+import com.example.skidrow.R.id;
+import com.example.skidrow.R.layout;
+import com.example.skidrow.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;

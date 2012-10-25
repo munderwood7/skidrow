@@ -1,4 +1,9 @@
-package com.example.skidrow;
+package com.example.skidrow.activities;
+
+import com.example.skidrow.AppUtil;
+import com.example.skidrow.R;
+import com.example.skidrow.R.id;
+import com.example.skidrow.R.layout;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -45,7 +50,9 @@ public class MarketActivity extends Activity {
     		whoGoods.setText("Your Goods");
     	}
     	else{
-    		whoGoods.setText("Market Goods");
+    		//Gets the name of the current city
+    		String[] city = AppUtil.game.getCityInfo(AppUtil.game.getCurrentCity());
+    		whoGoods.setText(city[0]+"'s Goods");
     	}
     }
     

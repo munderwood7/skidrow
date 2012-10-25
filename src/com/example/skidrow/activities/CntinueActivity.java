@@ -1,4 +1,10 @@
-package com.example.skidrow;
+package com.example.skidrow.activities;
+
+import com.example.skidrow.AppUtil;
+import com.example.skidrow.R;
+import com.example.skidrow.R.id;
+import com.example.skidrow.R.layout;
+import com.example.skidrow.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -7,12 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
-public class HighScoreActivity extends Activity {
+public class CntinueActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.high_score);
+        setContentView(R.layout.cntinue);
         
         AppUtil.forceLayout(this);
     }
