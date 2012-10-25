@@ -14,9 +14,23 @@ public class Heroin extends Good {
 	}
 
 	@Override
-	int getBasePriceDuringEvent(String event) {
-		// TODO Auto-generated method stub
-		return 0;
+	int getBasePrice(String event) 
+	{
+		 if (event.equals("WAR"))
+		 {
+			 return basePrice * randomGen.nextInt(5)+1;
+		 }
+		 else if (event.equals("MINERALRICH"))
+		 {
+			 return Math.round(basePrice *(1/randomGen.nextInt(3)+1));
+		 }
+		 else if (event.equals("MINERALPOOR"))
+		 {
+			 return basePrice + randomGen.nextInt(150);
+		 }
+		 else{
+			 return basePrice;
+		 }
 	}
 
 }

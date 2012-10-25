@@ -15,9 +15,19 @@ public class HorseTranquilizer extends Good {
 	}
 
 	@Override
-	int getBasePriceDuringEvent(String event) {
-		// TODO Auto-generated method stub
-		return 0;
+	int getBasePrice(String event) 
+	{
+		 if (event.equals("PLAGUE"))
+		 {
+			 return basePrice * randomGen.nextInt(5)+1;
+		 }
+		 else if (event.equals("ARTISTIC"))
+		 {
+			 return Math.round(basePrice *(1/randomGen.nextInt(3)+1));
+		 }
+		 else{
+			 return basePrice;
+		 }
 	}
 
 }

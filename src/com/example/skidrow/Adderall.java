@@ -15,9 +15,23 @@ public class Adderall extends Good {
 	}
 
 	@Override
-	int getBasePriceDuringEvent(String event) {
-		// TODO Auto-generated method stub
-		return 0;
+	int getBasePrice(String event) 
+	{
+		 if (event.equals("DROUGHT"))
+		 {
+			 return basePrice * randomGen.nextInt(5)+1;
+		 }
+		 else if (event.equals("LOTSOFWATER"))
+		 {
+			 return Math.round(basePrice *(1/randomGen.nextInt(3)+1));
+		 }
+		 else if (event.equals("DESERT"))
+		 {
+			 return basePrice + randomGen.nextInt(150);
+		 }
+		 else{
+			 return basePrice;
+		 }
 	}
 
 }

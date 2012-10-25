@@ -8,9 +8,15 @@ public class Jenkem extends Good{
 	}
 
 	@Override
-	int getBasePriceDuringEvent(String event) {
-		// TODO Auto-generated method stub
-		return 0;
+	int getBasePrice(String event) 
+	{
+		 if (event.equals("BOREDOM"))
+		 {
+			 return basePrice * randomGen.nextInt(5)+1;
+		 }
+		 else{
+			 return basePrice;
+		 }
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.util.Random;
+
 /**
  * This class contains the logic for a "Trade Good"
  * @author Michael Underwood
@@ -16,6 +18,7 @@ public abstract class Good
 	protected int priceIncreasePerTechLevel;
 	protected int maximumVariance;
 	protected int basePriceDuringEvent;
+	protected static Random randomGen = new Random();
 	
 	public Good(int price, int minBuyTechLevel, int minSellTechLevel, int favorableTechLevel, int priceIncreasePerTechLevel, int maximumVariance)
 	{
@@ -52,7 +55,7 @@ public abstract class Good
 		return maximumVariance;
 	}
 	
-	abstract int getBasePriceDuringEvent(String event);
+	abstract int getBasePrice(String event);
 	
 	public int getBasePrice()
 	{

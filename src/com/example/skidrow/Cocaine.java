@@ -15,9 +15,23 @@ public class Cocaine extends Good {
 	}
 	
 	@Override
-	int getBasePriceDuringEvent(String event) {
-		// TODO Auto-generated method stub
-		return 0;
+	int getBasePrice(String event) 
+	{
+		 if (event.equals("COLD"))
+		 {
+			 return basePrice * randomGen.nextInt(5)+1;
+		 }
+		 else if (event.equals("RICHFAUNA"))
+		 {
+			 return Math.round(basePrice *(1/randomGen.nextInt(3)+1));
+		 }
+		 else if (event.equals("LIFELESS"))
+		 {
+			 return basePrice + randomGen.nextInt(150);
+		 }
+		 else{
+			 return basePrice;
+		 }
 	}
 
 }
