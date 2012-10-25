@@ -6,7 +6,6 @@ import java.util.Random;
  * This class contains the logic for a "Trade Good"
  * @author Michael Underwood
  * @version 0.1
- *
  */
 
 public abstract class Good 
@@ -55,9 +54,9 @@ public abstract class Good
 		return maximumVariance;
 	}
 	
-	abstract int getBasePrice(String event);
+	abstract int getBasePrice(String event); //used if there is an event happening
 	
-	public int getBasePrice()
+	public int getBasePrice() //used if no event is happening
 	{
 		return basePrice;
 	}
