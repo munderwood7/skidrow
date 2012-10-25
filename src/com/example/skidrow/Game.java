@@ -138,4 +138,6 @@ public class Game {
 	public int getStep(){
 		return step;
 	}
+
+
 }
