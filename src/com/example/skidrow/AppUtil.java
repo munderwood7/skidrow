@@ -36,4 +36,12 @@ public class AppUtil {
         	activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
+    /**
+     * Returns the current step of the game
+     * @return current step of the game
+     * @author apavia3
+     */
+    public static int getStep(){
+    	return game.getStep();
+    }
 }

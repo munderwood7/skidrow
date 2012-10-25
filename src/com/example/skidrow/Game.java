@@ -9,10 +9,10 @@ public class Game {
 	private City currentCity;
 	private City[] citiesList;
 	private int step;
+	private RandomEventGenerator eventGen; 
 	
-	private static final String TOAST="toast";
-	private static final int MESSAGE_STEP_CHANGE = 0;
-	private static final int MESSAGE_TOAST = 1;
+
+	
 	//List of top 50 Most Dangerous cities in the country (USA)
 	private final String[] cityNames = {"Poughkeepsie", "New Bedford","Fall River","Cincinnati","Miami","Alexandria",
 			"Bridgeton","Springfield","Lake Worth","Hartford","Washington","Daytona Beach","Springfield","Battle Creek",
@@ -131,6 +131,7 @@ public class Game {
 		
 		return info;
 	}
+	
 	/**
 	 * Method that is called every time the user makes a move;
 	 * As of now, the only functionality of this method is to increment
@@ -138,6 +139,13 @@ public class Game {
 	 */
 	public void makeMove(){
 		step++;
+		if(eventGen.checkStartEvent()){
+			//updateMarketValues
+			//show toast
+		}
+		if(eventGen.checkEndEvent()){
+			//dequeue event
+		}
 	}
 	/**
 	 * Returns the current step number
@@ -146,15 +154,18 @@ public class Game {
 	public int getStep(){
 		return step;
 	}
-	private final Handler myHandler = new Handler() {
+	/*private final Handler myHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-            	case MESSAGE_STEP_CHANGE:
-            		break;  
+            	case MESSAGE_EVENT:
+            		 switch (msg.arg1){
+            		 case START_EVENT:
+            		 }
+            		break;
             }		
         }
-    };
+    };*/
 
 
 }
