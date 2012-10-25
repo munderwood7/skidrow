@@ -1,10 +1,18 @@
 package com.example.skidrow;
 
+import android.os.Handler;
+import android.os.Message;
+import android.widget.Toast;
+
 public class Game {
 	private Player player;
 	private City currentCity;
 	private City[] citiesList;
 	private int step;
+	
+	private static final String TOAST="toast";
+	private static final int MESSAGE_STEP_CHANGE = 0;
+	private static final int MESSAGE_TOAST = 1;
 	//List of top 50 Most Dangerous cities in the country (USA)
 	private final String[] cityNames = {"Poughkeepsie", "New Bedford","Fall River","Cincinnati","Miami","Alexandria",
 			"Bridgeton","Springfield","Lake Worth","Hartford","Washington","Daytona Beach","Springfield","Battle Creek",
@@ -138,6 +146,15 @@ public class Game {
 	public int getStep(){
 		return step;
 	}
+	private final Handler myHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+            	case MESSAGE_STEP_CHANGE:
+            		break;  
+            }		
+        }
+    };
 
 
 }

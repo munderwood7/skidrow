@@ -19,6 +19,7 @@ public class AppUtil {
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
     }
     
+    
     /**
      * Forces the layout to landscape if it is a tablet (5-10 inches). Otherwise forces portrait.
      * 
