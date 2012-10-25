@@ -4,6 +4,7 @@ public class Game {
 	private Player player;
 	private City currentCity;
 	private City[] citiesList;
+	private int step;
 	//List of top 50 Most Dangerous cities in the country (USA)
 	private final String[] cityNames = {"Poughkeepsie", "New Bedford","Fall River","Cincinnati","Miami","Alexandria",
 			"Bridgeton","Springfield","Lake Worth","Hartford","Washington","Daytona Beach","Springfield","Battle Creek",
@@ -17,6 +18,7 @@ public class Game {
 	 * Constructor for the game class
 	 */
 	public Game(){
+		step=0;
 	}
 	
 	/**
@@ -120,5 +122,20 @@ public class Game {
 		//info[7] = money;
 		
 		return info;
+	}
+	/**
+	 * Method that is called every time the user makes a move;
+	 * As of now, the only functionality of this method is to increment
+	 * the step counter. 
+	 */
+	public void makeMove(){
+		step++;
+	}
+	/**
+	 * Returns the current step number
+	 * @return step number
+	 */
+	public int getStep(){
+		return step;
 	}
 }
