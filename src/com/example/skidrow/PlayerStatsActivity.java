@@ -52,6 +52,9 @@ public class PlayerStatsActivity extends Activity {
     		case R.id.cityView:
     			intent = new Intent(this, MapActivity.class);
     			break;
+    		case R.id.marketView:
+    			intent = new Intent(this, MarketActivity.class);
+    			break;
     		default:
     			intent = new Intent(this, PlayerStatsActivity.class);
     			break;

@@ -13,11 +13,17 @@
         <item>Medium</item>
         <item>Hard</item>
     </string-array>
+    
+    <string-array name="buySell">
+        <item>Buy</item>
+        <item>Sell</item>
+    </string-array>
 
     <string name="title_activity_cntinue">CntinueActivity</string>
     <string name="title_activity_new_game">NewGameActivity</string>
     <string name="title_activity_high_score">HighScoreActivity</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_player_stats">PlayerStatsActivity</string>
+    <string name="title_activity_market">MarketActivity</string>
 
 </resources>

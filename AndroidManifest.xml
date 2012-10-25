@@ -38,7 +38,7 @@
         </activity>
         <activity
             android:name=".HighScoreActivity"
-            android:label="@string/title_activity_high_score" 
+            android:label="@string/title_activity_high_score"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,6 +55,14 @@
         <activity
             android:name=".PlayerStatsActivity"
             android:label="@string/title_activity_player_stats"
+            android:theme="@style/noAnimTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MarketActivity"
+            android:label="@string/title_activity_market" 
             android:theme="@style/noAnimTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

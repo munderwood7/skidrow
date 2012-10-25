@@ -1,0 +1,151 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	<LinearLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#34282C" >
+
+        <ImageView
+            android:id="@+id/playerStatsView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/gear"
+            android:clickable="true"
+            android:onClick="changeGameLayout" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/marketView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/syringe"
+            android:background="#FF0000" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/wrench" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/cityView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/map"
+            android:clickable="true"
+            android:onClick="changeGameLayout" />
+    </LinearLayout>
+
+	<Spinner
+	    android:id="@+id/buySellChoice"
+	    android:layout_width="wrap_content"
+	    android:layout_height="40dp"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/relativeLayout1"
+	    android:layout_marginLeft="16dp"
+	    android:layout_marginTop="18dp"
+	    android:entries="@array/buySell" />
+
+	<TextView
+	    android:id="@+id/whoGoods"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/buySellChoice"
+	    android:layout_marginTop="10dp"
+	    android:text="Market Goods"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<View
+	    android:id="@+id/view2"
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/whoGoods"
+	    android:background="#FFFFFF" />
+
+	<ListView
+	    android:id="@+id/goodsList"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignTop="@+id/view2"
+	    android:entries="@array/buySell" >
+	</ListView>
+
+	<TextView
+	    android:id="@+id/playerMoney"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignTop="@+id/buySellChoice"
+	    android:layout_marginRight="5dp"
+	    android:text="$10"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	<TextView
+	    android:id="@+id/textView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/playerMoney"
+	    android:layout_alignBottom="@+id/playerMoney"
+	    android:layout_toLeftOf="@+id/playerMoney"
+	    android:layout_marginRight="5dp"
+	    android:text="Your Money:"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	<TextView
+	    android:id="@+id/marketMoney"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/playerMoney"
+	    android:layout_marginTop="2dp"
+	    android:layout_marginRight="5dp"
+	    android:text="$200"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	<TextView
+	    android:id="@+id/textView2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/marketMoney"
+	    android:layout_alignBottom="@+id/marketMoney"
+	    android:layout_toLeftOf="@+id/marketMoney"
+	    android:layout_marginRight="5dp"
+	    android:text="Market Money:"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
