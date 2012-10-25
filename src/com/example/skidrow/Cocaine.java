@@ -11,7 +11,7 @@ public class Cocaine extends Good {
 	
 	public Cocaine()
 	{
-		super(10);
+		super(1250, 3, 1, 5, -75, 100);
 	}
 	
 	@Override

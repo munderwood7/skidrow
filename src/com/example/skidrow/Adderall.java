@@ -11,7 +11,7 @@ public class Adderall extends Good {
 	
 	public Adderall()
 	{
-		super(2);
+		super(100, 1, 0, 1, 5, 5);
 	}
 
 	@Override

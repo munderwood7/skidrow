@@ -11,7 +11,7 @@ public class HorseTranquilizer extends Good {
 	
 	public HorseTranquilizer()
 	{
-		super(2);
+		super(250, 0, 0, 2, 3, 4);
 	}
 
 	@Override

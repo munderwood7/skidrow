@@ -4,7 +4,7 @@ public class Jenkem extends Good{
 	
 	public Jenkem()
 	{
-		super(5);
+		super(5000, 6, 4, 7, -150, 100);
 	}
 
 	@Override

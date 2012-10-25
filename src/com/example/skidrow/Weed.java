@@ -10,7 +10,7 @@ package com.example.skidrow;
 public class Weed extends Good {
 
 	public Weed() {
-		super(5);
+		super(30,0,0,0,10,10);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class LSD extends Good {
 	
 	public LSD()
 	{
-		super(10);
+		super(350, 2, 2, 3, 20, 10);
 	}
 
 	@Override

@@ -10,29 +10,34 @@ package com.example.skidrow;
 public abstract class Good 
 {
 	protected int basePrice;
-	protected String minBuyTechLevel;
-	protected String minSellTechLevel;
-	protected String favorableTechLevel;
+	protected int minBuyTechLevel;
+	protected int minSellTechLevel;
+	protected int favorableTechLevel;
 	protected int priceIncreasePerTechLevel;
 	protected int maximumVariance;
 	protected int basePriceDuringEvent;
 	
-	public Good(int price)
+	public Good(int price, int minBuyTechLevel, int minSellTechLevel, int favorableTechLevel, int priceIncreasePerTechLevel, int maximumVariance)
 	{
 		basePrice = price;
+		this.minBuyTechLevel = minBuyTechLevel;
+		this.minSellTechLevel = minSellTechLevel;
+		this.favorableTechLevel = favorableTechLevel;
+		this.priceIncreasePerTechLevel = priceIncreasePerTechLevel;
+		this.maximumVariance = maximumVariance;
 	}
 	
-	public String getMinBuyTechLevel()
+	public int getMinBuyTechLevel()
 	{
 		return minBuyTechLevel;
 	}
 	
-	public String getMinSellTechLevel()
+	public int getMinSellTechLevel()
 	{
 		return minSellTechLevel;
 	}
 	
-	public String getFavorableTechLevel()
+	public int getFavorableTechLevel()
 	{
 		return favorableTechLevel;
 	}
