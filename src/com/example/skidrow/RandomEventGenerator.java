@@ -33,10 +33,11 @@ public class RandomEventGenerator {
 		eArray[6]= new Event("RECENT_LEGISTATION_CHANGES",12," Recent legislation changes have increased the severity of punishment of illegal drugs consumption.");
 		eArray[7]= new Event("BEARISH_ECONOMY",12," An economic downturn just hit the surrounding areas, and people are forced to work long hours.");
 		eArray[8]= new Event("FINALS",2,"A nearby university has finals week next week.");
+		eArray[9]= new Event("HEROIN_CONFISCATION",2,"200 kilograms of heroin were confiscated in Guatemala.");
 	}
 	public void generateEvent(){
 		currentStep=AppUtil.getStep();
-		int rnd1=rng.nextInt(9);
+		int rnd1=rng.nextInt(eArray.length);
 		Event e=eArray[rnd1];
 		e.setStepNum(currentStep+10+rng.nextInt(10));
 		list.addLast(e);
