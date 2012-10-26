@@ -154,7 +154,7 @@ public class MapActivity extends Activity {
 			//show toast
 			e=eventGen.peek();
 			if(D) Log.i(TAG, "New event starts-> " + e.getName());
-			AppUtil.displayMessage(this,e.getName()+"\n"+e.getDescription());
+			AppUtil.displayMessage(this,e.getDescription());
 			
 		}
 		else if(eventGen.checkEndEvent()){
