@@ -19,6 +19,15 @@ public class AppUtil {
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
     }
     
+    /**
+     * Generates a message to the user. 
+     * 
+     * @param message The message to display
+     */
+    public static void displayMessage(Context context, String message){
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+    
     
     /**
      * Forces the layout to landscape if it is a tablet (5-10 inches). Otherwise forces portrait.
@@ -44,4 +53,11 @@ public class AppUtil {
     public static int getStep(){
     	return game.getStep();
     }
+    /**
+     * Make a move
+     */
+    public static void makeMove(){
+    	game.makeMove();
+    }
+    
 }

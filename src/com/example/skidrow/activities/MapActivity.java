@@ -4,13 +4,19 @@ import java.text.DecimalFormat;
 
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.City;
+import com.example.skidrow.Event;
 import com.example.skidrow.R;
+import com.example.skidrow.RandomEventGenerator;
 import com.example.skidrow.R.id;
 import com.example.skidrow.R.layout;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,15 +28,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MapActivity extends Activity {
+	
+	//Tag for logcat
+    protected static final String TAG = "MapActivity";
+    //True if we want to debug false otherwise
+    private boolean D=true;
+    private RandomEventGenerator eventGen; 
+    private City currentCity;
+    private City displayedCity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
-        
+        currentCity=AppUtil.game.getCurrentCity();
+        eventGen= new RandomEventGenerator();
+        eventGen.generateEvent();
         fillCityList();
     }
-    
+
     /**
      * Fills the listview with the cities
      */
@@ -59,7 +75,7 @@ public class MapActivity extends Activity {
     	TextView resources = (TextView)this.findViewById(R.id.crntResources);
     	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
     	String[] info = AppUtil.game.getCityInfo(index);
-    	City city=AppUtil.game.getCity(index);
+    	displayedCity=AppUtil.game.getCity(index);
     	
     	if(cityInfo.getVisibility()==View.GONE){
     		cityInfo.setVisibility(View.VISIBLE);
@@ -68,7 +84,7 @@ public class MapActivity extends Activity {
     	name.setText(info[0]);
     	techLevel.setText(info[1]);
     	resources.setText(info[2]);
-    	distance.setText(getDistance(city));
+    	distance.setText(getDistance(displayedCity));
     }
     /**
      * Gets the distance between the current city and the city being investigated
@@ -82,14 +98,7 @@ public class MapActivity extends Activity {
     	return String.format("%.3f", hypotenuse);
     }
     
-    /**
-     * Makes the player travel to the chosen location if there is enough gas.
-     * 
-     * @param view Travel button
-     */
-    public void travel(View view){
-    	
-    }
+    
     
     /**
      * Changes the view of the game between the four main game information screens (player stats, market, shop, and map).
@@ -126,5 +135,35 @@ public class MapActivity extends Activity {
     	RelativeLayout cityInfo = (RelativeLayout)this.findViewById(R.id.cityInfo);
     	
     	cityInfo.setVisibility(View.GONE);
+    }
+    /**
+     * Makes the player travel to the chosen location if there is enough gas.
+     * 
+     * @param view Travel button
+     */
+    public void travel(View view){
+    	currentCity=displayedCity;
+    	if(D) Log.i(TAG, "new current city -> " + currentCity.getName());
+    	AppUtil.game.setCurrentCity(displayedCity);
+    	AppUtil.game.makeMove();
+    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
+    	distance.setText(getDistance(displayedCity));
+    	Event e;
+		if(eventGen.checkStartEvent()){
+			//change the market values according to the event 
+			//show toast
+			e=eventGen.peek();
+			if(D) Log.i(TAG, "New event starts-> " + e.getName());
+			AppUtil.displayMessage(this,e.getName()+"\n"+e.getDescription());
+			
+		}
+		else if(eventGen.checkEndEvent()){
+			//change the market values back to the original values
+			//dequeue event
+			//generate new event
+			e=eventGen.pop();
+			if(D) Log.i(TAG, "Event ends-> " + e.getName());
+			eventGen.generateEvent();
+		}
     }
 }

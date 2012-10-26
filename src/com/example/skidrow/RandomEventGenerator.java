@@ -6,23 +6,23 @@ import java.util.Random;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class RandomEventGenerator {
 	
 	private Event[] eArray= new Event[10];
-	private final Handler myHandler;
 	private LinkedList list;
 	private Random rng;
 	private int currentStep;
+	//Tag for logcat
+    protected static final String TAG = "RandomEventGenerator";
+    //True if we want to debug false otherwise
+    private boolean D=true;
+
 	
 	
-	private static final int MESSAGE_EVENT = 1;
-	private static final int START_EVENT = 0;
-	private static final int END_EVENT = 1;
-	
-	
-	public RandomEventGenerator(Handler handler){
-		myHandler=handler;
+	public RandomEventGenerator(){
+		rng=new Random();
 		list= new LinkedList();
 		eArray[0]= new Event("DROUGHT",4, " There has been a drought for an extended period of months that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.");
 		eArray[1]= new Event("COLD",4,   " There has been a radical decrease of temperature in the surrounding areas, and homeless people are desperate to get some crack.");
@@ -40,8 +40,9 @@ public class RandomEventGenerator {
 		Event e=eArray[rnd1];
 		e.setStepNum(currentStep+10+rng.nextInt(10));
 		list.addLast(e);
+		if(D) Log.i(TAG, "New event -> " + e.getName() + "\nEvent will occur on step " + e.getStepNum()+" and will last " +e.getDuration() +" steps.");
 	}
-	public Event popEvent(){
+	public Event pop(){
 		if(!list.isEmpty()){
 			return (Event) list.pop();
 		}

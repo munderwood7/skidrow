@@ -2,14 +2,19 @@ package com.example.skidrow;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 public class Game {
+	private static Game instance = null;
 	private Player player;
 	private City currentCity;
 	private City[] citiesList;
 	private int step;
-	private RandomEventGenerator eventGen; 
+	//Tag for logcat
+    protected static final String TAG = "Game";
+    //True if we want to debug false otherwise
+    private boolean D=true;
 	
 
 	
@@ -24,10 +29,21 @@ public class Game {
 	
 	/**
 	 * Constructor for the game class
+	 * 
 	 */
+	/*protected Game() {
+		step=0;
+	}
+	public static Game getInstance() {
+		if(instance == null) {
+				instance = new Game();
+		}
+		return instance;
+	}*/
 	public Game(){
 		step=0;
 	}
+	
 	
 	/**
 	 * Method used to create a new instance of player in the game.
@@ -82,6 +98,13 @@ public class Game {
 	 */
 	public City getCurrentCity(){
 		return currentCity;
+	}
+	/**
+	 * Sets the current city
+	 * @param newCity new current city
+	 */
+	public void setCurrentCity(City currentCity){
+		this.currentCity=currentCity;
 	}
 	
 	/**
@@ -154,14 +177,9 @@ public class Game {
 	 * the step counter. 
 	 */
 	public void makeMove(){
-		step++;
-		if(eventGen.checkStartEvent()){
-			//updateMarketValues
-			//show toast
-		}
-		if(eventGen.checkEndEvent()){
-			//dequeue event
-		}
+		if(D) Log.i(TAG, "Player make a move. Current step: " + getStep());
+		increaseStep();
+		
 	}
 	/**
 	 * Returns the current step number
@@ -170,18 +188,12 @@ public class Game {
 	public int getStep(){
 		return step;
 	}
-	/*private final Handler myHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-            	case MESSAGE_EVENT:
-            		 switch (msg.arg1){
-            		 case START_EVENT:
-            		 }
-            		break;
-            }		
-        }
-    };*/
+	
+	public void increaseStep(){
+		step++;
+	}
+
+	
 
 
 }
