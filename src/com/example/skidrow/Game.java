@@ -1,5 +1,11 @@
 package com.example.skidrow;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -9,6 +15,7 @@ public class Game {
 	private static Game instance = null;
 	private Player player;
 	private City currentCity;
+	private Market currentMarket;
 	private City[] citiesList;
 	private int step;
 	//Tag for logcat
@@ -59,6 +66,7 @@ public class Game {
 		player = new Player(name, communicationSkills, fighterSkills, driverSkills, dealerSkills, difficultyLevel);
 		generateCountry();
 		currentCity=citiesList[17];//Atlanta is set as the default starting location
+		generateMarket();
 	}
 	/**
 	 * Method used to generate all cities in the country. 
@@ -193,7 +201,25 @@ public class Game {
 		step++;
 	}
 
-	
+	private void generateMarket(){
+		currentMarket = new Market(currentCity.getTechLevelInt(), null);
+	}
 
-
+	public String[] getMarketGoods(){
+		if(currentMarket!=null){
+			Map<Good, Integer> goods = currentMarket.getGoods();
+			List<String> goodsList = new ArrayList<String>();
+			Iterator iterator = goods.entrySet().iterator();
+			
+			for(int x=0; x<goods.size(); x+=1){
+				Map.Entry<Good, Integer> entry = (Entry<Good, Integer>) iterator.next();
+				if(true){ //if(entry.getValue()> 0)
+					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")");
+				}
+			}
+			
+			return goodsList.toArray(new String[goodsList.size()]);
+		}
+		return new String[]{""};
+	}
 }

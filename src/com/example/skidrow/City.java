@@ -13,6 +13,7 @@ public class City {
 	private int xLocation;
 	private int yLocation;
 	private String techLevel;
+	private int techLevlInt;
 	private static boolean[][] locationTaken = new boolean[50][50];
 	private String resources = " ";
 	private final String[] listOfResources={"NOSPECIAL", "MINERALRICH", "MINERALPOOR", "DESERT", "LOTSOFWATER", 
@@ -44,6 +45,7 @@ public class City {
 		Random rand = new Random();
 		String techLevel=" ";
 		int randTechLevel = rand.nextInt(8);
+		this.techLevlInt = randTechLevel;
 		
 		switch(randTechLevel){
 			case 0:  techLevel = "Pre-Agriculture";
@@ -101,6 +103,13 @@ public class City {
 	 */
 	 public String getTechLevel(){
 		 return techLevel;
+	 }
+	 /**
+	  * Returns the tech level as an integer
+	  * @return Integer of tech level
+	  */
+	 public int getTechLevelInt(){
+		 return this.techLevlInt;
 	 }
 	 /**
 	  * Assigns resources to the city randomly from the array of resources

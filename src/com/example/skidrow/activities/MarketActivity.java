@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -46,6 +48,7 @@ public class MarketActivity extends Activity {
      */
     private void populateScreen(Person person){
     	TextView whoGoods = (TextView)this.findViewById(R.id.whoGoods);
+    	ListView goodsList = (ListView)this.findViewById(R.id.goodsList);
     	if(person == Person.PLAYER){
     		whoGoods.setText("Your Goods");
     	}
@@ -53,6 +56,7 @@ public class MarketActivity extends Activity {
     		//Gets the name of the current city
     		String[] city = AppUtil.game.getCityInfo(AppUtil.game.getCurrentCity());
     		whoGoods.setText(city[0]+"'s Goods");
+    		goodsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, AppUtil.game.getMarketGoods()));
     	}
     }
     
