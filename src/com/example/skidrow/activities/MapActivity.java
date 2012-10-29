@@ -165,5 +165,6 @@ public class MapActivity extends Activity {
 			if(D) Log.i(TAG, "Event ends-> " + e.getName());
 			eventGen.generateEvent();
 		}
+		AppUtil.game.generateMarket();
     }
 }

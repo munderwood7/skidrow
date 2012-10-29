@@ -37,8 +37,9 @@ public class PlayerStatsActivity extends Activity {
     	playerFighting.setText(info[1]);
     	playerDriving.setText(info[2]);
     	playerDealing.setText(info[3]);
+    	playerCity.setText(info[4]);
     	playerName.setText(info[6]);
-    	playerCity.setText(AppUtil.game.getCurrentCity().getName());
+    	playerMoney.setText(info[7]);
     }
     
     /**

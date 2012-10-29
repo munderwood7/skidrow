@@ -171,10 +171,10 @@ public class Game {
 		for(int x=0; x<4; x+=1){
 			info[x] = Integer.toString(playerLevels[x]);
 		}
-		//info[4] = city
+		info[4] = currentCity.getName();
 		//info[5] = health
 		info[6] = player.getName();
-		//info[7] = money;
+		info[7] = "$"+Integer.toString(player.getMoney());
 		
 		return info;
 	}
@@ -201,10 +201,15 @@ public class Game {
 		step++;
 	}
 
-	private void generateMarket(){
+	public void generateMarket(){
 		currentMarket = new Market(currentCity.getTechLevelInt());
 	}
 
+	/**
+	 * Gets all of the goods in the current city's market
+	 * 
+	 * @return List of all goods and their quantity for the current city
+	 */
 	public String[] getMarketGoods(){
 		if(currentMarket!=null){
 			Map<Good, Integer> goods = currentMarket.getGoods();
@@ -213,7 +218,7 @@ public class Game {
 			
 			for(int x=0; x<goods.size(); x+=1){
 				Map.Entry<Good, Integer> entry = (Entry<Good, Integer>) iterator.next();
-				if(true){ //if(entry.getValue()> 0)
+				if(entry.getValue() > 0){ //if(entry.getValue()> 0)
 					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")");
 				}
 			}
@@ -221,5 +226,55 @@ public class Game {
 			return goodsList.toArray(new String[goodsList.size()]);
 		}
 		return new String[]{""};
+	}
+	
+	/**
+	 * Gets all of the goods for the player
+	 * 
+	 * @return List of all goods and their quantity for the player
+	 */
+	public String[] getPlayerGoods(){
+		if(player!=null){
+			Map<Good, Integer> goods = player.getGoods();
+			List<String> goodsList = new ArrayList<String>();
+			Iterator iterator = goods.entrySet().iterator();
+			
+			for(int x=0; x<goods.size(); x+=1){
+				Map.Entry<Good, Integer> entry = (Entry<Good, Integer>) iterator.next();
+				if(entry.getValue() > 0){ //if(entry.getValue()> 0)
+					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")");
+				}
+			}
+			
+			return goodsList.toArray(new String[goodsList.size()]);
+		}
+		return new String[]{""};
+	}
+
+	/**
+	 * This method transfers goods from the market to the player. This means the player gains goods and loses money and the Market loses goods and gains money.
+	 * If the player attempts to buy more goods than are available or exceeds his/her money then a string of the error is returned. If the transaction is valid then
+	 * null is returned and all appropriate information is updated
+	 * 
+	 * @param drug String of the drug to be transfered
+	 * @param quantity Quantity of the drug to be transfered
+	 * @return
+	 */
+	public String marketToPlayer(String drug, int quantity){
+		return null;
+	}
+	
+	/**
+	 * This method transfers goods from the player to the market. This means the market gains goods and loses money and the player loses goods and gains money.
+	 * If the player attempts to sell more goods than are available or exceeds the markets money then a string of the error is returned. If the transaction is valid then
+	 * null is returned and all appropriate information is updated
+	 * 
+	 * @param drug String of the drug to be transfered
+	 * @param quantity Quantity of the drug to be transfered
+	 * @return
+	 */
+	public String playerToMarket(String drug, int quantity){
+		
+		return null;
 	}
 }

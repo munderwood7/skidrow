@@ -40,6 +40,8 @@ public class Market
 	 * This method fills the number of each good available at a given market.
 	 */
 	private void generateGoods(){
+		goodsList.put(new Adderall(), 0);
+		goodsList.put(new HorseTranquilizer(), 0);
 		goodsList.put(new Weed(), 0);
 		goodsList.put(new Cocaine(), 0);
 		goodsList.put(new Extacy(), 0);
@@ -64,7 +66,7 @@ public class Market
 				{
 					quantityMultiplier = random.nextInt(2)+2;
 				}				
-				int numberItems = (random.nextInt(10)+1) * quantityMultiplier;
+				int numberItems = (random.nextInt(20)+1) * quantityMultiplier;
 				goodsList.put(entry.getKey(), numberItems);		
 			}
 		}

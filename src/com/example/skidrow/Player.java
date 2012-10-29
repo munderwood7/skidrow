@@ -1,5 +1,8 @@
 package com.example.skidrow;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This class will contain the players information -- information holder.
  * @author Michael Underwood
@@ -9,8 +12,10 @@ package com.example.skidrow;
 public class Player {
 	
 	private String name;
+	private int money;
 	private int communicationSkills,fighterSkills, driverSkills, dealerSkills;
 	private String difficultyLevel;
+	private Map goodsList = new HashMap<Good, Integer>();
 
 	public Player(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String  difficultyLevel)
 	{
@@ -23,6 +28,7 @@ public class Player {
 		System.out.println("Name: " + name + " ComSkills: " + communicationSkills + 
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
 				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
+		this.money = 10000;
 	}
 	
 	/**
@@ -42,5 +48,38 @@ public class Player {
 	 */
 	public int[] getSkillsArray(){
 		return new int[]{communicationSkills,fighterSkills, driverSkills, dealerSkills};
+	}
+	
+	/**
+	 * Creates a new goods list with all drugs starting at a quantity of 0
+	 */
+	private void initGoods(){
+		goodsList.put(new Adderall(), 0);
+		goodsList.put(new HorseTranquilizer(), 0);
+		goodsList.put(new Weed(), 0);
+		goodsList.put(new Cocaine(), 0);
+		goodsList.put(new Extacy(), 0);
+		goodsList.put(new Heroin(), 0);
+		goodsList.put(new Jenkem(), 0);
+		goodsList.put(new LSD(), 0);
+		goodsList.put(new PsychedelicMushroom(), 0);
+	}
+	
+	/**
+	 * Gets the players current goods list
+	 * 
+	 * @return Map of player goods and their quantity
+	 */
+	public Map<Good, Integer> getGoods(){
+		return goodsList;
+	}
+	
+	/**
+	 * Gets the amount of money a player has
+	 * 
+	 * @return The amount of money the player has
+	 */
+	public int getMoney(){
+		return money;
 	}
 }
