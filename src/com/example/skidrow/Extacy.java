@@ -11,7 +11,7 @@ public class Extacy extends Good {
 	
 	public Extacy()
 	{
-		super(250, 3, 1, 6, -10, 5);
+		super("Extacy", 250, 3, 1, 6, -10, 5, 2, 6);
 	}
 
 	@Override

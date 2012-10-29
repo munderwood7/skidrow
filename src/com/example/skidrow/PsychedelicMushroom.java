@@ -11,7 +11,7 @@ public class PsychedelicMushroom extends Good {
 	
 	public PsychedelicMushroom()
 	{
-		super(3500, 5, 0, 5, -125, 150);
+		super("PsychedelicMushroom", 3500, 5, 0, 5, -125, 150, 6, 2);
 	}
 
 	@Override

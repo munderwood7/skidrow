@@ -20,7 +20,6 @@ public class City {
 											"RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS", "WEIRDMUSHROOMS", "LOTSOFHERBS",
 											"ARTISTIC", "WARLIKE"};
 
-
 	public City(String CityName){
 		Name = CityName;
 		setTechLevel();
@@ -128,4 +127,5 @@ public class City {
 	 public String getResources(){
 		 return resources;
 	 }
+	 
 }

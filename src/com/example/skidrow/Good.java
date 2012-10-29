@@ -17,16 +17,23 @@ public abstract class Good
 	protected int priceIncreasePerTechLevel;
 	protected int maximumVariance;
 	protected int basePriceDuringEvent;
+	protected int minimumTechLevelProduceResource;
+	protected int minimumTechLeveltoUseResource;
+	protected int quantity;
+	protected String goodName;
 	protected static Random randomGen = new Random();
 	
-	public Good(int price, int minBuyTechLevel, int minSellTechLevel, int favorableTechLevel, int priceIncreasePerTechLevel, int maximumVariance)
+	public Good(String goodName, int price, int minBuyTechLevel, int minSellTechLevel, int favorableTechLevel, int priceIncreasePerTechLevel, int maximumVariance, int minimumTechLevelProduceResource, int minimumTechLeveltoUseResource)
 	{
 		basePrice = price;
+		this.goodName = goodName;
 		this.minBuyTechLevel = minBuyTechLevel;
 		this.minSellTechLevel = minSellTechLevel;
 		this.favorableTechLevel = favorableTechLevel;
 		this.priceIncreasePerTechLevel = priceIncreasePerTechLevel;
 		this.maximumVariance = maximumVariance;
+		this.minimumTechLevelProduceResource = minimumTechLevelProduceResource;
+		this.minimumTechLeveltoUseResource = minimumTechLeveltoUseResource;
 	}
 	
 	public int getMinBuyTechLevel()
@@ -59,6 +66,27 @@ public abstract class Good
 	public int getBasePrice() //used if no event is happening
 	{
 		return basePrice;
+	}
+	
+	public int getQuantity(){
+		return quantity;//used to see how many of these the user or market has
+	}
+	
+	public int getMinimumTechLevelProduceResource(){
+		return minimumTechLevelProduceResource;
+	}
+	
+	public int getMinimumTechLeveltoUseResource(){
+		return minimumTechLevelProduceResource;
+	}
+	
+	public String toString(){
+		return goodName;
+	}
+	
+	public void setBasePrice(int newBasePrice)
+	{
+		basePrice = newBasePrice;
 	}
 	
 }

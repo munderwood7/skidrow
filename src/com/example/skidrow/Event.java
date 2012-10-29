@@ -4,38 +4,53 @@ package com.example.skidrow;
  * @author apavia3
  *
  */
-public class Event {
+public class Event 
+{
 	private String description;
 	private String name;
 	private int duration;
 	private int stepNum;
-	public Event(String name, String description){
+	private int priceEffect;
+	public Event(String name, String description)
+	{
 		this.name=name;
 		this.description=description;
 		this.duration=0;
 	}
-	public Event(String name, int duration, String description){
+	public Event(String name, int duration, String description, int priceEffect)
+	{
 		this.name=name;
 		this.description=description;
 		this.duration=duration;
+		this.priceEffect=priceEffect;
 	}
-	public String getDescription(){
+	public String getDescription()
+	{
 		return description;
 	}
-	public String getName(){
+	public String getName()
+	{
 		return name;
 	}
-	public int getStepNum(){
+	public int getStepNum()
+	{
 		return stepNum;
 	}
-	public void setStepNum(int stepNum){
+	public void setStepNum(int stepNum)
+	{
 		this.stepNum= stepNum;
 	}
-	public int getDuration(){
+	public int getDuration()
+	{
 		return duration;
 	}
-	public void setDuration(int duration){
+	public void setDuration(int duration)
+	{
 		this.duration= duration;
+	}
+	public int getPriceEffect()
+	{
+		return priceEffect;
 	}
 
 }

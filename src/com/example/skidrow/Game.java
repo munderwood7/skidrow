@@ -202,7 +202,7 @@ public class Game {
 	}
 
 	private void generateMarket(){
-		currentMarket = new Market(currentCity.getTechLevelInt(), null);
+		currentMarket = new Market(currentCity.getTechLevelInt());
 	}
 
 	public String[] getMarketGoods(){
