@@ -261,7 +261,12 @@ public class Game {
 	 * @return
 	 */
 	public String marketToPlayer(String drug, int quantity){
-		return null;
+		int totalTransaction = player.buyGood(drug, quantity);
+		if(totalTransaction>0){
+			currentMarket.sellGood(drug, quantity, totalTransaction);
+			return (player + " has just bought " + quantity + " " +drug);
+		}	
+		return (player  + " has not enough mony to buy " + quantity + " " +drug);
 	}
 	
 	/**
@@ -274,7 +279,11 @@ public class Game {
 	 * @return
 	 */
 	public String playerToMarket(String drug, int quantity){
-		
-		return null;
+		int totalTransaction = currentMarket.buyGood(drug);
+		if(totalTransaction>0){
+			player.sellGood(drug, quantity, totalTransaction);
+			return (player + " has just sold " + quantity +" " + drug);
+		}	
+		return "There are not " + drug + "s being sold in thid market";
 	}
 }

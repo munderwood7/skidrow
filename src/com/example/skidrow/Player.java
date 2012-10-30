@@ -1,6 +1,7 @@
 package com.example.skidrow;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -81,5 +82,54 @@ public class Player {
 	 */
 	public int getMoney(){
 		return money;
+	}
+	
+	public int buyGood(String drug, int quantity){
+		
+		Iterator iterator = goodsList.entrySet().iterator();
+		for(int x=0; x<goodsList.size(); x++)
+		{
+			Map.Entry<Good, Integer> entry = (Map.Entry<Good, Integer>)iterator.next();
+			if(entry.getKey().toString().compareTo(drug) == 0)
+			{
+				int goodPrice = getPrice(entry.getKey())*quantity;
+				if (goodPrice<=money)
+				{
+					money-=goodPrice;
+					entry.setValue(entry.getValue()+quantity);
+					System.out.println(name + " has just bought " + quantity + " " + drug);
+					return goodPrice;
+				}
+				return 0;
+			}
+			
+		}
+		System.out.println(name + " has not enough money to buy " + quantity + " " + drug);
+		return 0;
+		
+	}	
+	
+	public void sellGood(String good, int quantity, int totalTransaction){
+		Iterator iterator = goodsList.entrySet().iterator();
+		for(int x=0; x<goodsList.size(); x++)
+		{
+			Map.Entry<Good, Integer> entry = (Map.Entry<Good, Integer>)iterator.next();
+			if(entry.getKey().toString().compareTo(good)==0)
+			{
+				if(entry.getValue()>=quantity){
+					entry.setValue(entry.getValue()-quantity);
+					System.out.println(name + " has just sold " + quantity+ " " + good);
+					money+=totalTransaction;
+				} 
+				return;
+			}
+		}
+		return;
+	}
+
+	public int getPrice(Good g)
+	{
+		return g.getBasePrice();
+		
 	}
 }
