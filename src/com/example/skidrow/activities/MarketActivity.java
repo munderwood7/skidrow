@@ -144,6 +144,8 @@ public class MarketActivity extends Activity {
     		playerMoneyView.setText(AppUtil.game.getPlayerStatInfo()[7]);
     	final TextView marketMoneyView = (TextView)layout.findViewById(R.id.marketMoney);
     		marketMoneyView.setText("$"+Integer.toString(AppUtil.game.getMarketMoney()));
+    	final TextView availableCargo = (TextView)layout.findViewById(R.id.availableCargo);
+    		availableCargo.setText(Integer.toString(AppUtil.game.getCargoSpaceFromGame()));
     	SeekBar slider = (SeekBar)layout.findViewById(R.id.buySellQuantity);
     	slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			
@@ -232,13 +234,8 @@ public class MarketActivity extends Activity {
     
     private void buySellGoods(String good, String quantity){
     	String error;
-    	Boolean canOrNot=Integer.parseInt(quantity) <= AppUtil.game.getCargoSpaceFromGame();
-    	
-    	if (Integer.parseInt(quantity) > AppUtil.game.getCargoSpaceFromGame()){
-    		System.out.println(" Integer.parseInt(quantity) "+ Integer.parseInt(quantity)+ " AppUtil.game.getCargoSpaceFromGame()  " +AppUtil.game.getCargoSpaceFromGame());
-    		AppUtil.displayError(this, "You do not have enough cargo space!!");
-    	}
-    	else if(!quantity.equals("") && !quantity.equals("0") && canOrNot){
+
+    	if(!quantity.equals("") && !quantity.equals("0")){
 	    	if(person == Person.MARKET){
 	    		error = AppUtil.game.marketToPlayer(good, Integer.parseInt(quantity));
 	    	}

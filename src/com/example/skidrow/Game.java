@@ -270,9 +270,10 @@ public class Game {
 			return "You are $" + (transPrice-player.getMoney()) + " short of buying " + quantity + " " + drug;
 		}
 		
-		/*if(!player.hasStorage(quanity)){
-			return "You are attempting to buy more goods then you have storage for";
-		}*/
+		if (quantity > player.getCargoSpace()){
+    		System.out.println(" Integer.parseInt(quantity) "+ quantity+ " AppUtil.game.getCargoSpaceFromGame()  " + player.getCargoSpace());
+    		return "You do not have enough cargo space!!";
+    	}
 		
 		player.buyGood(drug, quantity, transPrice);
 		currentMarket.sellGood(currentMarket.getGoodFromString(drug), quantity, transPrice);

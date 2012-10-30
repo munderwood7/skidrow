@@ -26,7 +26,7 @@
 
     <SeekBar
         android:id="@+id/buySellQuantity"
-        android:layout_width="260dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
@@ -82,6 +82,26 @@
         android:layout_toLeftOf="@+id/playerMoney"
         android:layout_marginRight="5dp"
         android:text="Player:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/availableCargo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buySellQuantity"
+        android:layout_alignRight="@+id/quantityValue"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/availableCargo"
+        android:layout_alignBottom="@+id/availableCargo"
+        android:layout_toLeftOf="@+id/availableCargo"
+        android:layout_marginRight="5dp"
+        android:text="Cargo Space:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
