@@ -9,22 +9,79 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:text="How much:"
+        android:layout_marginTop="14dp"
+        android:text="Cost:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/buySellQuantity"
-        android:layout_width="75dp"
+    <TextView
+        android:id="@+id/goodCost"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
-        android:layout_toRightOf="@+id/textView1"
         android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:inputType="number" >
+        android:layout_toRightOf="@+id/textView1"
+        android:text="$200"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <requestFocus />
-    </EditText>
+    <SeekBar
+        android:id="@+id/buySellQuantity"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="9dp" />
+
+    <TextView
+        android:id="@+id/quantityValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buySellQuantity"
+        android:layout_toRightOf="@+id/buySellQuantity"
+        android:layout_marginLeft="5dp"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/buySellQuantity"
+        android:layout_marginTop="15dp"
+        android:text="Market:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/marketMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_marginLeft="5dp"
+        android:text="$1000"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/playerMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/marketMoney"
+        android:layout_alignBottom="@+id/marketMoney"
+        android:layout_alignRight="@+id/quantityValue"
+        android:text="$900"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/playerMoney"
+        android:layout_alignBottom="@+id/playerMoney"
+        android:layout_toLeftOf="@+id/playerMoney"
+        android:layout_marginRight="5dp"
+        android:text="Player:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

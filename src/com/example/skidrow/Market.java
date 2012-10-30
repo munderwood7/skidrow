@@ -82,6 +82,10 @@ public class Market
 		return goodsList;
 	}
 	
+	public int getMoney(){
+		return money;
+	}
+	
 	/**
 	 * These method calculates the price of a good base on current events and information about the city (it can decrease on increase relative to the base price) 
 	 * @param g

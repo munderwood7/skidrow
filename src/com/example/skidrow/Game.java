@@ -179,6 +179,10 @@ public class Game {
 		return info;
 	}
 	
+	public int getMarketMoney(){
+		return currentMarket.getMoney();
+	}
+	
 	/**
 	 * Method that is called every time the user makes a move;
 	 * As of now, the only functionality of this method is to increment
@@ -219,7 +223,7 @@ public class Game {
 			for(int x=0; x<goods.size(); x+=1){
 				Map.Entry<Good, Integer> entry = (Entry<Good, Integer>) iterator.next();
 				if(entry.getValue() > 0){ //if(entry.getValue()> 0)
-					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")");
+					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+currentMarket.getPrice(entry.getKey()));
 				}
 			}
 			

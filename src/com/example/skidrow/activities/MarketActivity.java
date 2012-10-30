@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -71,6 +72,7 @@ public class MarketActivity extends Activity {
     	TextView whoGoods = (TextView)this.findViewById(R.id.whoGoods);
     	ListView goodsList = (ListView)this.findViewById(R.id.goodsList);
     	TextView playerMoney = (TextView)this.findViewById(R.id.playerMoney);
+    	TextView marketMoney = (TextView)this.findViewById(R.id.marketMoney);
     	String playerInfo[] = AppUtil.game.getPlayerStatInfo();
     	
     	if(person == Person.PLAYER){
@@ -84,6 +86,7 @@ public class MarketActivity extends Activity {
     		goodsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, AppUtil.game.getMarketGoods()));
     	}
     	
+    	marketMoney.setText("$"+Integer.toString(AppUtil.game.getMarketMoney()));
     	playerMoney.setText(playerInfo[7]);
     }
     
@@ -95,7 +98,8 @@ public class MarketActivity extends Activity {
     private void goodsTransaction(String good){
     	//name of drug without quantity
     	String drugt = "";
-    	for (int x=0; x<good.length(); x+=1){
+    	int x;
+    	for (x=0; x<good.length(); x+=1){
     		char ltr = good.charAt(x);
     		if(ltr == '('){
     			break;
@@ -103,20 +107,83 @@ public class MarketActivity extends Activity {
     		drugt += ltr;
     	}
     	final String drug = drugt;
-    	
+    	String quant = "";
+    	for(x=x+1; x<good.length(); x+=1){
+    		char ltr = good.charAt(x);
+    		if(ltr == ')'){
+    			break;
+    		}
+    		quant += ltr;
+    	}
+    	final int goodQuant = Integer.parseInt(quant);
+    	String goodPriceStr = "";
+    	boolean record = false;
+    	for(x=x+1;x<good.length();x+=1){
+    		char ltr = good.charAt(x);
+    		if(ltr=='$'){
+    			record=true;
+    		}
+    		else if(record && ltr!=' '){
+    			goodPriceStr+=ltr;
+    		}
+    	}
+    	final int goodPrice = Integer.parseInt(goodPriceStr);
+    	 	
     	String transactionType;
     	if(person == Person.MARKET){ transactionType = "Buy"; }
     	else{ transactionType = "Sell"; }
     	
+    	//Setting all the appropriate listeners for the dialog layout
     	LayoutInflater inflater = this.getLayoutInflater();
     	final RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.cutsom_popup, null);
+    	final TextView goodCost = (TextView)layout.findViewById(R.id.goodCost);
+    		goodCost.setText("$"+goodPriceStr);
+    	final TextView quantity = (TextView)layout.findViewById(R.id.quantityValue);
+    	final TextView playerMoneyView = (TextView)layout.findViewById(R.id.playerMoney);
+    		playerMoneyView.setText(AppUtil.game.getPlayerStatInfo()[7]);
+    	final TextView marketMoneyView = (TextView)layout.findViewById(R.id.marketMoney);
+    		marketMoneyView.setText("$"+Integer.toString(AppUtil.game.getMarketMoney()));
+    	SeekBar slider = (SeekBar)layout.findViewById(R.id.buySellQuantity);
+    	slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				int buySellQuant = (progress*goodQuant)/100;
+				String playerMoneyStr = AppUtil.game.getPlayerStatInfo()[7];
+				int playerMoney = Integer.parseInt((String) playerMoneyStr.subSequence(1, playerMoneyStr.length()));
+				int marketMoney = AppUtil.game.getMarketMoney();				//Set the textview to the current quantity to be bought
+				quantity.setText(Integer.toString(buySellQuant));
+				
+				//Calculate the future money values
+				if(person == Person.MARKET){
+					playerMoney = playerMoney - buySellQuant * goodPrice;
+					marketMoney = marketMoney + buySellQuant * goodPrice;
+				}
+				else{
+					playerMoney = playerMoney + buySellQuant * goodPrice;
+					marketMoney = marketMoney - buySellQuant * goodPrice;
+				}
+				
+				playerMoneyView.setText("$"+Integer.toString(playerMoney));
+				marketMoneyView.setText("$"+Integer.toString(marketMoney));
+			}
+		});
+    	//Building the dialog box to display to the user
         AlertDialog.Builder popup = new AlertDialog.Builder(this);
         popup.setView(layout)
         	.setTitle(transactionType+" " +drug)
         	.setPositiveButton("Buy", new DialogInterface.OnClickListener() {
 				
 				public void onClick(DialogInterface dialog, int which) {
-					EditText quantity = (EditText)layout.findViewById(R.id.buySellQuantity);
 					buySellGoods(drug, quantity.getText().toString());
 				}
 			})
@@ -159,7 +226,7 @@ public class MarketActivity extends Activity {
     
     private void buySellGoods(String good, String quantity){
     	String error;
-    	if(!quantity.equals("")){
+    	if(!quantity.equals("") && !quantity.equals("0")){
 	    	if(person == Person.MARKET){
 	    		error = AppUtil.game.marketToPlayer(good, Integer.parseInt(quantity));
 	    	}
