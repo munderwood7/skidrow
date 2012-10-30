@@ -16,7 +16,7 @@ public class Player {
 	private int money;
 	private int communicationSkills,fighterSkills, driverSkills, dealerSkills;
 	private String difficultyLevel;
-	private Map goodsList = new HashMap<Good, Integer>();
+	private Map<String, Integer> goodsList = new HashMap<String, Integer>();
 
 	public Player(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String  difficultyLevel)
 	{
@@ -30,6 +30,8 @@ public class Player {
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
 				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
 		this.money = 10000;
+		
+		initGoods();
 	}
 	
 	/**
@@ -55,15 +57,15 @@ public class Player {
 	 * Creates a new goods list with all drugs starting at a quantity of 0
 	 */
 	private void initGoods(){
-		goodsList.put(new Adderall(), 0);
-		goodsList.put(new HorseTranquilizer(), 0);
-		goodsList.put(new Weed(), 0);
-		goodsList.put(new Cocaine(), 0);
-		goodsList.put(new Extacy(), 0);
-		goodsList.put(new Heroin(), 0);
-		goodsList.put(new Jenkem(), 0);
-		goodsList.put(new LSD(), 0);
-		goodsList.put(new PsychedelicMushroom(), 0);
+		goodsList.put("Adderall", 0);
+		goodsList.put("HorseTranquilizer", 0);
+		goodsList.put("Weed", 0);
+		goodsList.put("Cocaine", 0);
+		goodsList.put("Extacy", 0);
+		goodsList.put("Heroin", 0);
+		goodsList.put("Jenkem", 0);
+		goodsList.put("LSD", 0);
+		goodsList.put("PsychedelicMushroom", 0);
 	}
 	
 	/**
@@ -71,7 +73,7 @@ public class Player {
 	 * 
 	 * @return Map of player goods and their quantity
 	 */
-	public Map<Good, Integer> getGoods(){
+	public Map<String, Integer> getGoods(){
 		return goodsList;
 	}
 	
@@ -84,52 +86,27 @@ public class Player {
 		return money;
 	}
 	
-	public int buyGood(String drug, int quantity){
-		
-		Iterator iterator = goodsList.entrySet().iterator();
-		for(int x=0; x<goodsList.size(); x++)
-		{
-			Map.Entry<Good, Integer> entry = (Map.Entry<Good, Integer>)iterator.next();
-			if(entry.getKey().toString().compareTo(drug) == 0)
-			{
-				int goodPrice = getPrice(entry.getKey())*quantity;
-				if (goodPrice<=money)
-				{
-					money-=goodPrice;
-					entry.setValue(entry.getValue()+quantity);
-					System.out.println(name + " has just bought " + quantity + " " + drug);
-					return goodPrice;
-				}
-				return 0;
-			}
-			
-		}
-		System.out.println(name + " has not enough money to buy " + quantity + " " + drug);
-		return 0;
-		
-	}	
-	
-	public void sellGood(String good, int quantity, int totalTransaction){
-		Iterator iterator = goodsList.entrySet().iterator();
-		for(int x=0; x<goodsList.size(); x++)
-		{
-			Map.Entry<Good, Integer> entry = (Map.Entry<Good, Integer>)iterator.next();
-			if(entry.getKey().toString().compareTo(good)==0)
-			{
-				if(entry.getValue()>=quantity){
-					entry.setValue(entry.getValue()-quantity);
-					System.out.println(name + " has just sold " + quantity+ " " + good);
-					money+=totalTransaction;
-				} 
-				return;
-			}
-		}
-		return;
+	/**
+	 * Buys a good from the player. This means the value of the goods is subtracted from the money and the quantity of the good is added to the goodsList
+	 * 
+	 * @param good Good to buy
+	 * @param quantity Amount of good to be bought
+	 * @param deltaMoney Total value of goods being bought
+	 */
+	public void buyGood(String good, int quantity, int deltaMoney){
+		goodsList.put(good, goodsList.get(good)+quantity); 
+		this.money = money - deltaMoney;
 	}
-
-	public int getPrice(Good g)
-	{
-		return g.getBasePrice();
-		
+	
+	/**
+	 * Sells a good from the player. This means the value of the goods is added to the money and the quantity of the good is subtracted from the goodsList
+	 * 
+	 * @param good Good to sell
+	 * @param quantity Amount of good to be sold
+	 * @param deltaMoney Total value of goods being sold
+	 */
+	public void sellMoney(String good, int quantity, int deltaMoney){
+		goodsList.put(good, goodsList.get(good)-quantity);
+		this.money = money + deltaMoney;
 	}
 }

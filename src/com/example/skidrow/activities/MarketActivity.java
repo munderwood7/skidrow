@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -178,15 +179,11 @@ public class MarketActivity extends Activity {
 			}
 		});
     	//Building the dialog box to display to the user
+    	String transType = "Buy";
+    	if(person==Person.PLAYER){ transType = "Sell"; }
         AlertDialog.Builder popup = new AlertDialog.Builder(this);
         popup.setView(layout)
         	.setTitle(transactionType+" " +drug)
-        	.setPositiveButton("Buy", new DialogInterface.OnClickListener() {
-				
-				public void onClick(DialogInterface dialog, int which) {
-					buySellGoods(drug, quantity.getText().toString());
-				}
-			})
 			.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
 
 				public void onClick(DialogInterface dialog, int which) {
@@ -194,6 +191,12 @@ public class MarketActivity extends Activity {
 					
 				}
 				
+			})
+			.setPositiveButton(transType, new DialogInterface.OnClickListener() {
+				
+				public void onClick(DialogInterface dialog, int which) {
+					buySellGoods(drug, quantity.getText().toString());
+				}
 			});
         popup.create().show();
     }
@@ -235,6 +238,8 @@ public class MarketActivity extends Activity {
 	    	}
 	    	
 	    	if(error!=null){ AppUtil.displayError(this, error); }
+	    	//refresh info on screen
+	    	populateScreen();
     	}
     	else{
     		AppUtil.displayError(this, "You have not picked a quantity");

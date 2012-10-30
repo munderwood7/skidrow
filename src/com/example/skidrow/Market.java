@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Market 
 {
-	private Map goodsList = new HashMap<Good, Integer>();
+	private Map<Good, Integer> goodsList = new HashMap<Good, Integer>();
 	private int techLevel;
 	private Event event;
 	private Random random;
@@ -94,7 +94,9 @@ public class Market
 	public int getPrice(Good g, Event e)
 	{
 		int currBasePrice = g.getBasePrice();
-		int newBasePrice = currBasePrice + event.getPriceEffect();  //increase or decrease price of good depending on the event
+		int newBasePrice;
+		if(event==null){ newBasePrice = currBasePrice; }
+		else{ newBasePrice = currBasePrice + event.getPriceEffect(); }  //increase or decrease price of good depending on the event
 		int priceIncXTechLevel = g.getPriceIncreasePerTechLevel();
 		int MTLP = g.getMinimumTechLevelProduceResource();
 		int variance = g.getMaxVariance();	
@@ -169,5 +171,47 @@ public class Market
 	{
 		return g.getBasePrice();
 		
+	}
+	
+	/**
+	 * Finds the good based on a string of it's name
+	 * 
+	 * @param good Name of the good
+	 * @return The Good
+	 */
+	public Good getGoodFromString(String good){
+		Iterator iterator = goodsList.entrySet().iterator();
+		for(int x=0; x<goodsList.size(); x+=1)
+		{
+			Map.Entry<Good, Integer> entry = (Map.Entry<Good, Integer>)iterator.next();
+			if(entry.getKey().toString().equals(good)){
+				return entry.getKey();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Sells a good from the market. This means the value of the goods is added to the money and the quantity of the good is subtracted from the goodsList
+	 * 
+	 * @param good Good to sell
+	 * @param quantity Amount of good to be sold
+	 * @param deltaMoney Total value of goods being sold
+	 */
+	public void sellGood(Good good, int quantity, int deltaMoney){
+		goodsList.put(good, goodsList.get(good)-quantity);
+		this.money = money + deltaMoney;
+	}
+	
+	/**
+	 * Buys a good from the market. This means the value of the goods is subtracted from the money and the quantity of the good is added to the goodsList
+	 * 
+	 * @param good Good to buy
+	 * @param quantity Amount of good to be bought
+	 * @param deltaMoney Total value of goods being bought
+	 */
+	public void buyGood(Good good, int quantity, int deltaMoney){
+		goodsList.put(good, goodsList.get(good)+quantity);
+		this.money = money - deltaMoney;
 	}
 }

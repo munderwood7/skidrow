@@ -223,7 +223,7 @@ public class Game {
 			for(int x=0; x<goods.size(); x+=1){
 				Map.Entry<Good, Integer> entry = (Entry<Good, Integer>) iterator.next();
 				if(entry.getValue() > 0){ //if(entry.getValue()> 0)
-					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+currentMarket.getPrice(entry.getKey()));
+					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+currentMarket.getPrice(entry.getKey(), null));
 				}
 			}
 			
@@ -239,14 +239,14 @@ public class Game {
 	 */
 	public String[] getPlayerGoods(){
 		if(player!=null){
-			Map<Good, Integer> goods = player.getGoods();
+			Map<String, Integer> goods = player.getGoods();
 			List<String> goodsList = new ArrayList<String>();
 			Iterator iterator = goods.entrySet().iterator();
 			
 			for(int x=0; x<goods.size(); x+=1){
-				Map.Entry<Good, Integer> entry = (Entry<Good, Integer>) iterator.next();
-				if(entry.getValue() > 0){ //if(entry.getValue()> 0)
-					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")");
+				Map.Entry<String, Integer> entry = (Entry<String, Integer>) iterator.next();
+				if(entry.getValue() > 0 && currentMarket.getGoodFromString(entry.getKey()).minSellTechLevel <= currentCity.getTechLevelInt()){
+					goodsList.add(entry.getKey()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+currentMarket.getPrice(currentMarket.getGoodFromString(entry.getKey()), null));
 				}
 			}
 			
@@ -265,12 +265,19 @@ public class Game {
 	 * @return
 	 */
 	public String marketToPlayer(String drug, int quantity){
-		int totalTransaction = player.buyGood(drug, quantity);
-		if(totalTransaction>0){
-			currentMarket.sellGood(drug, quantity, totalTransaction);
-			return (player + " has just bought " + quantity + " " +drug);
-		}	
-		return (player  + " has not enough mony to buy " + quantity + " " +drug);
+		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug), null)*quantity;
+		if(player.getMoney()<transPrice){
+			return "You are $" + (transPrice-player.getMoney()) + " short of buying " + quantity + " " + drug;
+		}
+		
+		/*if(!player.hasStorage(quanity)){
+			return "You are attempting to buy more goods then you have storage for";
+		}*/
+		
+		player.buyGood(drug, quantity, transPrice);
+		currentMarket.sellGood(currentMarket.getGoodFromString(drug), quantity, transPrice);
+		
+		return null;
 	}
 	
 	/**
@@ -283,11 +290,13 @@ public class Game {
 	 * @return
 	 */
 	public String playerToMarket(String drug, int quantity){
-		int totalTransaction = currentMarket.buyGood(drug);
-		if(totalTransaction>0){
-			player.sellGood(drug, quantity, totalTransaction);
-			return (player + " has just sold " + quantity +" " + drug);
-		}	
-		return "There are not " + drug + "s being sold in thid market";
+		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug), null)*quantity;
+		if(currentMarket.getMoney()<transPrice){
+			return "The market does not have enough money to buy your goods";
+		}
+		
+		currentMarket.buyGood(currentMarket.getGoodFromString(drug), quantity, transPrice);
+		player.sellMoney(drug, quantity, transPrice);
+		return null;
 	}
 }
