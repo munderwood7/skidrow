@@ -233,11 +233,12 @@ public class MarketActivity extends Activity {
     private void buySellGoods(String good, String quantity){
     	String error;
     	Boolean canOrNot=Integer.parseInt(quantity) <= AppUtil.game.getCargoSpaceFromGame();
+    	
     	if (Integer.parseInt(quantity) > AppUtil.game.getCargoSpaceFromGame()){
     		System.out.println(" Integer.parseInt(quantity) "+ Integer.parseInt(quantity)+ " AppUtil.game.getCargoSpaceFromGame()  " +AppUtil.game.getCargoSpaceFromGame());
     		AppUtil.displayError(this, "You do not have enough cargo space!!");
     	}
-    	if(!quantity.equals("") && !quantity.equals("0") && canOrNot){
+    	else if(!quantity.equals("") && !quantity.equals("0") && canOrNot){
 	    	if(person == Person.MARKET){
 	    		error = AppUtil.game.marketToPlayer(good, Integer.parseInt(quantity));
 	    	}
@@ -249,7 +250,8 @@ public class MarketActivity extends Activity {
 	    	//refresh info on screen
 	    	populateScreen();
     	}
-    	else{
+    
+    	else {
     		AppUtil.displayError(this, "You have not picked a quantity");
     	}
     }
