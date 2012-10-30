@@ -194,8 +194,11 @@ public class MarketActivity extends Activity {
 			})
 			.setPositiveButton(transType, new DialogInterface.OnClickListener() {
 				
+				
+				
 				public void onClick(DialogInterface dialog, int which) {
 					buySellGoods(drug, quantity.getText().toString());
+					
 				}
 			});
         popup.create().show();
@@ -229,7 +232,12 @@ public class MarketActivity extends Activity {
     
     private void buySellGoods(String good, String quantity){
     	String error;
-    	if(!quantity.equals("") && !quantity.equals("0")){
+    	Boolean canOrNot=Integer.parseInt(quantity) <= AppUtil.game.getCargoSpaceFromGame();
+    	if (Integer.parseInt(quantity) > AppUtil.game.getCargoSpaceFromGame()){
+    		System.out.println(" Integer.parseInt(quantity) "+ Integer.parseInt(quantity)+ " AppUtil.game.getCargoSpaceFromGame()  " +AppUtil.game.getCargoSpaceFromGame());
+    		AppUtil.displayError(this, "You do not have enough cargo space!!");
+    	}
+    	if(!quantity.equals("") && !quantity.equals("0") && canOrNot){
 	    	if(person == Person.MARKET){
 	    		error = AppUtil.game.marketToPlayer(good, Integer.parseInt(quantity));
 	    	}

@@ -299,4 +299,9 @@ public class Game {
 		player.sellMoney(drug, quantity, transPrice);
 		return null;
 	}
+	
+	public int getCargoSpaceFromGame(){
+		int cargoSpace = player.getCargoSpace();
+		return cargoSpace;
+	}
 }

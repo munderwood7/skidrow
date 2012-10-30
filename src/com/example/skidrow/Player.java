@@ -17,6 +17,7 @@ public class Player {
 	private int communicationSkills,fighterSkills, driverSkills, dealerSkills;
 	private String difficultyLevel;
 	private Map<String, Integer> goodsList = new HashMap<String, Integer>();
+	private int cargoSpace=10;
 
 	public Player(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String  difficultyLevel)
 	{
@@ -32,6 +33,7 @@ public class Player {
 		this.money = 10000;
 		
 		initGoods();
+		setCargoSpace();
 	}
 	
 	/**
@@ -96,6 +98,7 @@ public class Player {
 	public void buyGood(String good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)+quantity); 
 		this.money = money - deltaMoney;
+		this.cargoSpace = cargoSpace - quantity;
 	}
 	
 	/**
@@ -108,5 +111,24 @@ public class Player {
 	public void sellMoney(String good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)-quantity);
 		this.money = money + deltaMoney;
+		this.cargoSpace = cargoSpace + quantity;
+	}
+	
+	/**
+	 * Sets the space of the cargo
+	 * 
+	 */
+	public void setCargoSpace(){
+		cargoSpace= 10;
+		
+	}
+	
+	/**
+	 * Gets the space of the cargo
+	 * 
+	 * @return the value of the cargo space
+	 */
+	public int getCargoSpace(){
+		return cargoSpace;
 	}
 }
