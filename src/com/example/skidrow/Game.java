@@ -335,9 +335,18 @@ public class Game {
 	    }
 		return false;
 	}
+	/**
+	 * Returns the amount of gas needed to travel to the next city 
+	 * @param nextCity City that we are trying to go
+	 * @return the amount of gas needed to travel to the next city 
+	 */
 	public double getGasExpenditure(City nextCity){
 		return player.getFuelEfficiency()* Double.parseDouble(getDistance(nextCity));
 	}
+	/**
+	 * Returns the amount of gas left
+	 * @return a double representing the amount of gas left
+	 */
 	public double getGas(){
 		return player.getGas();
 	}
