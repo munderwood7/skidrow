@@ -18,6 +18,10 @@ public class Player {
 	private String difficultyLevel;
 	private Map<String, Integer> goodsList = new HashMap<String, Integer>();
 	private int cargoSpace=10;
+	private double gasCapacity=100;
+	private double gas;
+	private double fuelEfficiency;
+
 
 	public Player(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String  difficultyLevel)
 	{
@@ -31,6 +35,8 @@ public class Player {
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
 				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
 		this.money = 10000;
+		this.gas=gasCapacity;
+		this.fuelEfficiency=1;
 		
 		initGoods();
 		setCargoSpace();
@@ -122,7 +128,6 @@ public class Player {
 		cargoSpace= 10;
 		
 	}
-	
 	/**
 	 * Gets the space of the cargo
 	 * 
@@ -131,4 +136,37 @@ public class Player {
 	public int getCargoSpace(){
 		return cargoSpace;
 	}
+	/**
+	 * Gets the gas capacity of the ship
+	 * @return the gas capacity of the ship
+	 */
+	 public double getGasCapacity(){
+		 return gasCapacity;
+	 }
+	 /**
+	  * Set the gas capacity of the ship
+	  */
+	 public void setGasCapacity(double gasCap){
+		 gasCapacity=gasCap;
+	 }
+	 /**
+	 * Gets the amount of gas left
+	 * @return the gas capacity of the ship
+	 */
+	 public double getGas(){
+		 return gas;
+	 }
+	/**
+	* Set the amount of gas left 
+	*/
+	public void setGas(double newGas){
+		gas=newGas;
+	} 
+	public void setFuelEfficiency(double fe){
+		this.fuelEfficiency=fe;
+	}
+	public double getFuelEfficiency(){
+		return fuelEfficiency;
+	}
+	  
 }

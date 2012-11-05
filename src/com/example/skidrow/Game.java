@@ -18,6 +18,8 @@ public class Game {
 	private Market currentMarket;
 	private City[] citiesList;
 	private int step;
+	
+
 	//Tag for logcat
     protected static final String TAG = "Game";
     //True if we want to debug false otherwise
@@ -188,8 +190,11 @@ public class Game {
 	 * As of now, the only functionality of this method is to increment
 	 * the step counter. 
 	 */
-	public void makeMove(){
+	public void makeMove(City newCity){
 		if(D) Log.i(TAG, "Player make a move. Current step: " + getStep());
+		player.setGas(player.getGas()-getGasExpenditure(newCity));
+		if(D) Log.i(TAG, "Gas expenditure: "+getGasExpenditure(newCity));
+		setCurrentCity(newCity);
 		increaseStep();
 		
 	}
@@ -304,5 +309,36 @@ public class Game {
 	public int getCargoSpaceFromGame(){
 		int cargoSpace = player.getCargoSpace();
 		return cargoSpace;
+	}
+	
+	
+	/**
+     * Gets the distance between the current city and the city being investigated
+     * @return String containing the distance between the current city and the selected city
+     * @author apavia3
+     */
+    public String getDistance(City city){
+    	int[] displayedCityLocation=city.getLocation();
+		int[] currentCityLocation=getCurrentCity().getLocation();
+		double hypotenuse= Math.sqrt(Math.pow(displayedCityLocation[0]-currentCityLocation[0], 2)+Math.pow(displayedCityLocation[1]-currentCityLocation[1], 2));
+    	return String.format("%.3f", hypotenuse);
+    }
+
+	/**
+	 * Checks if the the spaceship has enough fuel to go to the next city
+	 * @param nextCity
+	 * @return
+	 */
+	public boolean checkGas(City nextCity){
+	    if(getGasExpenditure(nextCity)<player.getGas()){
+	    	return true;
+	    }
+		return false;
+	}
+	public double getGasExpenditure(City nextCity){
+		return player.getFuelEfficiency()* Double.parseDouble(getDistance(nextCity));
+	}
+	public double getGas(){
+		return player.getGas();
 	}
 }

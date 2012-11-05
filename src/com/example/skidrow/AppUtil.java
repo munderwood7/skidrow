@@ -53,11 +53,6 @@ public class AppUtil {
     public static int getStep(){
     	return game.getStep();
     }
-    /**
-     * Make a move
-     */
-    public static void makeMove(){
-    	game.makeMove();
-    }
+    
     
 }

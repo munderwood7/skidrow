@@ -92,10 +92,7 @@ public class MapActivity extends Activity {
      * @author apavia3
      */
     public String getDistance(City city){
-    	int[] displayedCityLocation=city.getLocation();
-		int[] currentCityLocation=AppUtil.game.getCurrentCity().getLocation();
-		double hypotenuse= Math.sqrt(Math.pow(displayedCityLocation[0]-currentCityLocation[0], 2)+Math.pow(displayedCityLocation[1]-currentCityLocation[1], 2));
-    	return String.format("%.3f", hypotenuse);
+    	return AppUtil.game.getDistance(city);
     }
     
     
@@ -142,29 +139,33 @@ public class MapActivity extends Activity {
      * @param view Travel button
      */
     public void travel(View view){
-    	currentCity=displayedCity;
-    	if(D) Log.i(TAG, "new current city -> " + currentCity.getName());
-    	AppUtil.game.setCurrentCity(displayedCity);
-    	AppUtil.game.makeMove();
-    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
-    	distance.setText(getDistance(displayedCity));
-    	Event e;
-		if(eventGen.checkStartEvent()){
-			//change the market values according to the event 
-			//show toast
-			e=eventGen.peek();
-			if(D) Log.i(TAG, "New event starts-> " + e.getName());
-			AppUtil.displayMessage(this,e.getDescription());
-			
-		}
-		else if(eventGen.checkEndEvent()){
-			//change the market values back to the original values
-			//dequeue event
-			//generate new event
-			e=eventGen.pop();
-			if(D) Log.i(TAG, "Event ends-> " + e.getName());
-			eventGen.generateEvent();
-		}
-		AppUtil.game.generateMarket();
+    	if(AppUtil.game.checkGas(displayedCity)){
+    		AppUtil.game.makeMove(displayedCity);
+    		if(D) Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
+	    	currentCity=displayedCity;
+	    	if(D) Log.i(TAG, "new current city -> " + currentCity.getName());
+	    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
+	    	distance.setText(getDistance(displayedCity));
+	    	Event e;
+			if(eventGen.checkStartEvent()){
+				//change the market values according to the event 
+				//show toast
+				e=eventGen.peek();
+				if(D) Log.i(TAG, "New event starts-> " + e.getName());
+				AppUtil.displayMessage(this,e.getDescription());
+				
+			}
+			else if(eventGen.checkEndEvent()){
+				//change the market values back to the original values
+				//dequeue event
+				//generate new event
+				e=eventGen.pop();
+				if(D) Log.i(TAG, "Event ends-> " + e.getName());
+				eventGen.generateEvent();
+			}
+			AppUtil.game.generateMarket();
+    	} else{
+    		AppUtil.displayMessage(this,"You do not have enough fuel to reach this destination.");
+    	}
     }
 }
