@@ -8,12 +8,17 @@ package com.example.skidrow;
  */
 
 public class Extacy extends Good {
-	
+	/**
+	 * Constructor for cocaine good
+	 */
 	public Extacy()
 	{
 		super("Extacy", 250, 3, 1, 6, -10, 5, 2, 6);
 	}
 
+	/**
+	 * This method overrides parent method by setting ecstacy good's base price for different techlevels
+	 */
 	@Override
 	int getBasePrice(String event) 
 	{

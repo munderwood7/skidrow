@@ -8,12 +8,17 @@ package com.example.skidrow;
  */
 
 public class PsychedelicMushroom extends Good {
-	
+	/**
+	 * Constructor for Psychedelic Mushroom good
+	 */
 	public PsychedelicMushroom()
 	{
 		super("PsychedelicMushroom", 3500, 5, 0, 5, -125, 150, 6, 2);
 	}
 
+	/**
+	 * This method overrides parent method by setting PsychedelicMushroom good's base price for different techlevels
+	 */
 	@Override
 	int getBasePrice(String event) 
 	{

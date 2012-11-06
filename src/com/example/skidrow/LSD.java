@@ -9,11 +9,17 @@ package com.example.skidrow;
 
 public class LSD extends Good {
 	
+	/**
+	 * Constructor for LSD good
+	 */
 	public LSD()
 	{
 		super("LSD", 350, 2, 2, 3, 20, 10, 5, 2);
 	}
 
+	/**
+	 * This method overrides parent method by setting LSD good's base price for different techlevels
+	 */
 	@Override
 	int getBasePrice(String event) 
 	{

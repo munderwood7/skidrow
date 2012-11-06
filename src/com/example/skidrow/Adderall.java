@@ -9,11 +9,17 @@ package com.example.skidrow;
 
 public class Adderall extends Good {
 	
+	/**
+	 * Constructor for Adderall good
+	 */
 	public Adderall()
 	{
 		super("Adderall", 100, 1, 0, 1, 5, 5, 5, 5);
 	}
 
+	/**
+	 * This method overrides parent method by setting adderall good's base price for different techlevels
+	 */
 	@Override
 	int getBasePrice(String event) 
 	{

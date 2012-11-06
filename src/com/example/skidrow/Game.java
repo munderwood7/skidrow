@@ -181,6 +181,10 @@ public class Game {
 		return info;
 	}
 	
+	/**
+	 * Return the amount of money the market currrently has
+	 * @return int value of market's money
+	 */
 	public int getMarketMoney(){
 		return currentMarket.getMoney();
 	}
@@ -198,6 +202,7 @@ public class Game {
 		increaseStep();
 		
 	}
+	
 	/**
 	 * Returns the current step number
 	 * @return step number
@@ -206,10 +211,16 @@ public class Game {
 		return step;
 	}
 	
+	/**
+	 * 
+	 */
 	public void increaseStep(){
 		step++;
 	}
 
+	/**
+	 * This method creates an instance of market with the given tech level of current city
+	 */
 	public void generateMarket(){
 		currentMarket = new Market(currentCity.getTechLevelInt());
 	}
@@ -306,6 +317,10 @@ public class Game {
 		return null;
 	}
 	
+	/**
+	 * This method extracts cargo space availability from player class
+	 * @return space cargo availability
+	 */
 	public int getCargoSpaceFromGame(){
 		int cargoSpace = player.getCargoSpace();
 		return cargoSpace;

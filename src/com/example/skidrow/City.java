@@ -19,7 +19,10 @@ public class City {
 	private final String[] listOfResources={"NOSPECIAL", "MINERALRICH", "MINERALPOOR", "DESERT", "LOTSOFWATER", 
 											"RICHSOIL", "POORSOIL", "RICHFAUNA", "LIFELESS", "WEIRDMUSHROOMS", "LOTSOFHERBS",
 											"ARTISTIC", "WARLIKE"};
-
+	/**
+	 * Constructor for city
+	 * @param CityName string of city name
+	 */
 	public City(String CityName){
 		Name = CityName;
 		setTechLevel();

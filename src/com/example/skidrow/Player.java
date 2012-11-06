@@ -22,7 +22,15 @@ public class Player {
 	private double gas;
 	private double fuelEfficiency;
 
-
+	/**
+	 * Constructor for a player with a name and a set of skills
+	 * @param name of player in string format
+	 * @param communicationSkills int value of communication level 
+	 * @param fighterSkills int value for fighting skills
+	 * @param driverSkills int value for driving skills
+	 * @param dealerSkills int value for dealer skills
+	 * @param difficultyLevel 
+	 */
 	public Player(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String  difficultyLevel)
 	{
 		this.name = name;
@@ -162,9 +170,19 @@ public class Player {
 	public void setGas(double newGas){
 		gas=newGas;
 	} 
+	
+	/**
+	 * This method sets the efficiency of the fuel
+	 * @param fe int fuel efficiency
+	 */
 	public void setFuelEfficiency(double fe){
 		this.fuelEfficiency=fe;
 	}
+	
+	/**
+	 * This method returns the current value of fuel efficiency
+	 * @return fuel efficiency 
+	 */
 	public double getFuelEfficiency(){
 		return fuelEfficiency;
 	}

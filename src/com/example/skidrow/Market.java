@@ -103,8 +103,7 @@ public class Market
 		newBasePrice = newBasePrice+(priceIncXTechLevel*(techLevel-MTLP)+variance);
 		return newBasePrice;
 	}
-	
-//--------------------------------------------------------------------------
+
 	/**
 	 * This method check if city market fulfills requirements for use of good and enough money to buy it. 
 	 * If it passes the check corresponding changes are done to the inventory of the market (increase 
