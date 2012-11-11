@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    tools:context=".activities.PlayerStatsActivity" >
 
     <LinearLayout
         android:id="@+id/relativeLayout1"
@@ -16,8 +17,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/gear"
-            android:background="#FF0000" />
+            android:background="#FF0000"
+            android:src="@drawable/gear" />
 
         <View
             android:id="@+id/view2"
@@ -32,9 +33,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/syringe"
             android:clickable="true"
-            android:onClick="changeGameLayout" />
+            android:onClick="changeGameLayout"
+            android:src="@drawable/syringe" />
 
         <View
             android:id="@+id/view3"
@@ -64,9 +65,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/map"
             android:clickable="true"
-            android:onClick="changeGameLayout" />
+            android:onClick="changeGameLayout"
+            android:src="@drawable/map" />
     </LinearLayout>
 
     <TextView
@@ -103,8 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
         android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textView2"
         android:text="10"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -114,8 +115,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
         android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textView3"
         android:text="10"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -156,8 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/playerDriverLevel"
         android:layout_alignBottom="@+id/playerDriverLevel"
-        android:layout_toLeftOf="@+id/playerDriverLevel"
         android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/playerDriverLevel"
         android:text="Driver:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -167,8 +168,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView3"
-        android:layout_marginTop="14dp"
         android:layout_marginLeft="22dp"
+        android:layout_marginTop="14dp"
         android:text="City:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -178,8 +179,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView6"
         android:layout_alignBottom="@+id/textView6"
-        android:layout_toRightOf="@+id/textView6"
         android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textView6"
         android:text="Atlanta"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -200,8 +201,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/playerHealth"
         android:layout_alignBottom="@+id/playerHealth"
-        android:layout_toLeftOf="@+id/playerHealth"
         android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/playerHealth"
         android:text="Health:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -222,8 +223,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView8"
         android:layout_alignBottom="@+id/textView8"
-        android:layout_toRightOf="@+id/textView8"
         android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textView8"
         android:text="Clayton"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -244,9 +245,29 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/playerMoney"
         android:layout_alignBottom="@+id/playerMoney"
-        android:layout_toLeftOf="@+id/playerMoney"
         android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/playerMoney"
         android:text="Money:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tedtView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="14dp"
+        android:text="Gas: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/playerGas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tedtView10"
+        android:layout_alignBottom="@+id/tedtView10"
+        android:layout_toRightOf="@+id/textView8"
+        android:text="99"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

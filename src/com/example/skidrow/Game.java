@@ -1,5 +1,6 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +12,14 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-public class Game {
+public class Game implements Serializable{
+	
+	/**
+     * This version number helps make sure everything is sync'd if
+     * we start changing object content
+     */
+    private static final long serialVersionUID = 1L;
+    
 	private static Game instance = null;
 	private Player player;
 	private City currentCity;
@@ -167,7 +175,7 @@ public class Game {
 	 * @return Returns an array of player information for the UI
 	 */
 	public String[] getPlayerStatInfo(){
-		String[] info = new String[8];
+		String[] info = new String[9];
 		int[] playerLevels = player.getSkillsArray();
 		
 		for(int x=0; x<4; x+=1){
@@ -177,6 +185,8 @@ public class Game {
 		//info[5] = health
 		info[6] = player.getName();
 		info[7] = "$"+Integer.toString(player.getMoney());
+		info[8] = Double.toString(getGas());
+		
 		
 		return info;
 	}

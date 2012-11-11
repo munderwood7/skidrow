@@ -31,6 +31,7 @@ public class PlayerStatsActivity extends Activity {
     	TextView playerName = (TextView)this.findViewById(R.id.playerName);
     	TextView playerHealth = (TextView)this.findViewById(R.id.playerHealth);
     	TextView playerMoney = (TextView)this.findViewById(R.id.playerMoney);
+    	TextView playerGas = (TextView)this.findViewById(R.id.playerGas);
     	String[] info = AppUtil.game.getPlayerStatInfo();
     	
     	playerCommunications.setText(info[0]);
@@ -40,6 +41,7 @@ public class PlayerStatsActivity extends Activity {
     	playerCity.setText(info[4]);
     	playerName.setText(info[6]);
     	playerMoney.setText(info[7]);
+    	playerGas.setText(info[8]);
     }
     
     /**
