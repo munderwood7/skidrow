@@ -266,7 +266,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tedtView10"
         android:layout_alignBottom="@+id/tedtView10"
-        android:layout_toRightOf="@+id/textView8"
+        android:layout_toRightOf="@+id/tedtView10"
+        android:layout_marginLeft="5dp"
         android:text="99"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
