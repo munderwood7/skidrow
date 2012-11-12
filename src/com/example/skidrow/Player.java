@@ -1,5 +1,6 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
  * @version 0.1
  */
 
-public class Player {
+public class Player implements Serializable{
 	
 	private String name;
 	private int money;

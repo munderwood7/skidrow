@@ -1,4 +1,5 @@
 package com.example.skidrow;
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Random;
  * @author Waleed
  * @version 1.0
  */
-public class City {
+public class City implements Serializable{
 	
 	private String Name;
 	private int xLocation;

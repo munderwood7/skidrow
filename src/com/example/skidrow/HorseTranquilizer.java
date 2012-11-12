@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
+
 /**
  * This class contains the logic for a horse tranquilizer drug
  * @author Michael Underwood
@@ -7,7 +9,7 @@ package com.example.skidrow;
  *
  */
 
-public class HorseTranquilizer extends Good {
+public class HorseTranquilizer extends Good implements Serializable{
 	/**
 	 * Constructor for horse tranquilizer good
 	 */

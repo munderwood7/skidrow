@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
+
 /**
  * This class contains the logic for an LSD drug
  * @author Michael Underwood
@@ -7,7 +9,7 @@ package com.example.skidrow;
  *
  */
 
-public class LSD extends Good {
+public class LSD extends Good implements Serializable{
 	
 	/**
 	 * Constructor for LSD good

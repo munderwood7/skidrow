@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
+
 /**
  * This class contains the logic for a PsychedelicMushroom good.
  * @author Michael Underwood
@@ -7,7 +9,7 @@ package com.example.skidrow;
  *
  */
 
-public class PsychedelicMushroom extends Good {
+public class PsychedelicMushroom extends Good implements Serializable{
 	/**
 	 * Constructor for Psychedelic Mushroom good
 	 */

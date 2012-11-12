@@ -1,5 +1,14 @@
 package com.example.skidrow;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -7,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -18,7 +28,7 @@ public class Game implements Serializable{
      * This version number helps make sure everything is sync'd if
      * we start changing object content
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 0L;
     
 	private static Game instance = null;
 	private Player player;
@@ -375,4 +385,56 @@ public class Game implements Serializable{
 	public double getGas(){
 		return player.getGas();
 	}
+	
+    public void save(String filename) {
+        try {
+            /*
+             * Create the object output stream for serialization.
+             * We are wrapping a FileOutputStream since we
+             * want to save to disk.  You can also save to socket
+             * streams or any other kind of stream.
+             */
+          //ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
+           
+           /*
+            * The only real call we need.  The stream buffers the output and reuses
+            * data, so if you are serializing very frequently, then the object values might
+            * not actually change because the old serialized object is being reused.
+            * 
+            * To fix this you can try writeUnshared() or you can reset the stream.
+            * out.reset();
+            */
+           //out.writeObject(this);
+           
+        	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(filename))); //Select where you wish to save the file...
+        	oos.writeObject(this); // write the class as an 'object'
+        	oos.flush(); // flush the stream to insure all of the information was written to 'save.bin'
+        	oos.close();// close the stream
+
+
+       } catch (FileNotFoundException e) {
+          System.out.println("Save file not found: " + filename);
+       } catch (IOException e) {
+           System.out.println("General IO Error on saving: " + filename);
+       }
+        
+    }
+    
+   
+    public Object loadFile(File f)    
+    {   
+        try
+        {    
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            Object o = ois.readObject();
+            return o;
+        }
+        catch(Exception ex)
+        {
+        Log.v("Address Book",ex.getMessage());
+            ex.printStackTrace();
+        }
+        return null;   
+    }
+
 }

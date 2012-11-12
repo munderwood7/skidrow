@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
+
 /**
  * This class contains the logic for a Weed drug
  * @author Michael Underwood
@@ -7,7 +9,7 @@ package com.example.skidrow;
  *
  */
 
-public class Weed extends Good {
+public class Weed extends Good implements Serializable{
 
 	/**
 	 * Constructor for weed good

@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
+
 /**
  * This class contains the logic for a cocaine drug
  * @author Michael Underwood
@@ -7,7 +9,7 @@ package com.example.skidrow;
  *
  */
 
-public class Cocaine extends Good {
+public class Cocaine extends Good implements Serializable{
 	/**
 	 * Constructor for cocaine good
 	 */

@@ -1,10 +1,13 @@
 package com.example.skidrow;
+
+import java.io.Serializable;
+
 /**
  * Class that represents an event created by the simulator
  * @author apavia3
  *
  */
-public class Event 
+public class Event implements Serializable
 {
 	private String description;
 	private String name;

@@ -1,5 +1,6 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ import android.util.Log;
  * @author les7uve
  *
  */
-public class RandomEventGenerator {
+public class RandomEventGenerator implements Serializable{
 	
 	private Event[] eArray= new Event[10]; //different number of total events in the game
 	private LinkedList list;

@@ -1,6 +1,8 @@
 package com.example.skidrow;
 
-public class Jenkem extends Good{
+import java.io.Serializable;
+
+public class Jenkem extends Good implements Serializable{
 	/**
 	 * Constructor for jenkem good
 	 */

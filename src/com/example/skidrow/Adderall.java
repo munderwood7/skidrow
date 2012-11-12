@@ -1,5 +1,7 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
+
 /**
  * This class contains the logic for an Adderall drug
  * @author Michael Underwood
@@ -7,7 +9,7 @@ package com.example.skidrow;
  *
  */
 
-public class Adderall extends Good {
+public class Adderall extends Good implements Serializable{
 	
 	/**
 	 * Constructor for Adderall good

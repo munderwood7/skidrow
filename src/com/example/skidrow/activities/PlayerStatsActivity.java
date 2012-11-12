@@ -10,16 +10,28 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class PlayerStatsActivity extends Activity {
 
+	Button saveButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_stats);
         
         fillPlayerStats();
+        saveButton = (Button) findViewById(R.id.saveGameButton);
+        
+        saveButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {            
+                //System.out.println("Im Save Button");
+                String file = "game.bin";
+            	AppUtil.game.save(file);
+            }
+        });
     }
     
     public void fillPlayerStats(){
@@ -43,6 +55,8 @@ public class PlayerStatsActivity extends Activity {
     	playerMoney.setText(info[7]);
     	playerGas.setText(info[8]);
     }
+    
+    
     
     /**
      * Changes the view of the game between the four main game information screens (player stats, market, shop, and map).

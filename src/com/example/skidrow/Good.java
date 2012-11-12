@@ -1,5 +1,6 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Random;
  * @version 0.1
  */
 
-public abstract class Good 
+public abstract class Good implements Serializable
 {
 	protected int basePrice;
 	protected int minBuyTechLevel;

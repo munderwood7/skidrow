@@ -1,5 +1,7 @@
 package com.example.skidrow.activities;
 
+import java.io.File;
+
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.R;
 import com.example.skidrow.R.id;
@@ -11,16 +13,30 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.PopupMenu;
 
 public class CntinueActivity extends Activity {
 
+	Button loadButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cntinue);
         
         AppUtil.forceLayout(this);
+        
+        loadButton = (Button) findViewById(R.id.loadGame);
+        
+        loadButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {            
+                //System.out.println("Im Save Button");
+                String file = "game.bin";
+                File f = new File(file);
+            	AppUtil.game.loadFile(f);
+            }
+        });
     }
     
     /**
