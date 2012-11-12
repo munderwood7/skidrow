@@ -9,6 +9,7 @@ import com.example.skidrow.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -32,6 +33,7 @@ public class NewGameActivity extends Activity {
         
         AppUtil.forceLayout(this);
         setListeners();
+        AppUtil.displayError(this, Integer.toString(this.fileList().length));
     }
     
     /**

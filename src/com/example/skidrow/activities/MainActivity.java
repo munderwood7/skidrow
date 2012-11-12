@@ -1,5 +1,7 @@
 package com.example.skidrow.activities;
 
+import java.io.IOException;
+
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.Game;
 import com.example.skidrow.R;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 
 /**
@@ -24,8 +27,19 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.home);
-        //Creates a new SkidRow Game       
         
+        //Gets Preferences by the User
+        SharedPreferences userSettings = getSharedPreferences("UserSettings", MODE_PRIVATE);
+        Boolean returnUser = userSettings.getBoolean("logged_in", false);
+        //If the user has not logged in before fills all user settings values
+        if(!returnUser){
+        	SharedPreferences.Editor editor = userSettings.edit();
+        	editor.putBoolean("logged_in", true);
+        	editor.putInt("num_states", 0);
+        	editor.commit();
+        }
+        
+        //Creates a new SkidRow Game       
         AppUtil.forceLayout(this);
         AppUtil.game = new Game();
     }
