@@ -278,7 +278,7 @@
         android:layout_below="@+id/playerGas"
         android:layout_marginTop="104dp"
         android:layout_toRightOf="@+id/playerCity"
-        android:text="Button"
+        android:text="Save"
         android:onClick="saveStates2" />
 
 </RelativeLayout>

@@ -1,28 +1,18 @@
 package com.example.skidrow.activities;
 
-import java.io.File;
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.R;
-import com.example.skidrow.R.id;
-import com.example.skidrow.R.layout;
-import com.example.skidrow.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
 public class CntinueActivity extends Activity {
 
-	private static int NUM_SAVE_STATES;
 	private Context context;
 	
     @Override
@@ -30,13 +20,7 @@ public class CntinueActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cntinue);
         
-        SharedPreferences userSettings = getSharedPreferences("UserSettings", MODE_PRIVATE);
         context = this;
-        //Grabs the current number of save states the user has
-        NUM_SAVE_STATES = userSettings.getInt("num_states", 0);
-        MyPagerAdapter myAdapter = new MyPagerAdapter();
-        ViewPager myPager = (ViewPager)findViewById(R.id.saveStatePager);
-        myPager.setAdapter(myAdapter);
         
         AppUtil.forceLayout(this);
     }
@@ -105,33 +89,11 @@ public class CntinueActivity extends Activity {
     	startActivity(intent);
     }
     
-    private class MyPagerAdapter extends PagerAdapter{
-
-		@Override
-		public int getCount() {
-			return NUM_SAVE_STATES;
-		}
-
-		@Override
-		public Object instantiateItem(View collection, int position) {
-			TextView tv = new TextView(context);
-			tv.setText("Bonjour PAUG " + position);
-			
-			((ViewPager) collection).addView(tv,0);
-			
-			return tv;
-		}
-
-		@Override
-		public void destroyItem(View collection, int position, Object view) {
-			((ViewPager) collection).removeView((TextView) view);
-		}
-
-		
-		
-		@Override
-		public boolean isViewFromObject(View view, Object object) { 
-			return view ==((TextView)object);
-		}
+    public void loadState(View view){
+    	SharedPreferences userSettings = getSharedPreferences("UserSettings", MODE_PRIVATE);
+    	int stateIndex = userSettings.getInt("num_states", -1);
+    	AppUtil.restoreState(this, stateIndex-1);
+    	Intent intent = new Intent(this, PlayerStatsActivity.class);
+    	startActivity(intent);
     }
 }

@@ -68,6 +68,11 @@ public class AppUtil {
     	return game.getStep();
     }
     
+    /**
+     * Saves state of the game currently in progress
+     * 
+     * @param context The activity calling the save
+     */
     public static void saveState(Context context){
     	SharedPreferences userSettings = context.getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
     	int numberStates = userSettings.getInt("num_states", 0);
@@ -92,6 +97,12 @@ public class AppUtil {
 		}
     }
     
+    /**
+     * Restores the state of a game.
+     * 
+     * @param context The activity calling restore
+     * @param stateIndex Index of state to restore
+     */
     public static void restoreState(Context context, int stateIndex){
     	String fileName = "saveState"+stateIndex;
     	try {
