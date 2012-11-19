@@ -30,6 +30,19 @@ public class City implements Serializable{
 		setLocation();
 		setResources();
 	}
+	/**
+	 * Constructor for city
+	 * @param CityName string of city name
+	 * @param yLoc y location 
+	 *@param xLoc x location
+	 */
+	public City(String CityName, int xLoc, int yLoc){
+		Name = CityName;
+		setTechLevel();
+		this.yLocation=yLoc;
+		this.xLocation=xLoc;
+		setResources();
+	}
 	
 	/**
 	 * Getter for the name of the city]
