@@ -5,10 +5,15 @@ import com.example.skidrow.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PlayerStatsActivity extends Activity {
 
@@ -72,7 +77,10 @@ public class PlayerStatsActivity extends Activity {
     }
     
     public void saveStates2(View view){ 
-    	AppUtil.displayError(this, "Called");
-    	AppUtil.saveState(this);
+    	View parent = (View)this.findViewById(R.id.player_stats_root);
+    	Bitmap screen = Bitmap.createBitmap(parent.getWidth(), parent.getHeight(), Bitmap.Config.ARGB_8888);
+    	Canvas canvas = new Canvas(screen);
+    	parent.draw(canvas);
+    	AppUtil.saveState(this, screen);
     }
 }

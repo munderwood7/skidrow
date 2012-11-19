@@ -2,27 +2,53 @@ package com.example.skidrow.activities;
 
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.R;
+import com.example.skidrow.R.drawable;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ImageView.ScaleType;
 
 public class CntinueActivity extends Activity {
 
 	private Context context;
+	private CustomSwipeListener swipeListener;
+	private int height;
+	private int width;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cntinue);
         
+        //Gets the width and the height of the display
+      	Display display = this.getWindowManager().getDefaultDisplay();
+      	Point size = new Point();
+      	display.getSize(size);
+      	height = size.y;
+      	width = size.x;
+      	
         context = this;
+        swipeListener = new CustomSwipeListener(this);
         
         AppUtil.forceLayout(this);
+        initSaveScroller();
     }
     
     /**
@@ -87,6 +113,42 @@ public class CntinueActivity extends Activity {
     	//Clears the activity stack
     	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     	startActivity(intent);
+    }
+    
+    public void initSaveScroller(){
+    	LinearLayout scrollerLayout = (LinearLayout)this.findViewById(R.id.stateScrollerLayout);
+    	SharedPreferences userSettings = getSharedPreferences("UserSettings", MODE_PRIVATE);
+    	int numStates = userSettings.getInt("num_states", 0);
+    	
+    	for(int x=0; x<numStates; x+=1){
+    		View space = new View(context);
+    		ImageView newImage = new ImageView(this);
+    			newImage.setImageBitmap(AppUtil.getScreenImage(context, x));
+    			newImage.setBackgroundColor(Color.BLACK);
+    		TextView newText = new TextView(this);
+    			newText.setText("Save State "+x);
+    			newText.setTextSize(20);
+    			newText.setGravity(Gravity.CENTER_HORIZONTAL);
+    		LinearLayout newState = new LinearLayout(this);
+    			newState.setBackgroundColor(Color.GRAY);
+    			newState.setPadding(1, 1, 1, 1);
+	    		newState.setOrientation(LinearLayout.VERTICAL);
+	    		newState.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+	    		newState.setTag(x);
+    		
+	    	scrollerLayout.addView(space);
+	    		newState.addView(newText);
+	    		newState.addView(newImage);
+    		scrollerLayout.addView(newState);
+    		
+    		space.getLayoutParams().width = 50;
+    		newImage.getLayoutParams().width = (int) ((int) (height-250)*0.67);
+    		newImage.getLayoutParams().height = height-250;
+    		newImage.setScaleType(ScaleType.FIT_XY);
+    		
+    		//Set the listener for throwing the state
+    		newState.setOnTouchListener(swipeListener);
+    	}
     }
     
     public void loadState(View view){

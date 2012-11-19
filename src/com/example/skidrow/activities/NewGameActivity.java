@@ -33,7 +33,6 @@ public class NewGameActivity extends Activity {
         
         AppUtil.forceLayout(this);
         setListeners();
-        AppUtil.displayError(this, Integer.toString(this.fileList().length));
     }
     
     /**

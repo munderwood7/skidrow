@@ -1,5 +1,6 @@
 package com.example.skidrow;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -73,21 +77,26 @@ public class AppUtil {
      * 
      * @param context The activity calling the save
      */
-    public static void saveState(Context context){
+    public static void saveState(Context context, Bitmap screen){
     	SharedPreferences userSettings = context.getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
     	int numberStates = userSettings.getInt("num_states", 0);
     	String fileName = "saveState"+numberStates;
+    	String screenFileName = "screen"+numberStates;
     	try{
 	    	FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
 		    	ObjectOutputStream out = new ObjectOutputStream(fos);
 		    	out.writeObject(game);
 		    	out.close();
 	    	fos.close();
+	    	FileOutputStream fos2 = context.openFileOutput(screenFileName, Context.MODE_PRIVATE);
+		    	screen.compress(CompressFormat.PNG, 90, fos2);
+	    	fos2.close();
 	    	
 			SharedPreferences.Editor editor = userSettings.edit();
 			editor.putInt("num_states", numberStates+1);
 			editor.commit();
 			Log.i(TAG, "Success saving state"+numberStates);
+			AppUtil.displayError(context, "Game Saved");
     	} catch (FileNotFoundException e) {
 			displayError(context, "Sorry there was an Error when trying to save state");
 			Log.i(TAG, e.toString());
@@ -124,5 +133,71 @@ public class AppUtil {
 			displayError(context, "Sorry there was an Error when trying to restore state");
 			Log.i(TAG, e.toString());
 		}	
+    }
+    
+    /**
+     * Gets the bitmap of the screen from the given index
+     * 
+     * @param context The activity requesting the screen
+     * @param screenIndex Index of the screen to return
+     * @return
+     */
+    public static Bitmap getScreenImage(Context context, int screenIndex){
+    	String fileName = "screen"+screenIndex;
+    	try {
+    		FileInputStream fis = context.openFileInput(fileName);
+				Bitmap screen = BitmapFactory.decodeStream(fis);
+				fis.close();
+			return screen;
+		}
+    	catch(Exception e){
+    		Log.i(TAG, e.toString());
+    		return null;
+    	}
+    }
+    
+    /**
+     * Deletes the state at the passed in index
+     * 
+     * @param context The activity calling delete
+     * @param stateIndex Index of state to delete
+     */
+    public static void deleteState(Context context, int stateIndex){
+    	SharedPreferences userSettings = context.getSharedPreferences("UserSettings", Context.MODE_PRIVATE);
+    	int numberStates = userSettings.getInt("num_states", 0);
+    	try{
+    		for(int x=stateIndex+1; x<numberStates; x+=1){
+    			String fileOld = "saveState"+x;
+    			String fileNew = "saveState"+(x-1);
+    			FileInputStream fis = context.openFileInput(fileOld);
+				ObjectInputStream in = new ObjectInputStream(fis);
+				FileOutputStream fos = context.openFileOutput(fileNew, Context.MODE_PRIVATE);
+		    	ObjectOutputStream out = new ObjectOutputStream(fos);
+		    		out.writeObject((Game)in.readObject());
+		    		in.close();
+		    		out.close();
+		    	fis.close();
+		    	fos.close();
+		    	
+		    	String screenNew = "screen"+(x-1);
+		    	FileOutputStream fos2 = context.openFileOutput(screenNew, Context.MODE_PRIVATE);
+		    		Bitmap screen = getScreenImage(context, x);
+		    		screen.compress(CompressFormat.PNG, 90, fos2);
+		    	fos2.close();
+    		}
+    		File dir = context.getFilesDir();
+    		File file = new File(dir, "saveState"+numberStates);
+    		File screenFile = new File(dir, "screen"+numberStates);
+    		file.delete();
+    		screenFile.delete();
+    		
+    		SharedPreferences.Editor editor = userSettings.edit();
+    		editor.putInt("num_states", numberStates-1);
+    		editor.commit();
+    	}
+    	catch(Exception e){
+    		displayError(context, "Sorry there was an Error when trying to delete state");
+			Log.i(TAG, e.toString());
+    	}
     }
 }
