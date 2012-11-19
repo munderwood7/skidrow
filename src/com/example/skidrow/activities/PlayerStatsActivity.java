@@ -7,6 +7,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -70,6 +73,33 @@ public class PlayerStatsActivity extends Activity {
                         break;
         }
         startActivity(intent);
+    }
+    
+    @Override
+    /**
+     * This method renders menu options for this activity
+     */
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_player_stats, menu);
+        return true;
+    }
+    
+    @Override
+    /**
+     * This method what will be performed when menu item is perform 
+     * only item at this moment is save
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.saveGame:
+            	//AppUtil.displayError(this, "Game was saved");
+            	saveStates2(this.getCurrentFocus());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     
     public void saveStates2(View view){ 
