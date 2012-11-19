@@ -25,5 +25,6 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_player_stats">PlayerStatsActivity</string>
     <string name="title_activity_market">MarketActivity</string>
+    <string name="SAVE">SAVE_GAME</string>
 
 </resources>

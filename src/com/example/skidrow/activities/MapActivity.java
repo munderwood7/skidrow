@@ -16,8 +16,12 @@ import android.os.Message;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -42,8 +46,8 @@ public class MapActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         currentCity=AppUtil.game.getCurrentCity();
-        eventGen= new RandomEventGenerator();
-        eventGen.generateEvent();
+        //eventGen= new RandomEventGenerator();
+        //eventGen.generateEvent();
         fillCityList();
     }
 
@@ -140,9 +144,17 @@ public class MapActivity extends Activity {
      */
     public void travel(View view){
     	if(AppUtil.game.checkGas(displayedCity)){
-    		AppUtil.game.makeMove(displayedCity);
-    		if(D) Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
+    		eventGen= new RandomEventGenerator();
+            eventGen.generateEvent();
+            //AppUtil.displayError(this, "There is a(n) " + eventGen.getCurrE() + " here affecting the price by " );
+    		AppUtil.game.makeMove(displayedCity, eventGen.getCurrE());
 	    	currentCity=displayedCity;
+	    	AppUtil.displayError(this, "You are now in " + currentCity.getName());
+	    	AppUtil.displayError(this, "There is a " + eventGen.getCurrE().getName() + " here affecting the price by " + eventGen.getCurrE().getPriceEffect());
+    		if(D) {
+    			Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
+    			//AppUtil.displayError(this, "You have " + AppUtil.game.getGas() + " gas remaining");
+    		}
 	    	if(D) Log.i(TAG, "new current city -> " + currentCity.getName());
 	    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
 	    	distance.setText(getDistance(displayedCity));
@@ -167,5 +179,41 @@ public class MapActivity extends Activity {
     	} else{
     		AppUtil.displayMessage(this,"You do not have enough fuel to reach this destination.");
     	}
+    }
+    
+    @Override
+    /**
+     * This method renders menu options for this activity
+     */
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_map, menu);
+        return true;
+    }
+    
+    @Override
+    /**
+     * This method what will be performed when menu item is perform 
+     * only item at this moment is save
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.saveGame:
+            	//AppUtil.displayError(this, "Game was saved");
+            	saveStates2(this.getCurrentFocus());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void saveStates2(View view){ 
+    	View parent = (View)this.findViewById(R.id.map_view);
+    	Bitmap screen = Bitmap.createBitmap(parent.getWidth(), parent.getHeight(), Bitmap.Config.ARGB_8888);
+    	Canvas canvas = new Canvas(screen);
+    	parent.draw(canvas);
+    	AppUtil.saveState(this, screen);
+
     }
 }

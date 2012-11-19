@@ -36,6 +36,7 @@ public class Game implements Serializable{
 	private Market currentMarket;
 	private City[] citiesList;
 	private int step;
+	private Event currEvent;
 	
 
 	//Tag for logcat
@@ -214,11 +215,12 @@ public class Game implements Serializable{
 	 * As of now, the only functionality of this method is to increment
 	 * the step counter. 
 	 */
-	public void makeMove(City newCity){
+	public void makeMove(City newCity, Event e){
 		if(D) Log.i(TAG, "Player make a move. Current step: " + getStep());
 		player.setGas(player.getGas()-getGasExpenditure(newCity));
 		if(D) Log.i(TAG, "Gas expenditure: "+getGasExpenditure(newCity));
 		setCurrentCity(newCity);
+		currEvent = e;
 		increaseStep();
 		
 	}
@@ -259,7 +261,7 @@ public class Game implements Serializable{
 			for(int x=0; x<goods.size(); x+=1){
 				Map.Entry<Good, Integer> entry = (Entry<Good, Integer>) iterator.next();
 				if(entry.getValue() > 0){ //if(entry.getValue()> 0)
-					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+currentMarket.getPrice(entry.getKey(), null));
+					goodsList.add(entry.getKey().toString()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+(currentMarket.getPrice(entry.getKey())+currEvent.getPriceEffect()));
 				}
 			}
 			
@@ -278,11 +280,10 @@ public class Game implements Serializable{
 			Map<String, Integer> goods = player.getGoods();
 			List<String> goodsList = new ArrayList<String>();
 			Iterator iterator = goods.entrySet().iterator();
-			
 			for(int x=0; x<goods.size(); x+=1){
 				Map.Entry<String, Integer> entry = (Entry<String, Integer>) iterator.next();
 				if(entry.getValue() > 0 && currentMarket.getGoodFromString(entry.getKey()).minSellTechLevel <= currentCity.getTechLevelInt()){
-					goodsList.add(entry.getKey()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+currentMarket.getPrice(currentMarket.getGoodFromString(entry.getKey()), null));
+					goodsList.add(entry.getKey()+"("+Integer.toString(entry.getValue())+")"+"\n     $"+(currentMarket.getPrice(currentMarket.getGoodFromString(entry.getKey()))+currEvent.getPriceEffect()));
 				}
 			}
 			
@@ -301,7 +302,7 @@ public class Game implements Serializable{
 	 * @return
 	 */
 	public String marketToPlayer(String drug, int quantity){
-		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug), null)*quantity;
+		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug))*quantity;
 		if(player.getMoney()<transPrice){
 			return "You are $" + (transPrice-player.getMoney()) + " short of buying " + quantity + " " + drug;
 		}
@@ -327,7 +328,7 @@ public class Game implements Serializable{
 	 * @return
 	 */
 	public String playerToMarket(String drug, int quantity){
-		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug), null)*quantity;
+		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug))*quantity;
 		if(currentMarket.getMoney()<transPrice){
 			return "The market does not have enough money to buy your goods";
 		}
@@ -386,55 +387,4 @@ public class Game implements Serializable{
 		return player.getGas();
 	}
 	
-    public void save(String filename) {
-        try {
-            /*
-             * Create the object output stream for serialization.
-             * We are wrapping a FileOutputStream since we
-             * want to save to disk.  You can also save to socket
-             * streams or any other kind of stream.
-             */
-          //ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
-           
-           /*
-            * The only real call we need.  The stream buffers the output and reuses
-            * data, so if you are serializing very frequently, then the object values might
-            * not actually change because the old serialized object is being reused.
-            * 
-            * To fix this you can try writeUnshared() or you can reset the stream.
-            * out.reset();
-            */
-           //out.writeObject(this);
-           
-        	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(filename))); //Select where you wish to save the file...
-        	oos.writeObject(this); // write the class as an 'object'
-        	oos.flush(); // flush the stream to insure all of the information was written to 'save.bin'
-        	oos.close();// close the stream
-
-
-       } catch (FileNotFoundException e) {
-          System.out.println("Save file not found: " + filename);
-       } catch (IOException e) {
-           System.out.println("General IO Error on saving: " + filename);
-       }
-        
-    }
-    
-   
-    public Object loadFile(File f)    
-    {   
-        try
-        {    
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-            Object o = ois.readObject();
-            return o;
-        }
-        catch(Exception ex)
-        {
-        Log.v("Address Book",ex.getMessage());
-            ex.printStackTrace();
-        }
-        return null;   
-    }
-
 }

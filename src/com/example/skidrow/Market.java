@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
+import android.util.Log;
+
 /**
  * This class contains all of the logic and information for the market.
  * 
@@ -14,6 +16,7 @@ import java.util.Random;
  */
 public class Market implements Serializable
 {
+	private static final String TAG = null;
 	private Map<Good, Integer> goodsList = new HashMap<Good, Integer>();
 	private int techLevel;
 	private Event event;
@@ -88,20 +91,18 @@ public class Market implements Serializable
 	}
 	
 	/**
-	 * These method calculates the price of a good base on current events and information about the city (it can decrease on increase relative to the base price) 
+	 * These method calculates the price of a good base on information about the city (it can decrease or increase relative to the base price) 
 	 * @param g
 	 * @return new price of good base on events and city information
 	 */
-	public int getPrice(Good g, Event e)
+	public int getPrice(Good g)
 	{
 		int currBasePrice = g.getBasePrice();
 		int newBasePrice;
-		if(event==null){ newBasePrice = currBasePrice; }
-		else{ newBasePrice = currBasePrice + event.getPriceEffect(); }  //increase or decrease price of good depending on the event
 		int priceIncXTechLevel = g.getPriceIncreasePerTechLevel();
 		int MTLP = g.getMinimumTechLevelProduceResource();
 		int variance = g.getMaxVariance();	
-		newBasePrice = newBasePrice+(priceIncXTechLevel*(techLevel-MTLP)+variance);
+		newBasePrice = currBasePrice+(priceIncXTechLevel*(techLevel-MTLP)+variance);
 		return newBasePrice;
 	}
 
@@ -160,17 +161,6 @@ public class Market implements Serializable
 			}
 		}
 		return;
-	}
-	
-	/**
-	 * These method calculates the price of a good base on current events and information about the city (it can decrease on increase relative to the base price) 
-	 * @param g
-	 * @return new price of good base on events and city information
-	 */
-	public int getPrice(Good g)
-	{
-		return g.getBasePrice();
-		
 	}
 	
 	/**

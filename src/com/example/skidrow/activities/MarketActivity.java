@@ -11,8 +11,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -251,5 +255,41 @@ public class MarketActivity extends Activity {
     	else {
     		AppUtil.displayError(this, "You have not picked a quantity");
     	}
+    }
+    
+    @Override
+    /**
+     * This method renders menu options for this activity
+     */
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.market, menu);
+        return true;
+    }
+    
+    //@Override
+    /**
+     * This method what will be performed when menu item is perform 
+     * only item at this moment is save
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.saveGame:
+            	//AppUtil.displayError(this, "Game was saved");
+            	saveStates2(this.getCurrentFocus());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void saveStates2(View view){ 
+    	View parent = (View)this.findViewById(R.id.market_view);
+    	Bitmap screen = Bitmap.createBitmap(parent.getWidth(), parent.getHeight(), Bitmap.Config.ARGB_8888);
+    	Canvas canvas = new Canvas(screen);
+    	parent.draw(canvas);
+    	AppUtil.saveState(this, screen);
+
     }
 }

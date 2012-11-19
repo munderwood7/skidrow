@@ -34,7 +34,7 @@ public class AppUtil {
      * @param errorMessage The message to display
      */
     public static void displayError(Context context, String errorMessage){
-        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show();
     }
     
     /**
@@ -43,7 +43,7 @@ public class AppUtil {
      * @param message The message to display
      */
     public static void displayMessage(Context context, String message){
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
     
     

@@ -273,7 +273,8 @@
         android:text="99"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Button
+    
+        <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -282,5 +283,5 @@
         android:layout_toRightOf="@+id/playerCity"
         android:text="Save"
         android:onClick="saveStates2" />
-
+        
 </RelativeLayout>

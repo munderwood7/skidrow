@@ -1,6 +1,7 @@
 package com.example.skidrow;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -163,7 +164,8 @@ public class Player implements Serializable{
 	 * @return the gas capacity of the ship
 	 */
 	 public double getGas(){
-		 return gas;
+		DecimalFormat twoDForm = new DecimalFormat("#.##");
+		return Double.valueOf(twoDForm.format(this.gas));
 	 }
 	/**
 	* Set the amount of gas left 
