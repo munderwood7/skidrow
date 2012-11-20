@@ -1,8 +1,10 @@
-package com.example.skidrow;
+package com.example.skidrow.JUnitTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.example.skidrow.City;
 
 public class CityTest {
 	
@@ -22,7 +24,7 @@ public class CityTest {
 		City city1 = new City("city1");
 		 city1.setTechLevel();
 		 int ct= city1.getTechLevelInt();
-		assertTrue(" if the tech level is not negavtive this should be true ",ct != -1);
+		assertTrue(" if the tech level is not -1 this should be true ",ct != -1);
 	}
 	
 }
