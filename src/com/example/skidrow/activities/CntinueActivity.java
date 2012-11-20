@@ -2,7 +2,7 @@ package com.example.skidrow.activities;
 
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.R;
-import com.example.skidrow.R.drawable;
+//import com.example.skidrow.R.drawable;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,13 +16,13 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
+//import android.view.View.OnClickListener;
+//import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
 public class CntinueActivity extends Activity {

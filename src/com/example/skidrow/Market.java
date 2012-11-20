@@ -16,10 +16,8 @@ import android.util.Log;
  */
 public class Market implements Serializable
 {
-	private static final String TAG = null;
 	private Map<Good, Integer> goodsList = new HashMap<Good, Integer>();
 	private int techLevel;
-	private Event event;
 	private Random random;
 	private int money;
 	

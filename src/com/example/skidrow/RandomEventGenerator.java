@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Random;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+//import android.os.Bundle;
+//import android.os.Handler;
+//import android.os.Message;
 import android.util.Log;
 
 /**

@@ -49,7 +49,6 @@ public class CustomSwipeListener implements View.OnTouchListener{
 			prevY = startY;
 			break;
 		case MotionEvent.ACTION_MOVE:
-			float deltaX = event.getX() - prevX;
 			float deltaY = event.getY() - prevY;
 			
 			if(Math.abs(deltaY)>MOVE_SENSITIVITY && MAX_DELTA_Y > Math.abs(book.getY()-origPositionY)){
