@@ -30,7 +30,7 @@ public class Game implements Serializable{
      */
     private static final long serialVersionUID = 0L;
     
-	private static Game instance = null;
+	
 	private Player player;
 	private City currentCity;
 	private Market currentMarket;
@@ -59,15 +59,7 @@ public class Game implements Serializable{
 	 * Constructor for the game class
 	 * 
 	 */
-	/*protected Game() {
-		step=0;
-	}
-	public static Game getInstance() {
-		if(instance == null) {
-				instance = new Game();
-		}
-		return instance;
-	}*/
+	
 	public Game(){
 		step=0;
 	}

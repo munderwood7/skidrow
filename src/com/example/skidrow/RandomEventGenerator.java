@@ -18,7 +18,7 @@ public class RandomEventGenerator implements Serializable{
 	
 	private Event[] eArray= new Event[10]; //different number of total events in the game
 	private LinkedList list;
-	private Random rng;
+	private final Random rng;
 	private int currentStep;
 	private Event currE;
 	//Tag for logcat
