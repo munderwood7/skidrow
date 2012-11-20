@@ -21,15 +21,27 @@ public class Heroin extends Good implements Serializable{
 	 * This method overrides parent method by setting heroin good's base price for different techlevels
 	 */
 	@Override
-	int getBasePrice(String event) 
+	public int getBasePrice(String event) 
 	{
 		 if (event.equals("WAR"))
 		 {
 			 return basePrice * randomGen.nextInt(5)+1;
 		 }
+		 else if (event.equals("WAR1"))
+		 {
+			 return basePrice * 5;
+		 }
 		 else if (event.equals("MINERALRICH"))
 		 {
 			 return Math.round(basePrice *(1/randomGen.nextInt(3)+1));
+		 }
+		 else if (event.equals("MINERALRICH1"))
+		 {
+			 return basePrice + 500;
+		 }
+		 else if (event.equals("MINERALPOOR1"))
+		 {
+			 return basePrice - 500;
 		 }
 		 else if (event.equals("MINERALPOOR"))
 		 {

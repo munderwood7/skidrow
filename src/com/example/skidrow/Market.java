@@ -202,4 +202,5 @@ public class Market implements Serializable
 		goodsList.put(good, goodsList.get(good)+quantity);
 		this.money = money - deltaMoney;
 	}
+	
 }
