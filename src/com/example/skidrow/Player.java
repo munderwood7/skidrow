@@ -49,7 +49,7 @@ public class Player implements Serializable{
 		this.fuelEfficiency=1;
 		
 		initGoods();
-		setCargoSpace();
+		//setCargoSpace();
 	}
 	
 	/**
@@ -131,14 +131,6 @@ public class Player implements Serializable{
 	}
 	
 	/**
-	 * Sets the space of the cargo
-	 * 
-	 */
-	public void setCargoSpace(){
-		cargoSpace= 10;
-		
-	}
-	/**
 	 * Gets the space of the cargo
 	 * 
 	 * @return the value of the cargo space
@@ -188,6 +180,10 @@ public class Player implements Serializable{
 	 */
 	public double getFuelEfficiency(){
 		return fuelEfficiency;
+	}
+	
+	public String toString(){
+		return this.name;
 	}
 	  
 }

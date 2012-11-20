@@ -158,4 +158,8 @@ public class CntinueActivity extends Activity {
     	Intent intent = new Intent(this, PlayerStatsActivity.class);
     	startActivity(intent);
     }
+    
+    public String toString(){
+    	return "Continue Activity";
+    }
 }

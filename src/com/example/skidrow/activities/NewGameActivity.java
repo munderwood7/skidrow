@@ -1,5 +1,4 @@
 package com.example.skidrow.activities;
-
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.R;
 import com.example.skidrow.R.id;

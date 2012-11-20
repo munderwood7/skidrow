@@ -145,4 +145,8 @@ public class City implements Serializable{
 		 return resources;
 	 }
 	 
+	 public String toString(){
+		 return this.Name;
+	 }
+	 
 }

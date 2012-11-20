@@ -104,5 +104,9 @@ public class Event implements Serializable
 	{
 		return priceEffect;
 	}
+	
+	public String toString(){
+		return this.name;
+	}
 
 }

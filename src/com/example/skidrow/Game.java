@@ -302,7 +302,7 @@ public class Game implements Serializable{
 	 * @return
 	 */
 	public String marketToPlayer(String drug, int quantity){
-		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug))*quantity;
+		int transPrice = (currentMarket.getPrice(currentMarket.getGoodFromString(drug))+currEvent.getPriceEffect())*quantity;
 		if(player.getMoney()<transPrice){
 			return "You are $" + (transPrice-player.getMoney()) + " short of buying " + quantity + " " + drug;
 		}
@@ -328,7 +328,7 @@ public class Game implements Serializable{
 	 * @return
 	 */
 	public String playerToMarket(String drug, int quantity){
-		int transPrice = currentMarket.getPrice(currentMarket.getGoodFromString(drug))*quantity;
+		int transPrice = (currentMarket.getPrice(currentMarket.getGoodFromString(drug))+currEvent.getPriceEffect())*quantity;
 		if(currentMarket.getMoney()<transPrice){
 			return "The market does not have enough money to buy your goods";
 		}
