@@ -24,7 +24,7 @@ public class RandomEventGenerator implements Serializable{
 	//Tag for logcat
     protected static final String TAG = "RandomEventGenerator";
     //True if we want to debug false otherwise
-    private boolean D=true;
+    private boolean Debug=true;
 
 	
 	/**
@@ -54,7 +54,7 @@ public class RandomEventGenerator implements Serializable{
 		currE=eArray[rnd1];
 		currE.setStepNum(currentStep+10+rng.nextInt(10));
 		list.addLast(currE);
-		if(D) Log.i(TAG, "New event -> " + currE.getName() + "\nEvent will occur on step " + currE.getStepNum()+" and will last " + currE.getDuration() +" steps.");
+		if(Debug) Log.i(TAG, "New event -> " + currE.getName() + "\nEvent will occur on step " + currE.getStepNum()+" and will last " + currE.getDuration() +" steps.");
 	}
 	
 	/**

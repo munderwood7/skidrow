@@ -20,10 +20,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class NewGameActivity extends Activity {
-	//Tag for the logcat
+	/**
+	 * Tag for the logcat
+	 */
     protected static final String TAG = "New Game";
-    //True if we want to debug false otherwise
-    private boolean D=true;
+    /**
+     * True if we want to debug false otherwise
+     */
+    private boolean Debug=true;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -130,8 +134,12 @@ public class NewGameActivity extends Activity {
             	AppUtil.displayError(this, "You have currently allocated "+sum+ " points. You only have 16 points.");
             }
             else{
-                if(16-sum>1) AppUtil.displayError(this, "You have currently allocated "+sum+ " points. You have " + (16-sum) +" points left.");
-                else if(16-sum==1)  AppUtil.displayError(this, "You have currently allocated "+sum+ " points. You have " + (16-sum) +" point left.");
+                if(16-sum>1){
+                	AppUtil.displayError(this, "You have currently allocated "+sum+ " points. You have " + (16-sum) +" points left.");
+                }
+                else if (16-sum==1)  {
+                	AppUtil.displayError(this, "You have currently allocated "+sum+ " points. You have " + (16-sum) +" point left.");
+                }
             }
         }
         else{
@@ -218,7 +226,7 @@ public class NewGameActivity extends Activity {
         public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
             // If the action is a key-up event on the return key, send the message
             updateAvailablePoints();
-            if(D) Log.i(TAG, "END onEditorAction");
+            if(Debug) Log.i(TAG, "END onEditorAction");
             
             return false;
         }

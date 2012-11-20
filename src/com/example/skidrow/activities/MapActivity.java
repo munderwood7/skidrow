@@ -33,12 +33,26 @@ import android.widget.Toast;
 
 public class MapActivity extends Activity {
 	
-	//Tag for logcat
+	
+	/**
+	 * tag for logcat
+	 */
     protected static final String TAG = "MapActivity";
-    //True if we want to debug false otherwise
-    private boolean D=true;
+    /**
+     * True if we want to debug false otherwise
+     */
+    private boolean Debug=true;
+    /**
+     * Random generator used when traveling to a new city
+     */
     private RandomEventGenerator eventGen; 
+    /**
+     * Current city where player is at
+     */
     private City currentCity;
+    /**
+     * City to be shown 
+     */
     private City displayedCity;
 
     @Override
@@ -151,11 +165,11 @@ public class MapActivity extends Activity {
 	    	currentCity=displayedCity;
 	    	AppUtil.displayError(this, "You are now in " + currentCity.getName());
 	    	AppUtil.displayError(this, "There is a " + eventGen.getCurrE().getName() + " here affecting the price by " + eventGen.getCurrE().getPriceEffect());
-    		if(D) {
+    		if(Debug) {
     			Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
     			//AppUtil.displayError(this, "You have " + AppUtil.game.getGas() + " gas remaining");
     		}
-	    	if(D) Log.i(TAG, "new current city -> " + currentCity.getName());
+	    	if(Debug) Log.i(TAG, "new current city -> " + currentCity.getName());
 	    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
 	    	distance.setText(getDistance(displayedCity));
 	    	Event e;
@@ -163,7 +177,7 @@ public class MapActivity extends Activity {
 				//change the market values according to the event 
 				//show toast
 				e=eventGen.peek();
-				if(D) Log.i(TAG, "New event starts-> " + e.getName());
+				if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
 				AppUtil.displayMessage(this,e.getDescription());
 				
 			}
@@ -172,7 +186,7 @@ public class MapActivity extends Activity {
 				//dequeue event
 				//generate new event
 				e=eventGen.pop();
-				if(D) Log.i(TAG, "Event ends-> " + e.getName());
+				if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
 				eventGen.generateEvent();
 			}
 			AppUtil.game.generateMarket();

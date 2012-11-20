@@ -55,7 +55,8 @@ public class MarketActivity extends Activity {
 					populateScreen();
 				}				
 			}
-			public void onNothingSelected(AdapterView<?> arg0) {}       	
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}       	
 			});
         
         //Set the listener for the goodsList
@@ -134,8 +135,12 @@ public class MarketActivity extends Activity {
     	final int goodPrice = Integer.parseInt(goodPriceStr);
     	 	
     	String transactionType;
-    	if(person == Person.MARKET){ transactionType = "Buy"; }
-    	else{ transactionType = "Sell"; }
+    	if(person == Person.MARKET){ 
+    		transactionType = "Buy"; 
+    	}
+    	else{ 
+    		transactionType = "Sell"; 
+    	}
     	
     	//Setting all the appropriate listeners for the dialog layout
     	LayoutInflater inflater = this.getLayoutInflater();

@@ -51,7 +51,7 @@ public class GameTest extends TestCase {
 		super.setUp();
 		// Add additional set up code here
 		currMarket = new Market(7);
-		currEvent =  new Event("DROUGHT",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2);;
+		currEvent =  new Event("DROUGHT",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2);
 		player = new Player("Lesly", 4, 4, 4, 4, "medium");
 	}
 

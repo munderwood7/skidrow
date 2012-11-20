@@ -42,7 +42,7 @@ public class Game implements Serializable{
 	//Tag for logcat
     protected static final String TAG = "Game";
     //True if we want to debug false otherwise
-    private boolean D=true;
+    private boolean Debug=true;
 	
 
 	
@@ -208,9 +208,9 @@ public class Game implements Serializable{
 	 * the step counter. 
 	 */
 	public void makeMove(City newCity, Event e){
-		if(D) Log.i(TAG, "Player make a move. Current step: " + getStep());
+		if(Debug) Log.i(TAG, "Player make a move. Current step: " + getStep());
 		player.setGas(player.getGas()-getGasExpenditure(newCity));
-		if(D) Log.i(TAG, "Gas expenditure: "+getGasExpenditure(newCity));
+		if(Debug) Log.i(TAG, "Gas expenditure: "+getGasExpenditure(newCity));
 		setCurrentCity(newCity);
 		currEvent = e;
 		increaseStep();
