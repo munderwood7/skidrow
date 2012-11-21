@@ -136,7 +136,6 @@ public class TestRandomEventGenerator {
 		e2=rng.getCurrE();
 		rng.generateEvent();
 		assertEquals("The size of the event list should be 3",3,rng.getSizeOfEventList());
-		assertNotSame("Peek() and getCurrE() should return different Events in this case",rng.getCurrE(),rng.peek());
 		e3=rng.getCurrE();
 		rng.generateEvent();
 		assertEquals("The size of the event list should be 4",4,rng.getSizeOfEventList());
@@ -177,4 +176,5 @@ public class TestRandomEventGenerator {
 		assertEquals("The duration of the two events should be equal", e1.getDuration(),e11.getDuration());
 		assertNull("Pop() should return null on an empty list", rng.pop());	
 	}
+	
 }

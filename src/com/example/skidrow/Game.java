@@ -224,6 +224,9 @@ public class Game implements Serializable{
 	public int getStep(){
 		return step;
 	}
+	public void setStep(int newStep){
+		step=newStep;
+	}
 	
 	/**
 	 * 
