@@ -53,8 +53,7 @@ public class RandomEventGenerator implements Serializable{
 		int rnd1=rng.nextInt(eArray.length);
 		currE=eArray[rnd1];
 		currE.setStepNum(currentStep+10+rng.nextInt(10));
-		list.addLast(currE);
-		if(Debug) Log.i(TAG, "New event -> " + currE.getName() + "\nEvent will occur on step " + currE.getStepNum()+" and will last " + currE.getDuration() +" steps.");
+		list.add(currE);
 	}
 	
 	/**
@@ -73,7 +72,7 @@ public class RandomEventGenerator implements Serializable{
 	 * @return next event on line
 	 */
 	public Event peek(){
-		if(!list.isEmpty()){
+		if(!list.isEmpty()&&list.peek()!=null){
 			return (Event) list.peek();
 		}
 		return null;
@@ -128,7 +127,7 @@ public class RandomEventGenerator implements Serializable{
 	 * @return boolean first event
 	 */
 	public boolean checkStartEvent(){
-		if(AppUtil.getStep()==getNextEventStepNum()){
+		if(getSizeOfEventList()!=0&&AppUtil.getStep()==getNextEventStepNum()){
 			return true;
 		}
 		return false;
@@ -139,12 +138,32 @@ public class RandomEventGenerator implements Serializable{
 	 * @return boolean last event
 	 */
 	public boolean checkEndEvent(){
-		if(AppUtil.getStep()==getNextEventStepNum()+getNextEventDuration()){
+		if(getSizeOfEventList()!=0&&AppUtil.getStep()==getNextEventStepNum()+getNextEventDuration()){
 			return true;
 		}
 		return false;
 	}
+	/**
+	 * Gets the current Event
+	 * @return current Event
+	 */
 	public Event getCurrE(){
 		return currE;
+	}
+	/**
+	 * Returns the number of different events that can happen throughout the game
+	 * @return number of different events that can happen throughout the game
+	 */
+	public int getNumberOfEventTypes(){
+		return eArray.length;
+	}
+	/**
+	 * Returns the length of the event list
+	 */
+	public int getSizeOfEventList(){
+		if(list!=null){
+			return list.size();
+		}
+		return 0;
 	}
 }
