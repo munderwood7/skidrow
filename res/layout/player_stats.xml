@@ -48,11 +48,13 @@
             android:background="#FFFFFF" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/repairShopView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/wrench" />
+            android:src="@drawable/wrench" 
+			android:clickable="true"
+            android:onClick="changeGameLayout" />
 
         <View
             android:id="@+id/view4"

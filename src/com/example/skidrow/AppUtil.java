@@ -27,7 +27,6 @@ public class AppUtil {
     protected static final String TAG = "AppUtil";
 	//Intsance of SkidRow game 
     public static Game game;
-    
     /**
      * Generates a message to the user to inform them of an error. This may be due to the user or the the program. 
      * 

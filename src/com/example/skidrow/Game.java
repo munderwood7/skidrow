@@ -34,6 +34,7 @@ public class Game implements Serializable{
 	private Player player;
 	private City currentCity;
 	private Market currentMarket;
+	private RepairShop currentRepairShop;
 	private City[] citiesList;
 	private int step;
 	private Event currEvent;
@@ -80,6 +81,7 @@ public class Game implements Serializable{
 		generateCountry();
 		currentCity=citiesList[17];//Atlanta is set as the default starting location
 		generateMarket();
+		generateRepairShop();
 	}
 	/**
 	 * Method used to generate all cities in the country. 
@@ -352,6 +354,12 @@ public class Game implements Serializable{
 		player.sellMoney(drug, quantity, transPrice);
 		return null;
 	}
+	public void generateRepairShop(){
+		currentRepairShop=new RepairShop();
+	}
+	public String[] getNamesOfShips(){
+		return currentRepairShop.getShips();
+	}
 	
 	/**
 	 * This method extracts cargo space availability from player class
@@ -374,7 +382,6 @@ public class Game implements Serializable{
 		double hypotenuse= Math.sqrt(Math.pow(displayedCityLocation[0]-currentCityLocation[0], 2)+Math.pow(displayedCityLocation[1]-currentCityLocation[1], 2));
     	return String.format("%.3f", hypotenuse);
     }
-
 	/**
 	 * Checks if the the spaceship has enough fuel to go to the next city
 	 * @param nextCity
@@ -400,6 +407,33 @@ public class Game implements Serializable{
 	 */
 	public double getGas(){
 		return player.getGas();
+	}
+	public void setGas(double gas){
+		player.setGas(gas);
+	}
+	public int getMoney(){
+		return player.getMoney();
+	}
+	public void setMoney(int money){
+		player.setMoney(money);
+	}
+	public Ship getShip(){
+		return player.getShip();
+	}
+	public void setShip(Ship ship){
+		player.setShip(ship);
+	}
+	public Ship getShipByName(String name){
+		return currentRepairShop.getShipByName(name);
+	}
+	public boolean buyShip(Ship ship){
+		return currentRepairShop.buyShip(ship);
+	}
+	public int getShipPrice(Ship ship){
+		return currentRepairShop.getShipPrice(ship);
+	}
+	public double getGasPrice(City c){
+		return currentRepairShop.getGasPrice(c.getTechLevelInt());
 	}
 	
 }

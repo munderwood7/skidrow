@@ -19,7 +19,6 @@ public class Market implements Serializable
 	private Map<Good, Integer> goodsList = new HashMap<Good, Integer>();
 	private int techLevel;
 	private Random random;
-	private int money;
 	
 	/**
 	 * Constructor to create a market
@@ -34,8 +33,6 @@ public class Market implements Serializable
 		random = new Random();
 		
 		generateGoods();
-		
-		this.money = (random.nextInt(1000)+1)*techLevel;
 	}
 	
 	/**
@@ -85,7 +82,7 @@ public class Market implements Serializable
 	}
 	
 	public int getMoney(){
-		return money;
+		return AppUtil.game.getMoney();
 	}
 	
 	/**
@@ -122,9 +119,9 @@ public class Market implements Serializable
 				if(entry.getKey().minimumTechLeveltoUseResource<=techLevel)
 				{
 					int goodPrice = getPrice(entry.getKey());
-					if ((entry.getKey().basePrice)<=money)
+					if ((entry.getKey().basePrice)<=AppUtil.game.getMoney())
 					{
-						money-=goodPrice;
+						AppUtil.game.setMoney(AppUtil.game.getMoney()-goodPrice);
 						entry.setValue(entry.getValue()+1);
 						System.out.println("City has just bought " + g + ".");
 						return goodPrice;
@@ -153,7 +150,7 @@ public class Market implements Serializable
 				if(entry.getValue()>=quantity){
 					entry.setValue(entry.getValue()-quantity);
 					System.out.println("City has just sold " + quantity+ " " + g);
-					money+=totalTransaction;
+					AppUtil.game.setMoney(AppUtil.game.getMoney()+totalTransaction);
 				} 
 				return;
 			}
@@ -188,7 +185,7 @@ public class Market implements Serializable
 	 */
 	public void sellGood(Good good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)-quantity);
-		this.money = money + deltaMoney;
+		AppUtil.game.setMoney(AppUtil.game.getMoney()+deltaMoney);
 	}
 	
 	/**
@@ -200,7 +197,7 @@ public class Market implements Serializable
 	 */
 	public void buyGood(Good good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)+quantity);
-		this.money = money - deltaMoney;
+		AppUtil.game.setMoney(AppUtil.game.getMoney()-deltaMoney);
 	}
 	
 }

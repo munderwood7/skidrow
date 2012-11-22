@@ -134,6 +134,9 @@ public class MapActivity extends Activity {
     		case R.id.marketView:
     			intent = new Intent(this, MarketActivity.class);
     			break;
+    		case R.id.repairShopView:
+                intent = new Intent(this, RepairShopActivity.class);
+                break;
     		default:
     			intent = new Intent(this, PlayerStatsActivity.class);
     			break;

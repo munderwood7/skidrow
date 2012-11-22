@@ -68,6 +68,30 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+         <activity
+            android:name=".activities.RepairShopActivity"
+            android:label="@string/title_activity_repair_shop" 
+            android:theme="@style/noAnimTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.ShipRepairShopActivity"
+            android:label="@string/title_activity_ship_repair_shop" 
+            android:theme="@style/noAnimTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.GasRepairShopActivity"
+            android:label="@string/title_activity_gas_repair_shop"
+            android:theme="@style/noAnimTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,73 @@
+package com.example.skidrow.activities;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+
+import com.example.skidrow.AppUtil;
+import com.example.skidrow.R;
+import com.example.skidrow.activities.MarketActivity.Person;
+
+public class RepairShopActivity extends Activity{
+	public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.repair_shop);
+        fillRepairShopInfo();
+        
+    }
+	public void changeGameLayout(View view){
+    	int viewId = view.getId();
+    	
+    	Intent intent;
+    	switch(viewId){
+    		case R.id.playerStatsView:
+    			intent = new Intent(this, PlayerStatsActivity.class);
+    			break;
+    		case R.id.cityView:
+    			intent = new Intent(this, MapActivity.class);
+    			break;
+    		case R.id.marketView:
+    			intent = new Intent(this, MarketActivity.class);
+    			break;
+    		case R.id.repairShopView:
+                intent = new Intent(this, RepairShopActivity.class);
+                break;
+    		case R.id.shipRepairShopView:
+    			intent = new Intent(this, ShipRepairShopActivity.class);
+    			break;
+    		case R.id.gasRepairShopView:
+    			intent = new Intent(this, GasRepairShopActivity.class);
+    			break;
+    		default:
+    			intent = new Intent(this, PlayerStatsActivity.class);
+    			break;
+    	}
+    	startActivity(intent);
+    }
+	public void fillRepairShopInfo(){
+        TextView playerMoney = (TextView)this.findViewById(R.id.moneyTextViewRepairShop);
+        TextView playerGas = (TextView)this.findViewById(R.id.gasTextViewRepairShop);
+        String[] info = AppUtil.game.getPlayerStatInfo();
+        
+        /*playerCommunications.setText(info[0]);
+        playerFighting.setText(info[1]);
+        playerDriving.setText(info[2]);
+        playerDealing.setText(info[3]);
+        playerCity.setText(info[4]);
+        playerName.setText(info[6]);*/
+        playerMoney.setText("Money: "+info[7]);
+        playerGas.setText("Gas: " +info[8]);
+    }
+	public static Context getContext(){
+		return RepairShopActivity.getContext();
+	}
+	
+}

@@ -19,10 +19,8 @@ public class Player implements Serializable{
 	private int communicationSkills,fighterSkills, driverSkills, dealerSkills;
 	private String difficultyLevel;
 	private Map<String, Integer> goodsList = new HashMap<String, Integer>();
-	private int cargoSpace=10;
-	private double gasCapacity=100;
+	private Ship car;
 	private double gas;
-	private double fuelEfficiency;
 
 	/**
 	 * Constructor for a player with a name and a set of skills
@@ -45,11 +43,10 @@ public class Player implements Serializable{
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
 				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
 		this.money = 10000;
-		this.gas=gasCapacity;
-		this.fuelEfficiency=1;
-		
+		this.car=new Ship("Tokyo Sedan 1977", 10, 1, 1, false, 0, 1, 1000, 5,80,10);
+		setGas(car.getFuelCapacity());
 		initGoods();
-		//setCargoSpace();
+
 	}
 	
 	/**
@@ -103,6 +100,9 @@ public class Player implements Serializable{
 	public int getMoney(){
 		return money;
 	}
+	public void setMoney(int money){
+		this.money=money;
+	}
 	
 	/**
 	 * Buys a good from the player. This means the value of the goods is subtracted from the money and the quantity of the good is added to the goodsList
@@ -114,7 +114,7 @@ public class Player implements Serializable{
 	public void buyGood(String good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)+quantity); 
 		this.money = money - deltaMoney;
-		this.cargoSpace = cargoSpace - quantity;
+		car.setAvailableCargoSpace(getCargoSpace() - quantity);
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public class Player implements Serializable{
 	public void sellMoney(String good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)-quantity);
 		this.money = money + deltaMoney;
-		this.cargoSpace = cargoSpace + quantity;
+		car.setAvailableCargoSpace(getCargoSpace()+ quantity);
 	}
 	
 	/**
@@ -136,20 +136,20 @@ public class Player implements Serializable{
 	 * @return the value of the cargo space
 	 */
 	public int getCargoSpace(){
-		return cargoSpace;
+		return car.getAvailableCargoSpace();
 	}
 	/**
 	 * Gets the gas capacity of the ship
 	 * @return the gas capacity of the ship
 	 */
 	 public double getGasCapacity(){
-		 return gasCapacity;
+		 return car.getFuelCapacity();
 	 }
 	 /**
 	  * Set the gas capacity of the ship
 	  */
-	 public void setGasCapacity(double gasCap){
-		 gasCapacity=gasCap;
+	 public void setGasCapacity(int gasCap){
+		 car.setFuelCapacity(gasCap);
 	 }
 	 /**
 	 * Gets the amount of gas left
@@ -166,20 +166,20 @@ public class Player implements Serializable{
 		gas=newGas;
 	} 
 	
-	/**
-	 * This method sets the efficiency of the fuel
-	 * @param fe int fuel efficiency
-	 */
-	public void setFuelEfficiency(double fe){
-		this.fuelEfficiency=fe;
-	}
+	
 	
 	/**
 	 * This method returns the current value of fuel efficiency
 	 * @return fuel efficiency 
 	 */
 	public double getFuelEfficiency(){
-		return fuelEfficiency;
+		return car.getFuelEfficiency();
+	}
+	public Ship getShip(){
+		return car;
+	}
+	public void setShip(Ship ship){
+		this.car=ship;
 	}
 	
 	public String toString(){

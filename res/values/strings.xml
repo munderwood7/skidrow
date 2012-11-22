@@ -25,6 +25,9 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_player_stats">PlayerStatsActivity</string>
     <string name="title_activity_market">MarketActivity</string>
+    <string name="title_activity_repair_shop">RepairShopActivity</string>
+    <string name="title_activity_gas_repair_shop">GasStoreActivity</string>
+    <string name="title_activity_ship_repair_shop">ShipStoreActivity</string>
     <string name="SAVE">SAVE_GAME</string>
 
 </resources>
