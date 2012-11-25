@@ -86,10 +86,12 @@ public class GasRepairShopActivity extends Activity {
     	final TextView playerMoneyView = (TextView)layout.findViewById(R.id.playerMoney);
     	final TextView marketMoneyView = (TextView)layout.findViewById(R.id.marketMoney);
     	final TextView availableCargo = (TextView)layout.findViewById(R.id.availableCargo);
+    	final TextView textView2 = (TextView)layout.findViewById(R.id.textView2);
+    	textView2.setText("Gas Tank: ");
     	goodCost.setText("$"+gasPrice);
     	playerMoneyView.setText(AppUtil.game.getPlayerStatInfo()[7]);
-    	marketMoneyView.setText("$"+Integer.toString(AppUtil.game.getMarketMoney()));
-    	availableCargo.setText(Double.toString(availableSpace));
+    	marketMoneyView.setText("");
+    	availableCargo.setText(String.format("%.3f", availableSpace));
     	SeekBar slider = (SeekBar)layout.findViewById(R.id.buySellQuantity);
     	slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			
@@ -105,15 +107,14 @@ public class GasRepairShopActivity extends Activity {
 			
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 				double buySellQuant =  ((progress*availableSpace)/100);
-				Log.i("GasReapirShop","availableSpace: "+availableSpace);
 				Log.i("GasReapirShop","Progess: "+buySellQuant);
 				String playerMoneyStr = AppUtil.game.getPlayerStatInfo()[7];
 				double playerMoney = Integer.parseInt((String) playerMoneyStr.subSequence(1, playerMoneyStr.length()));
-			
-				quantity.setText(Double.toString(buySellQuant));
+				availableCargo.setText(String.format("%.3f", Math.max(availableSpace-buySellQuant,0)));
+				quantity.setText(String.format("%.3f", buySellQuant));
 				playerMoney = playerMoney - buySellQuant * gasPrice;
-				
-				playerMoneyView.setText("$"+Double.toString(playerMoney));
+				textView2.setText("Gas Tank: ");
+				playerMoneyView.setText("$"+String.format("%.3f",playerMoney));
 			}
 		});
     	
@@ -134,7 +135,7 @@ public class GasRepairShopActivity extends Activity {
 				
 				public void onClick(DialogInterface dialog, int which) {
 					buyGas(Double.parseDouble(quantity.getText().toString()));
-					
+					fillGasStationInfo();
 				}
 			});
         popup.create().show();

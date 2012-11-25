@@ -26,44 +26,44 @@ public class RepairShop {
 	 */
 	private void generateShips(){
 		//public Ship(String shipName, int armour, int respect, int hiddenStorage, boolean plateChanger, int turbo, int gunDamage, int fuelCapacity, double fuelEfficiency, int speed){
-		shipList.put(new Ship("Tokyo Sedan 1977", 10, 1, 1, false, 0, 1, 1000, 5,80,10),0);
-		shipList.put(new Ship("Detroit SUV 1986", 30, 1, 2, false, 0, 2, 220, 6,70,16),2000);
-		shipList.put(new Ship("Beijing Sedan 2006", 20, 2, 2, false, 1, 3, 180, 4,120,12),6000);
-		shipList.put(new Ship("Berlin Sedan 2000", 20, 3, 3, false, 2, 4, 210, 3,130,14),12000);
-		shipList.put(new Ship("Detroit SUV 2005", 40, 3, 4, false, 2, 5, 230, 5,100,18),20000);
-		shipList.put(new Ship("Tokyo Sedan 2010", 30, 3, 4, false, 3, 5, 210, 2,130,14),15000);
-		shipList.put(new Ship("Kyoto Coupe 2012", 40, 5, 4, false, 3, 6, 210, 1,140,12),35000);
-		shipList.put(new Ship("Detroit SUV 2012", 60, 7, 6, true, 3, 8, 240, 3,130,25),45000);
-		shipList.put(new Ship("Munich Coupe 2012", 50, 8, 4,true, 4, 7, 210, 0.5,180,14),50000);
-		shipList.put(new Ship("Monaco Super Car 2013", 60, 9, 4, true, 5, 9, 210, 0.2,220,16),80000);
-		shipList.put(new Ship("Mishawaka All Terrain Vehicle 2012", 100, 10, 10, true, 4, 10, 300, 3,150,40),100000);
-		shipList.put(new Ship("Rome Super Car 2013", 80, 10, 10, true, 5, 10, 210, 0.1,300,25),1500000);
+		shipList.put(new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10),0);
+		shipList.put(new Ship("1986 Detroit SUV", 30, 1, 2, false, 0, 2, 220, 6,70,16),2000);
+		shipList.put(new Ship("2006 Beijing Sedan", 20, 2, 2, false, 1, 3, 180, 4,120,12),6000);
+		shipList.put(new Ship("2000 Berlin Sedan", 20, 3, 3, false, 2, 4, 210, 3,130,14),12000);
+		shipList.put(new Ship("2005 Detroit SUV", 40, 3, 4, false, 2, 5, 230, 5,100,18),20000);
+		shipList.put(new Ship("2010 Tokyo Sedan", 30, 3, 4, false, 3, 5, 210, 2,130,14),15000);
+		shipList.put(new Ship("2012 Kyoto Coupe", 40, 5, 4, false, 3, 6, 210, 1,140,12),35000);
+		shipList.put(new Ship("2012 Detroit SUV", 60, 7, 6, true, 3, 8, 240, 3,130,25),45000);
+		shipList.put(new Ship("2012 Munich Coupe", 50, 8, 4,true, 4, 7, 210, 0.5,180,14),50000);
+		shipList.put(new Ship("2013 Monaco Super Car", 60, 9, 4, true, 5, 9, 210, 0.2,220,16),80000);
+		shipList.put(new Ship("2012 Mishawaka All Terrain Vehicle", 100, 10, 10, true, 4, 10, 300, 3,150,40),100000);
+		shipList.put(new Ship("2013 Rome Super Car", 80, 10, 10, true, 5, 10, 210, 0.1,300,25),1500000);
 		
-		nameList.put("Tokyo Sedan 1977",new Ship("Tokyo Sedan 1977", 10, 1, 1, false, 0, 1, 1000, 5,80,10));
-		nameList.put("Detroit SUV 1986",new Ship("Detroit SUV 1986", 30, 1, 2, false, 0, 2, 60, 6,70,16));
-		nameList.put("Beijing Sedan 2006",new Ship("Beijing Sedan 2006", 20, 2, 2, false, 1, 3, 50, 4,120,12));
-		nameList.put("Berlin Sedan 2000",new Ship("Berlin Sedan 2000", 20, 3, 3, false, 2, 4, 50, 3,130,14));
-		nameList.put("Detroit SUV 2005",new Ship("Detroit SUV 2005", 40, 3, 4, false, 2, 5, 70, 5,100,18));
-		nameList.put("Tokyo Sedan 2010",new Ship("Tokyo Sedan 2010", 30, 3, 4, false, 3, 5, 50, 2,130,14));
-		nameList.put("Kyoto Coupe 2012",new Ship("Kyoto Coupe 2012", 40, 5, 4, false, 3, 6, 50, 1,140,12));
-		nameList.put("Detroit SUV 2012",new Ship("Detroit SUV 2012", 60, 7, 6, true, 3, 8, 80, 3,130,25));
-		nameList.put("Munich Coupe 2012",new Ship("Munich Coupe 2012", 50, 8, 4,true, 4, 7, 50, 0.5,180,14));
-		nameList.put("Monaco Super Car 2013",new Ship("Monaco Super Car 2013", 60, 9, 4, true, 5, 9, 50, 0.2,220,16));
-		nameList.put("Mishawaka All Terrain Vehicle 2012",new Ship("Mishawaka All Terrain Vehicle 2012", 100, 10, 10, true, 4, 10, 100, 3,150,40));
-		nameList.put("Rome Super Car 2013",new Ship("Rome Super Car 2013", 80, 10, 10, true, 5, 10, 50, 0.1,300,25));
+		nameList.put("1977 Tokyo Sedan",new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10));
+		nameList.put("1986 Detroit SUV",new Ship("1986 Detroit SUV", 30, 1, 2, false, 0, 2, 60, 6,70,16));
+		nameList.put("2006 Beijing Sedan",new Ship("2006 Beijing Sedan", 20, 2, 2, false, 1, 3, 50, 4,120,12));
+		nameList.put("2000 Berlin Sedan",new Ship("Berlin Sedan 2000", 20, 3, 3, false, 2, 4, 50, 3,130,14));
+		nameList.put("2005 Detroit SUV",new Ship("2005 Detroit SUV", 40, 3, 4, false, 2, 5, 70, 5,100,18));
+		nameList.put("2010 Tokyo Sedan",new Ship("2010 Tokyo Sedan", 30, 3, 4, false, 3, 5, 50, 2,130,14));
+		nameList.put("2012 Kyoto Coupe",new Ship("2012 Kyoto Coupe", 40, 5, 4, false, 3, 6, 50, 1,140,12));
+		nameList.put("2012 Detroit SUV",new Ship("2012 Detroit SUV", 60, 7, 6, true, 3, 8, 80, 3,130,25));
+		nameList.put("2012 Munich Coupe",new Ship("2012 Munich Coupe", 50, 8, 4,true, 4, 7, 50, 0.5,180,14));
+		nameList.put("2013 Monaco Super Car",new Ship("2013 Monaco Super Car", 60, 9, 4, true, 5, 9, 50, 0.2,220,16));
+		nameList.put("2012 Mishawaka All Terrain Vehicle",new Ship("2012 Mishawaka All Terrain Vehicle", 100, 10, 10, true, 4, 10, 100, 3,150,40));
+		nameList.put("2013 Rome Super Car",new Ship("2013 Rome Super Car", 80, 10, 10, true, 5, 10, 50, 0.1,300,25));
 		
-		priceList.put("Tokyo Sedan 1977",0);
-		priceList.put("Detroit SUV 1986",2000);
-		priceList.put("Beijing Sedan 2006",6000);
-		priceList.put("Berlin Sedan 2000",12000);
-		priceList.put("Detroit SUV 2005", 20000);
-		priceList.put("Tokyo Sedan 2010",15000);
-		priceList.put("Kyoto Coupe 2012",35000);
-		priceList.put("Detroit SUV 2012",45000);
-		priceList.put("Munich Coupe 2012",50000);
-		priceList.put("Monaco Super Car 2013",80000);
-		priceList.put("Mishawaka All Terrain Vehicle 2012",100000);
-		priceList.put("Rome Super Car 2013",1500000);
+		priceList.put("1977 Tokyo Sedan",0);
+		priceList.put("1986 Detroit SUV",2000);
+		priceList.put("2006 Beijing Sedan",6000);
+		priceList.put("2000 Berlin Sedan",12000);
+		priceList.put("2005 Detroit SUV", 20000);
+		priceList.put("2010 Tokyo Sedan",15000);
+		priceList.put("2012 Kyoto Coupe",35000);
+		priceList.put("2012 Detroit SUV",45000);
+		priceList.put("2012 Munich Coupe",50000);
+		priceList.put("2013 Monaco Super Car",80000);
+		priceList.put("2012 Mishawaka All Terrain Vehicle",100000);
+		priceList.put("2013 Rome Super Car",1500000);
 
 	}
 	public String[] getShips(){

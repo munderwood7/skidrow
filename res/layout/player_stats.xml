@@ -80,8 +80,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/relativeLayout1"
-        android:text="Stats"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="Player Information"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/textView2"
@@ -90,7 +90,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="22dp"
-        android:text="Fighter:"
+        android:text="Fighter Skills:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:text="Dealer:"
+        android:text="Dealer Skills:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -141,7 +141,7 @@
         android:layout_alignBottom="@+id/playerCommunicationsLevel"
         android:layout_marginRight="5dp"
         android:layout_toLeftOf="@+id/playerCommunicationsLevel"
-        android:text="Communications"
+        android:text="Communication Skills:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -163,7 +163,7 @@
         android:layout_alignBottom="@+id/playerDriverLevel"
         android:layout_marginRight="5dp"
         android:layout_toLeftOf="@+id/playerDriverLevel"
-        android:text="Driver:"
+        android:text="Driver Skills:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -174,7 +174,7 @@
         android:layout_below="@+id/textView3"
         android:layout_marginLeft="22dp"
         android:layout_marginTop="14dp"
-        android:text="City:"
+        android:text="Current City:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView

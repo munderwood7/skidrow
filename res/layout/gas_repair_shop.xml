@@ -34,7 +34,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#FF0000"
+            android:clickable="true"
+            android:onClick="changeGameLayout"
             android:src="@drawable/syringe" />
 
         <View
@@ -52,7 +53,8 @@
             android:layout_weight="1"
             android:clickable="true"
             android:onClick="changeGameLayout"
-            android:src="@drawable/wrench" />
+            android:src="@drawable/wrench" 
+            android:background="#FF0000"/>
 
         <View
             android:id="@+id/view4"

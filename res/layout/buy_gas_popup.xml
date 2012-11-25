@@ -52,24 +52,15 @@
         android:text="Market:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/marketMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_marginLeft="5dp"
-        android:text="$1000"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
 
     <TextView
         android:id="@+id/playerMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/marketMoney"
-        android:layout_alignBottom="@+id/marketMoney"
-        android:layout_alignRight="@+id/quantityValue"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
         android:text="$900"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

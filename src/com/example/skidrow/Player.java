@@ -43,7 +43,7 @@ public class Player implements Serializable{
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
 				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
 		this.money = 10000;
-		this.car=new Ship("Tokyo Sedan 1977", 10, 1, 1, false, 0, 1, 1000, 5,80,10);
+		this.car=new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10);
 		setGas(car.getFuelCapacity());
 		initGoods();
 
