@@ -54,17 +54,9 @@ public class RepairShopActivity extends Activity{
     }
 	public void fillRepairShopInfo(){
         TextView playerMoney = (TextView)this.findViewById(R.id.moneyTextViewRepairShop);
-        TextView playerGas = (TextView)this.findViewById(R.id.gasTextViewRepairShop);
         String[] info = AppUtil.game.getPlayerStatInfo();
         
-        /*playerCommunications.setText(info[0]);
-        playerFighting.setText(info[1]);
-        playerDriving.setText(info[2]);
-        playerDealing.setText(info[3]);
-        playerCity.setText(info[4]);
-        playerName.setText(info[6]);*/
         playerMoney.setText("Money: "+info[7]);
-        playerGas.setText("Gas: " +info[8]);
     }
 	public static Context getContext(){
 		return RepairShopActivity.getContext();

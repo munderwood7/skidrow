@@ -1,6 +1,8 @@
 package com.example.skidrow;
 
-public class Ship {
+import java.io.Serializable;
+
+public class Ship implements Serializable{
 	/**
 	 * Represents a ship in the game
 	 */

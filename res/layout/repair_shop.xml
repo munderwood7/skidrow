@@ -72,97 +72,39 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="125dp"
-        android:orientation="vertical" >
-        <LinearLayout
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_centerVertical="true"
-	        android:orientation="horizontal" >
-		    
+        android:layout_below="@+id/relativeLayout1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal" >
+
 		    <TextView
 		            android:id="@+id/moneyTextViewRepairShop"
 		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
+		            android:layout_height="wrap_content"
 		            android:text="Money"
-		            android:textAppearance="?android:attr/textAppearanceLarge"/>
-		   
-		</LinearLayout>
-	    <LinearLayout
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_centerVertical="true"
-	        android:orientation="horizontal" >
+		            android:textAppearance="?android:attr/textAppearanceLarge"
+		            android:layout_weight="1" />
+
 		    <ImageView
 		            android:id="@+id/gasRepairShopView"
 		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
+		            android:layout_height="20dp"
 		            android:clickable="true"
 		            android:onClick="changeGameLayout"
-		            android:src="@drawable/gear" />
-		    <TextView
-		            android:id="@+id/gasTextViewRepairShop"
-		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
-		            android:text="Gas"
-		            android:textAppearance="?android:attr/textAppearanceLarge"/>
-		   
-		</LinearLayout>
-   		<LinearLayout
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_centerVertical="true"
-	        android:orientation="horizontal" >
+		            android:src="@drawable/gear"
+		            android:layout_weight="10" />
+
 		    <ImageView
 		            android:id="@+id/shipRepairShopView"
 		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
+		            android:layout_height="20dp"
 		            android:clickable="true"
 		            android:onClick="changeGameLayout"
-		            android:src="@drawable/gear" />
-		     <TextView
-		            android:id="@+id/shipTextViewRepairShop"
-		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
-		            android:text="Ship"
-		            android:textAppearance="?android:attr/textAppearanceLarge"/>
-		   
-		</LinearLayout>
-		<LinearLayout
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_centerVertical="true"
-	        android:orientation="horizontal" >
-		    <ImageView
-		            android:id="@+id/playerStatsView"
-		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
-		            android:clickable="true"
-		            android:onClick="changeGameLayout"
-		            android:src="@drawable/gear" />
-		     <TextView
-		            android:id="@+id/gadgesTextViewRepairShop"
-		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
-		            android:text="Gadgets"
-		            android:textAppearance="?android:attr/textAppearanceLarge"/>
-		   
-		</LinearLayout>
+		            android:src="@drawable/gear"
+		            android:layout_weight="10" />
+
 	</LinearLayout>
    
 

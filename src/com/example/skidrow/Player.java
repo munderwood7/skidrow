@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * This class will contain the players information -- information holder.
@@ -14,13 +15,21 @@ import java.util.Map;
 
 public class Player implements Serializable{
 	
+	private static final double SMALL_CRIT_MULT = .5;
+	private static final double LARGE_CRIT_MULT = .5;
+	private static final int SMALL_CRIT_PROB = 2;
+	private static final int LARGE_CRIT_PROB = 3;
+	private static final int TOTAL_PROB = 8;
 	private String name;
+	private Random rand;
 	private int money;
 	private int communicationSkills,fighterSkills, driverSkills, dealerSkills;
 	private String difficultyLevel;
 	private Map<String, Integer> goodsList = new HashMap<String, Integer>();
 	private Ship car;
 	private double gas;
+	private double health;
+	private double attack;
 
 	/**
 	 * Constructor for a player with a name and a set of skills
@@ -45,6 +54,10 @@ public class Player implements Serializable{
 		this.money = 10000;
 		this.car=new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10);
 		setGas(car.getFuelCapacity());
+		this.health = car.getArmour();
+		this.attack = car.getGunDamage();
+		this.rand = new Random();
+		
 		initGoods();
 
 	}
@@ -186,4 +199,45 @@ public class Player implements Serializable{
 		return this.name;
 	}
 	  
+	/**
+	 * This gets the damage done by a small attack. It has a lower probability but has the same critical damage percentage as a
+	 * large attack. 
+	 * 
+	 * @param test Used to get the average 
+	 * @return Damage done by attack
+	 */
+	public double smallAttack(boolean test){
+		//This returns the expected average damage for a small attack
+		if(test){
+			return this.attack*(SMALL_CRIT_MULT/(TOTAL_PROB-SMALL_CRIT_PROB));
+		}
+		
+		int randNum = rand.nextInt(TOTAL_PROB);
+		double damage = this.attack;
+		if(randNum <= SMALL_CRIT_PROB){
+			damage = damage * SMALL_CRIT_MULT;
+		}
+		
+		return damage;
+	}
+	
+	/**
+	 * This gets the damage done by a large attack. It has a higher probability than a small attack. It takes two moves, however
+	 * 
+	 * @param test Used to get the average damage
+	 * @return Damage done by attack
+	 */
+	public double largeAttack(boolean test){
+		double damage = attack*2;
+		if(test){
+			return damage*(LARGE_CRIT_MULT/(TOTAL_PROB-LARGE_CRIT_PROB));
+		}
+		
+		int randNum = rand.nextInt(TOTAL_PROB);
+		if(randNum <= LARGE_CRIT_PROB){
+			damage = damage * LARGE_CRIT_MULT;
+		}
+		
+		return damage;
+	}
 }

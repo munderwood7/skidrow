@@ -27,12 +27,10 @@ public class GasRepairShopActivity extends Activity {
     	final Button gasButton=(Button)this.findViewById(R.id.button1);
     	gasButton.setOnClickListener(new OnClickListener(){
 
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+			public void onClick(View v) {
 				gasTransaction();
 			}
-    		
+
     	});
         
     }

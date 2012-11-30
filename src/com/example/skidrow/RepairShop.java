@@ -1,15 +1,13 @@
 package com.example.skidrow;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
-
-import com.example.skidrow.activities.RepairShopActivity;
-
 import android.util.Log;
 
-public class RepairShop {
+public class RepairShop implements Serializable{
 	private Map<Ship, Integer> shipList = new HashMap<Ship, Integer>();
 	private Map<String, Ship> nameList = new HashMap<String, Ship>();
 	private Map<String, Integer> priceList = new HashMap<String, Integer>();
