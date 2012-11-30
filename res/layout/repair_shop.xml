@@ -93,8 +93,9 @@
 		            android:layout_height="20dp"
 		            android:clickable="true"
 		            android:onClick="changeGameLayout"
-		            android:src="@drawable/gear"
-		            android:layout_weight="10" />
+		            android:src="@drawable/gas"
+		            android:layout_weight="10"
+		            android:padding="8dp" />
 
 		    <ImageView
 		            android:id="@+id/shipRepairShopView"
@@ -102,10 +103,8 @@
 		            android:layout_height="20dp"
 		            android:clickable="true"
 		            android:onClick="changeGameLayout"
-		            android:src="@drawable/gear"
-		            android:layout_weight="10" />
-
-	</LinearLayout>
-   
-
+		            android:src="@drawable/car"
+		            android:layout_weight="10"
+		            android:paddingBottom="8dp" />
+	</LinearLayout>
 </RelativeLayout>

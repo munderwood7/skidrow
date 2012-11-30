@@ -78,18 +78,16 @@ public class GasRepairShopActivity extends Activity {
     	final double availableSpace=AppUtil.game.getShip().getFuelCapacity()-AppUtil.game.getGas();
     	//Setting all the appropriate listeners for the dialog layout
     	LayoutInflater inflater = this.getLayoutInflater();
-    	final RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.cutsom_popup, null);
-    	final TextView goodCost = (TextView)layout.findViewById(R.id.goodCost);
+    	final RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.buy_gas_popup, null);
+    	final TextView goodCost = (TextView)layout.findViewById(R.id.fuelCost);
     	final TextView quantity = (TextView)layout.findViewById(R.id.quantityValue);
     	final TextView playerMoneyView = (TextView)layout.findViewById(R.id.playerMoney);
-    	final TextView marketMoneyView = (TextView)layout.findViewById(R.id.marketMoney);
-    	final TextView availableCargo = (TextView)layout.findViewById(R.id.availableCargo);
-    	final TextView textView2 = (TextView)layout.findViewById(R.id.textView2);
-    	textView2.setText("Gas Tank: ");
+    	final TextView availableCargo = (TextView)layout.findViewById(R.id.availableFuel);
+    	final TextView textView2 = (TextView)layout.findViewById(R.id.textView7);
+    	textView2.setText("Available: ");
     	goodCost.setText("$"+gasPrice);
     	playerMoneyView.setText(AppUtil.game.getPlayerStatInfo()[7]);
-    	marketMoneyView.setText("");
-    	availableCargo.setText(String.format("%.3f", availableSpace));
+    	availableCargo.setText(String.format("%.2f", availableSpace));
     	SeekBar slider = (SeekBar)layout.findViewById(R.id.buySellQuantity);
     	slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			
@@ -108,11 +106,11 @@ public class GasRepairShopActivity extends Activity {
 				Log.i("GasReapirShop","Progess: "+buySellQuant);
 				String playerMoneyStr = AppUtil.game.getPlayerStatInfo()[7];
 				double playerMoney = Integer.parseInt((String) playerMoneyStr.subSequence(1, playerMoneyStr.length()));
-				availableCargo.setText(String.format("%.3f", Math.max(availableSpace-buySellQuant,0)));
-				quantity.setText(String.format("%.3f", buySellQuant));
+				availableCargo.setText(String.format("%.2f", Math.max(availableSpace-buySellQuant,0)));
+				quantity.setText(String.format("%.2f", buySellQuant));
 				playerMoney = playerMoney - buySellQuant * gasPrice;
-				textView2.setText("Gas Tank: ");
-				playerMoneyView.setText("$"+String.format("%.3f",playerMoney));
+				textView2.setText("Available: ");
+				playerMoneyView.setText("$"+String.format("%.2f",playerMoney));
 			}
 		});
     	
