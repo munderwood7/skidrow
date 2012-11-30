@@ -370,6 +370,24 @@ public class Game implements Serializable{
 		return cargoSpace;
 	}
 	
+	/**
+	 * Gets all the information about the ship and puts it in a String array for the UI
+	 * 
+	 * @return Information about the ship
+	 */
+	public String[] getShipInfo(){
+		String[] info = new String[7];
+			info[0] = Integer.toString(player.getShip().getArmour());
+			info[1] = Integer.toString(player.getShip().getTurbo());
+			info[2] = Integer.toString(player.getShip().getSpeed());
+			info[3] = Integer.toString(player.getShip().getGunDamage());
+			info[4] = Integer.toString(player.getShip().getAvailableCargoSpace());
+			info[5] = Double.toString(player.getShip().getFuelEfficiency());
+			info[6] = player.getShip().getShipName();
+			
+		return info;
+	}
+	
 	
 	/**
      * Gets the distance between the current city and the city being investigated

@@ -25,6 +25,9 @@ public class PlayerStatsActivity extends Activity {
         fillPlayerStats();
     }
     
+    /**
+     * Fills the player stats view of the layout with the appropriate values.
+     */
     public void fillPlayerStats(){
         TextView playerFighting = (TextView)this.findViewById(R.id.playerFightingLevel);
         TextView playerDealing = (TextView)this.findViewById(R.id.playerDealerLevel);
@@ -35,16 +38,31 @@ public class PlayerStatsActivity extends Activity {
         TextView playerHealth = (TextView)this.findViewById(R.id.playerHealth);
         TextView playerMoney = (TextView)this.findViewById(R.id.playerMoney);
         TextView playerGas = (TextView)this.findViewById(R.id.playerGas);
-        String[] info = AppUtil.game.getPlayerStatInfo();
+        TextView armour = (TextView)this.findViewById(R.id.armourValue);
+        TextView turbo = (TextView)this.findViewById(R.id.turboValue);
+        TextView speed = (TextView)this.findViewById(R.id.speedValue);
+        TextView gunDamage = (TextView)this.findViewById(R.id.gunDamageValue);
+        TextView storage = (TextView)this.findViewById(R.id.storageValue);
+        TextView fuelEfficiency = (TextView)this.findViewById(R.id.fuelEfficiencyValue);
+        TextView carType = (TextView)this.findViewById(R.id.carTypeValue);
+        String[] playerInfo = AppUtil.game.getPlayerStatInfo();
+        String[] carInfo = AppUtil.game.getShipInfo();
         
-        playerCommunications.setText(info[0]);
-        playerFighting.setText(info[1]);
-        playerDriving.setText(info[2]);
-        playerDealing.setText(info[3]);
-        playerCity.setText(info[4]);
-        playerName.setText(info[6]);
-        playerMoney.setText(info[7]);
-        playerGas.setText(info[8]);
+        playerCommunications.setText(playerInfo[0]);
+        playerFighting.setText(playerInfo[1]);
+        playerDriving.setText(playerInfo[2]);
+        playerDealing.setText(playerInfo[3]);
+        playerCity.setText(playerInfo[4]);
+        playerName.setText(playerInfo[6]);
+        playerMoney.setText(playerInfo[7]);
+        playerGas.setText(playerInfo[8]);
+        armour.setText(carInfo[0]);
+        turbo.setText(carInfo[1]);
+        speed.setText(carInfo[2]);
+        gunDamage.setText(carInfo[3]);
+        storage.setText(carInfo[4]);
+        fuelEfficiency.setText(carInfo[5]);
+        carType.setText(carInfo[6]);
     }
     
     

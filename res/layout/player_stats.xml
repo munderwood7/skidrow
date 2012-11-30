@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/player_stats_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/player_stats_root"
     android:background="#000000"
     tools:context=".activities.PlayerStatsActivity" >
 
@@ -52,9 +52,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/wrench" 
-			android:clickable="true"
-            android:onClick="changeGameLayout" />
+            android:clickable="true"
+            android:onClick="changeGameLayout"
+            android:src="@drawable/wrench" />
 
         <View
             android:id="@+id/view4"
@@ -81,7 +81,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/relativeLayout1"
         android:text="Player Information"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textView2"
@@ -255,12 +255,167 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/tedtView10"
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="10dp"
+        android:text="Car Information"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView8"
-        android:layout_below="@+id/textView8"
-        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView10"
+        android:layout_marginTop="2dp"
+        android:text="Armour:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/armourValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView11"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_toRightOf="@+id/textView11"
+        android:layout_marginLeft="5dp"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/turboValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/armourValue"
+        android:layout_alignBottom="@+id/armourValue"
+        android:layout_alignRight="@+id/playerMoney"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/turboValue"
+        android:layout_alignBottom="@+id/turboValue"
+        android:layout_toLeftOf="@+id/turboValue"
+        android:layout_marginRight="5dp"
+        android:text="Turbo:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_below="@+id/textView11"
+        android:layout_marginTop="3dp"
+        android:text="Speed:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/speedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_toRightOf="@+id/textView13"
+        android:text="0"
+        android:layout_marginLeft="5dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/gunDamageValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/speedValue"
+        android:layout_alignBottom="@+id/speedValue"
+        android:layout_alignRight="@+id/turboValue"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/gunDamageValue"
+        android:layout_alignBottom="@+id/gunDamageValue"
+        android:layout_toLeftOf="@+id/gunDamageValue"
+        android:layout_marginRight="5dp"
+        android:text="Gun Damage:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_below="@+id/textView13"
+        android:layout_marginTop="3dp"
+        android:text="Storage:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/storageValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView15"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_toRightOf="@+id/speedValue"
+        android:layout_marginLeft="5dp"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/fuelEfficiencyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/storageValue"
+        android:layout_alignRight="@+id/gunDamageValue"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/fuelEfficiencyValue"
+        android:layout_alignBottom="@+id/fuelEfficiencyValue"
+        android:layout_toLeftOf="@+id/fuelEfficiencyValue"
+        android:layout_marginRight="5dp"
+        android:text="Fuel Efficiency:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView15"
+        android:layout_marginTop="18dp"
+        android:text="Type: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/carTypeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView17"
+        android:layout_alignBottom="@+id/textView17"
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_marginLeft="5dp"
+        android:text="2012 Honda Fit Sport"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tedtView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView17"
+        android:layout_below="@+id/textView17"
+        android:layout_marginTop="8dp"
         android:text="Gas: "
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -274,5 +429,5 @@
         android:layout_marginLeft="5dp"
         android:text="99"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-        
+
 </RelativeLayout>
