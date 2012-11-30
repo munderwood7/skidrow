@@ -19,6 +19,7 @@ public class Market implements Serializable
 	private Map<Good, Integer> goodsList = new HashMap<Good, Integer>();
 	private int techLevel;
 	private Random random;
+	private int money;
 	
 	/**
 	 * Constructor to create a market
@@ -33,6 +34,7 @@ public class Market implements Serializable
 		random = new Random();
 		
 		generateGoods();
+		this.money = (random.nextInt(10000)+1*techLevel);
 	}
 	
 	/**
@@ -82,7 +84,7 @@ public class Market implements Serializable
 	}
 	
 	public int getMoney(){
-		return AppUtil.game.getMoney();
+		return this.money;
 	}
 	
 	/**
@@ -97,7 +99,7 @@ public class Market implements Serializable
 		int priceIncXTechLevel = g.getPriceIncreasePerTechLevel();
 		int MTLP = g.getMinimumTechLevelProduceResource();
 		int variance = g.getMaxVariance();	
-		newBasePrice = currBasePrice+(priceIncXTechLevel*(techLevel-MTLP)+variance);
+		newBasePrice = currBasePrice+(priceIncXTechLevel*(techLevel-MTLP)+variance)-5;
 		return newBasePrice;
 	}
 
@@ -119,9 +121,9 @@ public class Market implements Serializable
 				if(entry.getKey().minimumTechLeveltoUseResource<=techLevel)
 				{
 					int goodPrice = getPrice(entry.getKey());
-					if ((entry.getKey().basePrice)<=AppUtil.game.getMoney())
+					if ((entry.getKey().basePrice)<=money)
 					{
-						AppUtil.game.setMoney(AppUtil.game.getMoney()-goodPrice);
+						money-=goodPrice;
 						entry.setValue(entry.getValue()+1);
 						System.out.println("City has just bought " + g + ".");
 						return goodPrice;
@@ -150,7 +152,7 @@ public class Market implements Serializable
 				if(entry.getValue()>=quantity){
 					entry.setValue(entry.getValue()-quantity);
 					System.out.println("City has just sold " + quantity+ " " + g);
-					AppUtil.game.setMoney(AppUtil.game.getMoney()+totalTransaction);
+					money+=totalTransaction;
 				} 
 				return;
 			}
@@ -185,7 +187,7 @@ public class Market implements Serializable
 	 */
 	public void sellGood(Good good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)-quantity);
-		AppUtil.game.setMoney(AppUtil.game.getMoney()+deltaMoney);
+		this.money = money+deltaMoney;	
 	}
 	
 	/**
@@ -197,7 +199,7 @@ public class Market implements Serializable
 	 */
 	public void buyGood(Good good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)+quantity);
-		AppUtil.game.setMoney(AppUtil.game.getMoney()-deltaMoney);
+		this.money-=deltaMoney;
 	}
 	
 }

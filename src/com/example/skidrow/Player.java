@@ -126,7 +126,10 @@ public class Player implements Serializable{
 	 */
 	public void buyGood(String good, int quantity, int deltaMoney){
 		goodsList.put(good, goodsList.get(good)+quantity); 
+		System.out.println("this is deltaMoney" + deltaMoney);
+		System.out.println("this is player's money before buy: " + money);
 		this.money = money - deltaMoney;
+		System.out.println("this is player's money after buy: " + money);
 		car.setAvailableCargoSpace(getCargoSpace() - quantity);
 	}
 	
@@ -141,6 +144,8 @@ public class Player implements Serializable{
 		goodsList.put(good, goodsList.get(good)-quantity);
 		this.money = money + deltaMoney;
 		car.setAvailableCargoSpace(getCargoSpace()+ quantity);
+		System.out.println("Player is getting money back");
+		
 	}
 	
 	/**
