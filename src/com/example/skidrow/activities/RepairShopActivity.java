@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,6 +18,7 @@ import com.example.skidrow.R;
 import com.example.skidrow.activities.MarketActivity.Person;
 
 public class RepairShopActivity extends Activity{
+	protected static final String TAG = "RepairShopActivity";
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.repair_shop);
@@ -25,7 +27,7 @@ public class RepairShopActivity extends Activity{
     }
 	public void changeGameLayout(View view){
     	int viewId = view.getId();
-    	
+    	Log.i(TAG, "ViewId RepairShopActivity: " +viewId );
     	Intent intent;
     	switch(viewId){
     		case R.id.playerStatsView:
@@ -46,6 +48,10 @@ public class RepairShopActivity extends Activity{
     		case R.id.gasRepairShopView:
     			intent = new Intent(this, GasRepairShopActivity.class);
     			break;
+    		case R.id.gadgetRepairShopView:
+    			intent = new Intent(this, GadgetRepairShopActivity.class);
+    			break;
+    			
     		default:
     			intent = new Intent(this, PlayerStatsActivity.class);
     			break;

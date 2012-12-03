@@ -30,15 +30,15 @@
         android:layout_marginTop="14dp"
         android:text="Respect:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <TextView
         android:id="@+id/armour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="14dp"
         android:text="Armour:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <TextView
         android:id="@+id/hiddenStorage"
         android:layout_width="wrap_content"

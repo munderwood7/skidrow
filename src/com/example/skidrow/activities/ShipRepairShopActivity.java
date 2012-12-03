@@ -26,6 +26,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ShipRepairShopActivity extends Activity {
 	private ListView shipsList;;
+	protected static final String TAG = "ShipRepairShopActivity";
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_repair_shop);
@@ -34,6 +35,7 @@ public class ShipRepairShopActivity extends Activity {
     }
 	public void changeGameLayout(View view){
     	int viewId = view.getId();
+    	Log.i(TAG, "ViewId ShipRepairShopActivity: " +viewId );
     	
     	Intent intent;
     	switch(viewId){

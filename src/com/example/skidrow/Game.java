@@ -35,6 +35,7 @@ public class Game implements Serializable{
 	private City currentCity;
 	private Market currentMarket;
 	private RepairShop currentRepairShop;
+	private GadgetShop currentGadgetShop;
 	private City[] citiesList;
 	private int step;
 	private Event currEvent;
@@ -361,6 +362,11 @@ public class Game implements Serializable{
 		return currentRepairShop.getShips();
 	}
 	
+	public String[] getNamesOfGadgets(){
+		return currentGadgetShop.getGadgets();
+	}
+	
+	
 	/**
 	 * This method extracts cargo space availability from player class
 	 * @return space cargo availability
@@ -435,6 +441,10 @@ public class Game implements Serializable{
 	public void setMoney(int money){
 		player.setMoney(money);
 	}
+	
+	public void setGadget(Gadget gadget){
+		player.setGadget(gadget);
+	}
 	public Ship getShip(){
 		return player.getShip();
 	}
@@ -444,8 +454,18 @@ public class Game implements Serializable{
 	public Ship getShipByName(String name){
 		return currentRepairShop.getShipByName(name);
 	}
+	public Gadget getGadgetByName(String name){
+		return currentGadgetShop.getGadgetByName(name);
+	}
+	public int getGadgetPrice(Gadget gadget){
+		return currentGadgetShop.getGadgetPrice(gadget);
+	}
+	
 	public boolean buyShip(Ship ship){
 		return currentRepairShop.buyShip(ship);
+	}
+	public boolean buyGadget(Gadget gadget){
+		return currentGadgetShop.buyGadget(gadget);
 	}
 	public int getShipPrice(Ship ship){
 		return currentRepairShop.getShipPrice(ship);

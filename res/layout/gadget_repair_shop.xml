@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#34282C"
+        android:clickable="true" >
+
+        <ImageView
+            android:id="@+id/playerStatsView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/gear"
+            android:clickable="true"
+            android:onClick="changeGameLayout" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/marketView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/syringe"
+            android:clickable="true"
+            android:onClick="changeGameLayout" />/>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/repairShopView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/wrench" 
+            android:clickable="true"
+            android:onClick="changeGameLayout"
+            android:background="#FF0000" /> />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/cityView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/map"
+            android:clickable="true"
+            android:onClick="changeGameLayout" />
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/gadgetList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/playerMoney" >
+
+    </ListView>
+    
+    <TextView
+	    android:id="@+id/playerMoney"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/linearLayout1"
+	    android:layout_alignParentRight="true"
+	    android:layout_marginRight="5dp"
+	    android:text="$10"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+
+
+</RelativeLayout>

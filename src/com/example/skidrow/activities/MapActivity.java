@@ -122,6 +122,7 @@ public class MapActivity extends Activity {
      */
     public void changeGameLayout(View view){
     	int viewId = view.getId();
+    	Log.i(TAG, "ViewId MapActivity: " +viewId );
     	
     	Intent intent;
     	switch(viewId){

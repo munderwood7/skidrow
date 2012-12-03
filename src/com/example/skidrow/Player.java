@@ -27,6 +27,7 @@ public class Player implements Serializable{
 	private String difficultyLevel;
 	private Map<String, Integer> goodsList = new HashMap<String, Integer>();
 	private Ship car;
+	private Gadget gadget;
 	private double gas;
 	private double health;
 	private double attack;
@@ -56,7 +57,6 @@ public class Player implements Serializable{
 		setGas(car.getFuelCapacity());
 		this.health = car.getArmour();
 		this.attack = car.getGunDamage();
-		this.rand = new Random();
 		
 		initGoods();
 
@@ -198,6 +198,10 @@ public class Player implements Serializable{
 	}
 	public void setShip(Ship ship){
 		this.car=ship;
+	}
+	public void setGadget(Gadget gadget){
+		this.health=this.health + gadget.getArmour();
+		this.attack=this.attack + gadget.getGunDamage();
 	}
 	
 	public String toString(){
