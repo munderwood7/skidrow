@@ -83,6 +83,7 @@ public class Game implements Serializable{
 		currentCity=citiesList[17];//Atlanta is set as the default starting location
 		generateMarket();
 		generateRepairShop();
+		generateGadgetShop();
 	}
 	/**
 	 * Method used to generate all cities in the country. 
@@ -362,9 +363,7 @@ public class Game implements Serializable{
 		return currentRepairShop.getShips();
 	}
 	
-	public String[] getNamesOfGadgets(){
-		return currentGadgetShop.getGadgets();
-	}
+	
 	
 	
 	/**
@@ -450,6 +449,13 @@ public class Game implements Serializable{
 	}
 	public void setShip(Ship ship){
 		player.setShip(ship);
+	}
+	public void generateGadgetShop(){
+		currentGadgetShop=new GadgetShop();
+		currentGadgetShop.generateGadgets();
+	}
+	public String[] getNamesOfGadgets(){
+		return currentGadgetShop.getGadgets();
 	}
 	public Ship getShipByName(String name){
 		return currentRepairShop.getShipByName(name);

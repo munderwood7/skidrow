@@ -25,7 +25,8 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class GadgetRepairShopActivity extends Activity {
-	private ListView gadgetList;;
+	private ListView gadgetList;
+	private final String TAG="GadgetRepairSHopActivity";
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class GadgetRepairShopActivity extends Activity {
     	TextView playerMoney = (TextView)this.findViewById(R.id.playerMoney);
     	String[] info = AppUtil.game.getPlayerStatInfo();
     	String playerInfo[] = AppUtil.game.getPlayerStatInfo();
-    	gadgetList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, AppUtil.game.getNamesOfShips()));
+    	gadgetList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, AppUtil.game.getNamesOfGadgets()));
     	playerMoney.setText("Money: "+info[7]);
     	gadgetList.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
@@ -91,22 +92,22 @@ public class GadgetRepairShopActivity extends Activity {
 		 final TextView fuelCapacity = (TextView)layout.findViewById(R.id.fuelCapacity);
 		 final TextView speed = (TextView)layout.findViewById(R.id.speed);
 		 final TextView cargoSpace = (TextView)layout.findViewById(R.id.cargoSpace);
-		 final Gadget car=AppUtil.game.getGadgetByName(Gadget);
-		 Log.i("GadgetRepairSHopActivity", "Selected car: " + Gadget);
-		 GadgetName.setText("Model: "+ Gadget);
-		 GadgetPrice .setText("Price: $"+AppUtil.game.getGadgetPrice(car));
-		 speed.setText("Max Speed: "+ car.getSpeed());
-		 armour.setText("Armour: "+car.getArmour());
-		 respect.setText("Respect: "+car.getRespect());
-		 turbo.setText("Turbo level: "+car.getTurbo());
-		 gunDamage.setText("Fire power: "+car.getGunDamage());
-		 fuelCapacity.setText("Fuel Capacity: "+ car.getFuelCapacity());
+		 final Gadget gadget=AppUtil.game.getGadgetByName(Gadget);
+		 Log.i(TAG, "Selected gadget: " + Gadget);
+		 GadgetName.setText(Gadget);
+		 GadgetPrice .setText("Price: $"+AppUtil.game.getGadgetPrice(gadget));
+		 speed.setText("Max Speed: +"+ gadget.getSpeed());
+		 armour.setText("Armour: +"+gadget.getArmour());
+		 respect.setText("Respect: +"+gadget.getRespect());
+		 turbo.setText("Turbo Level: +"+gadget.getTurbo());
+		 gunDamage.setText("Fire Power: +"+gadget.getGunDamage());
+		 fuelCapacity.setText("Fuel Capacity: +"+ gadget.getFuelCapacity());
 		 
-		 speed.setText("Speed: "+car.getSpeed());
-		 cargoSpace.setText("Cargo Space: "+car.getMaxCargoSpace());
+		 speed.setText("Speed: +"+gadget.getSpeed());
+		 cargoSpace.setText("Cargo Space: +"+gadget.getMaxCargoSpace());
 		 AlertDialog.Builder popup = new AlertDialog.Builder(this);
 		 
-	     popup.setView(layout).setTitle("Model Specifications").setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+	     popup.setView(layout).setTitle("Gadget Specifications").setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
 	    			
 	    	 public void onClick(DialogInterface dialog, int which) {
 						
@@ -114,11 +115,11 @@ public class GadgetRepairShopActivity extends Activity {
 					
 			 }).setPositiveButton("Buy", new DialogInterface.OnClickListener() {
 				  public void onClick(DialogInterface dialog, int which) {
-					    Log.i("GadgetRepairSHopActivity", "Trying to buy: " + car.getGadgetName());
-						boolean buy=AppUtil.game.buyGadget(car);
+					    Log.i(TAG, "Trying to buy: " + gadget.getGadgetName());
+						boolean buy=AppUtil.game.buyGadget(gadget);
 						fillGadgetShopInfo();
-						if(buy) showMessage("Congrats! You just boought a "+car.getGadgetName()+".");
-						else showMessage("You do not have enough money to buy a "+car.getGadgetName()+".");
+						if(buy) showMessage("Congrats! You just boought a "+gadget.getGadgetName()+".");
+						else showMessage("You do not have enough money to buy a "+gadget.getGadgetName()+".");
 						
 					}
 			});

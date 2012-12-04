@@ -95,8 +95,4 @@
 	    android:layout_marginRight="5dp"
 	    android:text="$10"
 	    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-
-
-
 </RelativeLayout>

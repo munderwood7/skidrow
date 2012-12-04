@@ -93,7 +93,7 @@
 		            android:layout_height="20dp"
 		            android:clickable="true"
 		            android:onClick="changeGameLayout"
-		            android:src="@drawable/gas"
+		            android:src="@drawable/gas1"
 		            android:layout_weight="10"
 		            android:padding="8dp" />
 
@@ -106,7 +106,7 @@
 		        android:onClick="changeGameLayout"
 		        android:paddingBottom="8dp"
 		        android:src="@drawable/car" />
-
+
 		    <ImageView
 		        android:id="@+id/gadgetRepairShopView"
 		        android:layout_width="wrap_content"
@@ -114,7 +114,8 @@
 		        android:layout_weight="1"
 		        android:clickable="true"
 		        android:onClick="changeGameLayout"
-		        android:src="@drawable/gadget" />
+		        android:scaleType="center"
+		        android:src="@drawable/gun" />
 
 	</LinearLayout>
 </RelativeLayout>

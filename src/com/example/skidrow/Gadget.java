@@ -17,7 +17,7 @@ public class Gadget {
 	private int availableCargoSpace;
 	
 	public Gadget(String gadgetName, int armour, int respect, int turbo, int gunDamage, int fuelCapacity,int speed, int cargoSpace){
-		this.setShipName(gadgetName);
+		this.setGadgetName(gadgetName);
 		this.setArmour(armour);
 		this.setRespect(respect);
 		this.setTurbo(turbo);
@@ -57,7 +57,7 @@ public class Gadget {
 	/**
 	 * @param GadgetName the gadgetName to set
 	 */
-	public void setShipName(String shipName) {
+	public void setGadgetName(String gadgetName) {
 		this.gadgetName = gadgetName;
 	}
 

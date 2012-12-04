@@ -1,9 +1,13 @@
 package com.example.skidrow;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import android.util.Log;
 
@@ -65,14 +69,26 @@ public class RepairShop implements Serializable{
 
 	}
 	public String[] getShips(){
+		Log.i(TAG, "Gadget list size: "+shipList.size());
 		String[] arr=new String[shipList.size()];
+		ArrayList<Ship> list=new ArrayList<Ship>();
 		Iterator iterator = shipList.entrySet().iterator();
-		Map.Entry<Ship, Integer> entry;
+		Entry<Ship, Integer> entry;
 		for(int i=0;i<shipList.size();i++){
 			entry = (Map.Entry<Ship, Integer>)iterator.next();
-			arr[i]=entry.getKey().getShipName();
+			list.add((Ship)entry.getKey());
+		}
+		Collections.sort(list, new Comparator<Ship>() {
+			@Override
+			public int compare(Ship a, Ship b) {
+				return priceList.get(a.getShipName())-priceList.get(b.getShipName());
+			}
+		});
+		for(int i=0;i<shipList.size();i++){
+			arr[i]=((Ship) list.get(i)).getShipName();
 		}
 		return arr;
+		
 	}
 	public Ship getShipByName(String shipName){
 		return nameList.get(shipName);

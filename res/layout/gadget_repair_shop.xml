@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/gadge_repair_shop_view"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 	
@@ -76,12 +77,13 @@
     </LinearLayout>
     
     <ListView
-        android:id="@+id/gadgetList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/playerMoney" >
-
-    </ListView>
+	    android:id="@+id/gadgetList"
+	    android:layout_below="@+id/playerMoney"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignTop="@+id/view2" >
+	</ListView>
     
     <TextView
 	    android:id="@+id/playerMoney"

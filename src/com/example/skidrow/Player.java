@@ -200,8 +200,14 @@ public class Player implements Serializable{
 		this.car=ship;
 	}
 	public void setGadget(Gadget gadget){
-		this.health=this.health + gadget.getArmour();
-		this.attack=this.attack + gadget.getGunDamage();
+		car.setArmour(car.getArmour()+gadget.getArmour());
+		car.setRespect(car.getRespect()+gadget.getRespect());
+		car.setTurbo(car.getTurbo()+gadget.getTurbo());
+		car.setFuelCapacity(car.getFuelCapacity()+gadget.getFuelCapacity());
+		car.setGunDamage(car.getGunDamage()+gadget.getGunDamage());
+		car.setSpeed(car.getSpeed()+gadget.getSpeed());
+		car.setMaxCargoSpace(car.getMaxCargoSpace()+gadget.getMaxCargoSpace());
+		car.setAvailableCargoSpace(car.getArmour()+gadget.getArmour());
 	}
 	
 	public String toString(){
