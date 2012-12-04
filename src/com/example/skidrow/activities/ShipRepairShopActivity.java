@@ -116,7 +116,7 @@ public class ShipRepairShopActivity extends Activity {
 		 cargoSpace.setText("Cargo Space: "+car.getMaxCargoSpace());
 		 AlertDialog.Builder popup = new AlertDialog.Builder(this);
 		 
-	     popup.setView(layout).setTitle("ship").setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+	     popup.setView(layout).setTitle(ship).setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
 	    			
 	    	 public void onClick(DialogInterface dialog, int which) {
 						

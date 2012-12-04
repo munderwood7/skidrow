@@ -14,6 +14,7 @@ public class Event implements Serializable
 	private int duration;
 	private int stepNum;
 	private int priceEffect;
+	private String terminationMessage;
 	
 	/**
 	 * This is the construction for a event sets default duration to zero
@@ -34,12 +35,13 @@ public class Event implements Serializable
 	 * @param description brief description of the event
 	 * @param priceEffect int value of event effect on prices of goods. Can be either positive or negative
 	 */
-	public Event(String name, int duration, String description, int priceEffect)
+	public Event(String name,String terminationMessage, int duration, String description, int priceEffect)
 	{
 		this.name=name;
 		this.description=description;
 		this.duration=duration;
 		this.priceEffect=priceEffect;
+		this.setTerminationMessage(terminationMessage);
 	}
 	
 	/**
@@ -108,5 +110,21 @@ public class Event implements Serializable
 	public String toString(){
 		return this.name;
 	}
+
+	/**
+	 * @return the terminationMessage
+	 */
+	public String getTerminationMessage() {
+		return terminationMessage;
+	}
+
+	/**
+	 * @param terminationMessage the terminationMessage to set
+	 */
+	public void setTerminationMessage(String terminationMessage) {
+		this.terminationMessage = terminationMessage;
+	}
+
+	
 
 }

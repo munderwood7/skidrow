@@ -165,43 +165,45 @@ public class MapActivity extends Activity {
      */
     public void travel(View view){
     	if(AppUtil.game.checkGas(displayedCity)){
-    		Event e=eventGen.getCurrE();
-    		if(e==null)
-    			eventGen.generateEvent();
-    		else
-    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nCurrent move: "+AppUtil.game.getStep()+"\nStarts: "+eventGen.getNextEventStepNum()+"\nEnds: "+(eventGen.getNextEventStepNum()+eventGen.getNextEventDuration()));
-            //AppUtil.displayError(this, "There is a(n) " + eventGen.getCurrE() + " here affecting the price by " );
-    		AppUtil.game.makeMove(displayedCity, eventGen.getCurrE());
-	    	currentCity=displayedCity;
-	    	if(Debug) Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
-	    	if(Debug) Log.i(TAG, "new current city -> " + currentCity.getName());
-	    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
-	    	distance.setText(getDistance(displayedCity));
-			if(eventGen.checkStartEvent()){
-				//change the market values according to the event 
-				//show toast
-				e=eventGen.peek();
-				if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
-				showMessage("You are now in " + currentCity.getName()+".","Newsflash!\n"+e.getDescription());
-				//AppUtil.displayMessage(this,e.getDescription());
-				//+ eventGen.getCurrE().getName() + " here affecting the price by " + eventGen.getCurrE().getPriceEffect());
-	    		
-				
-			}
-			else if(eventGen.checkEndEvent()){
-				//change the market values back to the original values
-				//dequeue event
-				//generate new event
-				e=eventGen.pop();
-				if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
-				showMessage("You are now in " + currentCity.getName(),".\nNewsflash!\nThe event "+ eventGen.getCurrE().getName() + "is over." );
-				eventGen.generateEvent();
-			} else{
-				showMessage("You are now in " + currentCity.getName()+".","");
-			}
-			AppUtil.game.generateMarket();
+    		if(!AppUtil.game.getCurrentCity().getName().equals(displayedCity.getName())){
+	    		Event e=eventGen.getCurrE();
+	    		if(e==null)
+	    			eventGen.generateEvent();
+	    		else
+	    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nCurrent move: "+AppUtil.game.getStep()+"\nStarts: "+eventGen.getNextEventStepNum()+"\nEnds: "+(eventGen.getNextEventStepNum()+eventGen.getNextEventDuration()));
+	            AppUtil.game.makeMove(displayedCity, eventGen.getCurrE());
+		    	currentCity=displayedCity;
+		    	if(Debug) Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
+		    	if(Debug) Log.i(TAG, "new current city -> " + currentCity.getName());
+		    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
+		    	distance.setText(getDistance(displayedCity));
+				if(eventGen.checkStartEvent()){
+					//change the market values according to the event 
+					//show toast
+					e=eventGen.peek();
+					if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
+					showMessage2("You are now in " + currentCity.getName()+".","Newsflash!\n\n"+eventGen.getCurrE().getDescription());
+	
+					
+				}
+				else if(eventGen.checkEndEvent()){
+					//change the market values back to the original values
+					//dequeue event
+					//generate new event
+					e=eventGen.pop();
+					if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
+					showMessage2("You are now in " + currentCity.getName(),"Newsflash!\n\n"+ eventGen.getCurrE().getTerminationMessage() );
+					eventGen.generateEvent();
+				} else{
+					showMessage2("You are now in " + currentCity.getName()+".","");
+				}
+				AppUtil.game.generateMarket();
+    		}else{
+    			showMessage2("You are already in "+ currentCity.getName()+".","");
+    		}
+    		
     	} else{
-    		AppUtil.displayMessage(this,"You do not have enough fuel to reach this destination.");
+    		showMessage2("You do not have enough fuel to reach this destination.","");
     	}
     }
     
@@ -240,15 +242,15 @@ public class MapActivity extends Activity {
     	AppUtil.saveState(this, screen);
 
     }
-    public void showMessage(String title,final String message){
+    public void showMessage2(String title,final String message){
  		LayoutInflater inflater = this.getLayoutInflater();
  		final LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.message_popup, null);
  		AlertDialog.Builder popup2 = new AlertDialog.Builder(this, 0);
+ 		final TextView content = (TextView)layout.findViewById(R.id.message_content);
+ 		content.setText(message);
  		popup2.setView(layout).setTitle(title).setNegativeButton("Ok", new DialogInterface.OnClickListener(){
 			
 	    	 public void onClick(DialogInterface dialog, int which) {
-	    		 		final TextView content = (TextView)layout.findViewById(R.id.message_content);
-	    		 		content.setText(message);
 					}
 					
 			 });

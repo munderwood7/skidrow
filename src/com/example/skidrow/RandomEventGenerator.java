@@ -34,16 +34,16 @@ public class RandomEventGenerator implements Serializable{
     protected RandomEventGenerator() {
     	rng=new Random();
 		list= new LinkedList();
-		eArray[0]= new Event("DROUGHT",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2);
-		eArray[1]= new Event("COLD",4,   " There has been a radical decrease of temperature in the surrounding areas, and homeless people are desperate to get some crack.", 1);
-		eArray[2]= new Event("BULLISH_ECONOMY",12," There are early signs of a bull market, and bankers are eager to celebrate their future growth.", 1);
-		eArray[3]= new Event("MUSIC_FESTIVAL",2," An important music festival is coming to town.", 1);
-		eArray[4]= new Event("WAR",24," The Revolutionary Armed Forces of Colombia have intensied their efforts to overthrow the Colombian government. This has allowed Colombian drug lords to increase their weed production due to less supervision on behalf of the government. ", -2);
-		eArray[5]= new Event("INTESIFIED_BORDER_CONTROL",12," Border control has been intensified at the nearby border.", 3);
-		eArray[6]= new Event("RECENT_LEGISTATION_CHANGES",12," Recent legislation changes have increased the severity of punishment of illegal drugs consumption.", -3);
-		eArray[7]= new Event("BEARISH_ECONOMY",12," An economic downturn just hit the surrounding areas, and people are forced to work long hours.", -1);
-		eArray[8]= new Event("FINALS",2,"A nearby university has finals week next week.", 1);
-		eArray[9]= new Event("HEROIN_CONFISCATION",2,"200 kilograms of heroin were confiscated in Guatemala.", 2);
+		eArray[0]= new Event("drought","It has been raining the last couple of days",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2);
+		eArray[1]= new Event("cold","The temparute has been rising.", 4,   " There has been a radical decrease of temperature in the surrounding areas, and homeless people are desperate to get some crack.", 1);
+		eArray[2]= new Event("bullish economy","The economy is slowing down.",12," There are early signs of a bull market, and bankers are eager to celebrate their future growth.", 1);
+		eArray[3]= new Event("music festival","Crazy fans burn down the music festival site.",2," An important music festival is coming to town.", 1);
+		eArray[4]= new Event("war","The war is finally over!",24," The Revolutionary Armed Forces of Colombia have intensied their efforts to overthrow the Colombian government. This has allowed Colombian drug lords to increase their weed production due to less supervision on behalf of the government. ", -2);
+		eArray[5]= new Event("intensified border control","Border Control funds have been reduced.",12," Border control has been intensified at the nearby border.", 3);
+		eArray[6]= new Event("recent legislation changes","The legislation was reverted.",12," Recent legislation changes have increased the severity of punishment of illegal drugs consumption.", -3);
+		eArray[7]= new Event("bearish economy","The economy is recuperating from the financial downturn.",12," An economic downturn just hit the surrounding areas, and people are forced to work long hours.", -1);
+		eArray[8]= new Event("finals","Finals week is over",2,"A nearby university has finals week next week.", 1);
+		eArray[9]= new Event("Heroin confiscation","The local drug dealers were able to recuperate their confiscated Heroin.",2,"200 kilograms of heroin were confiscated in Guatemala.", 2);
     }
     public static RandomEventGenerator getInstance() {
        if(instance == null) {
