@@ -467,7 +467,7 @@ public class Game implements Serializable{
 		return currentGadgetShop.getGadgetPrice(gadget);
 	}
 	
-	public boolean buyShip(Ship ship){
+	public int buyShip(Ship ship){
 		return currentRepairShop.buyShip(ship);
 	}
 	public boolean buyGadget(Gadget gadget){

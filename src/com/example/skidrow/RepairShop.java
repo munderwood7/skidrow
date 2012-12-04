@@ -15,6 +15,11 @@ public class RepairShop implements Serializable{
 	private Map<Ship, Integer> shipList = new HashMap<Ship, Integer>();
 	private Map<String, Ship> nameList = new HashMap<String, Ship>();
 	private Map<String, Integer> priceList = new HashMap<String, Integer>();
+	protected static final int ERROR=0;
+	protected static final int ENOUGH_MONEY=1;
+	protected static final int SAME_CAR=2;
+	protected static final int NOT_ENOUGH_MONEY=3;
+
 	//Tag for logcat
     protected static final String TAG = "RepairShop";
     //True if we want to debug false otherwise
@@ -102,24 +107,28 @@ public class RepairShop implements Serializable{
 	public int getShipPrice(Ship ship){
 		return priceList.get(ship.getShipName());
 	}
-	public boolean buyShip(Ship newShip){
+	public int buyShip(Ship newShip){
 		int price;
 		Log.i("RepairShop", "Trying to buy: " + newShip.getShipName());
 		if(nameList.containsKey(newShip.getShipName())){
 			price=priceList.get(newShip.getShipName());
-			if(price<AppUtil.game.getMoney()){
+			if(price<AppUtil.game.getMoney()&&!AppUtil.game.getShip().getShipName().equals(newShip.getShipName())){
 				AppUtil.game.setShip(newShip);
 				AppUtil.game.setMoney(AppUtil.game.getMoney()-priceList.get(newShip.getShipName()));
-				if(Debug) Log.i(TAG, "Bought a new ship: "+newShip.getShipName());
-				return true;
-			} else{
-				if(Debug) Log.i(TAG, "Not enough money to buy this ship.");
-				return false;
+				if(Debug) Log.i(TAG, "Bought a new car: "+newShip.getShipName() + " Old car: "+AppUtil.game.getShip().getShipName());
+				return ENOUGH_MONEY;
+			} else if(AppUtil.game.getShip().getShipName().equals(newShip.getShipName())){
+				if(Debug) Log.i(TAG, "The user already has this car.");
+				return SAME_CAR;
+			}
+			else{
+				if(Debug) Log.i(TAG, "Not enough money to buy this carp.");
+				return NOT_ENOUGH_MONEY;
 			}	
 			
 		} else{
 			if(Debug) Log.e(TAG, "This type of ship does not exist.");
-			return false;
+			return ERROR;
 		}
 	}
 }

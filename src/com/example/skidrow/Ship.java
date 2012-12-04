@@ -18,6 +18,10 @@ public class Ship implements Serializable{
 	private int speed;
 	private int maxCargoSpace;
 	private int availableCargoSpace;
+	private static final int ERROR=0;
+	public final int ENOUGH_MONEY=1;
+	public static final int SAME_CAR=2;
+	public static final int NOT_ENOUGH_MONEY=3;
 	
 	public Ship(String shipName, int armour, int respect, int hiddenStorage, boolean plateChanger, int turbo, int gunDamage, int fuelCapacity, double fuelEfficiency, int speed, int cargoSpace){
 		this.setShipName(shipName);

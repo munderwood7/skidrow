@@ -27,6 +27,11 @@ import android.widget.AdapterView.OnItemClickListener;
 public class ShipRepairShopActivity extends Activity {
 	private ListView shipsList;;
 	protected static final String TAG = "ShipRepairShopActivity";
+	protected static final int ERROR=0;
+	protected static final int ENOUGH_MONEY=1;
+	protected static final int SAME_CAR=2;
+	protected static final int NOT_ENOUGH_MONEY=3;
+	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ship_repair_shop);
@@ -122,10 +127,11 @@ public class ShipRepairShopActivity extends Activity {
 			 }).setPositiveButton("Buy", new DialogInterface.OnClickListener() {
 				  public void onClick(DialogInterface dialog, int which) {
 					    Log.i("ShipRepairSHopActivity", "Trying to buy: " + car.getShipName());
-						boolean buy=AppUtil.game.buyShip(car);
+						int buy=AppUtil.game.buyShip(car);
 						fillShipShopInfo();
-						if(buy) showMessage("Congrats! You just boought a "+car.getShipName()+".");
-						else showMessage("You do not have enough money to buy a "+car.getShipName()+".");
+						if(ENOUGH_MONEY==buy) showMessage("Congrats! You just boought a "+car.getShipName()+".");
+						else if(NOT_ENOUGH_MONEY==buy)  showMessage("You do not have enough money to buy a "+car.getShipName()+".");
+						else if(SAME_CAR==buy)  showMessage("You already have this car.");
 						
 					}
 			});

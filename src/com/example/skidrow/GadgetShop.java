@@ -19,6 +19,10 @@ public class GadgetShop {
     protected static final String TAG = "RepairShop";
     //True if we want to debug false otherwise
     private boolean Debug=true;
+    protected static final int ERROR=0;
+	protected static final int ENOUGH_MONEY=1;
+	protected static final int SAME_GADGET=2;
+	protected static final int NOT_ENOUGH_MONEY=3;
 	public GadgetShop(){
 	}
 	
@@ -59,7 +63,6 @@ public class GadgetShop {
 		priceList.put("Basic Tuning",4500);
 		priceList.put("Spy Tuning",12000);
 		priceList.put("Semi-Automatic Gun",3000);
-		
 		
 		
 
@@ -113,4 +116,5 @@ public class GadgetShop {
 			return false;
 		}
 	}
+
 }
