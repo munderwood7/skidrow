@@ -96,12 +96,11 @@
 		            android:src="@drawable/gas1"
 		            android:layout_weight="10"
 		            android:padding="8dp" />
-
+
 		    <ImageView
 		        android:id="@+id/shipRepairShopView"
 		        android:layout_width="242dp"
-		        android:layout_height="20dp"
-		        android:layout_weight="8.82"
+		        android:layout_height="50dp"
 		        android:clickable="true"
 		        android:onClick="changeGameLayout"
 		        android:paddingBottom="8dp"
@@ -110,12 +109,21 @@
 		    <ImageView
 		        android:id="@+id/gadgetRepairShopView"
 		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
+		        android:layout_height="50dp"
 		        android:layout_weight="1"
 		        android:clickable="true"
 		        android:onClick="changeGameLayout"
 		        android:scaleType="center"
 		        android:src="@drawable/gun" />
+
+		    <ImageView
+		        android:id="@+id/recruitRepairShopView"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:clickable="true"
+		        android:onClick="changeGameLayout"
+		        android:src="@drawable/triangle" />
 
 	</LinearLayout>
 </RelativeLayout>

@@ -29,6 +29,7 @@
     <string name="title_activity_gas_repair_shop">GasStoreActivity</string>
     <string name="title_activity_ship_repair_shop">ShipStoreActivity</string>
     <string name="title_activity_gadget_repair_shop">GadgetStoreActivity</string>
+     <string name="title_activity_recruit_repair_shop">RecruitStoreActivity</string>
     <string name="SAVE">SAVE_GAME</string>
 
 </resources>

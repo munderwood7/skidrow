@@ -51,7 +51,10 @@ public class RepairShopActivity extends Activity{
     		case R.id.gadgetRepairShopView:
     			intent = new Intent(this, GadgetRepairShopActivity.class);
     			break;
-    			
+    		case R.id.recruitRepairShopView:
+    			intent = new Intent(this, RecruitRepairShopActivity.class);
+    			break;
+   			
     		default:
     			intent = new Intent(this, PlayerStatsActivity.class);
     			break;

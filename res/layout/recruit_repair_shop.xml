@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#34282C" >
+
+        <ImageView
+            android:id="@+id/playerStatsView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="changeGameLayout"
+            android:src="@drawable/gear" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/marketView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="changeGameLayout"
+            android:src="@drawable/syringe" />
+/>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/repairShopView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#FF0000"
+            android:clickable="true"
+            android:onClick="changeGameLayout"
+            android:src="@drawable/wrench" />
+ />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView3"
+            android:background="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/cityView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="changeGameLayout"
+            android:src="@drawable/map" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/playerMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginRight="5dp"
+        android:text="$10"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/playerMoney"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="58dp"
+        android:text="Hacker ($100)" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="18dp"
+        android:text="Gang Member ($200)" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_centerVertical="true"
+        android:text="Driver (150)" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="35dp"
+        android:text="Dealer ($50)" />
+
+    <EditText
+        android:id="@+id/hackerInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/gangInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView2"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/driverInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView3"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/dealerInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignRight="@+id/playerMoney"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dealerInput"
+        android:layout_marginTop="47dp"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="Hire" />
+
+</RelativeLayout>

@@ -100,6 +100,14 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.RecruitRepairShopActivity"
+            android:label="@string/title_activity_recruit_repair_shop"
+            android:theme="@style/noAnimTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
