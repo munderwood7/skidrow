@@ -61,6 +61,7 @@ public class RandomEventGenerator implements Serializable{
 		int rnd1=rng.nextInt(eArray.length);
 		currE=eArray[rnd1];
 		currE.setStepNum(currentStep+rng.nextInt(5));
+		Log.i(TAG,"New event starts: "+currE.getStepNum());
 		list.add(currE);
 	}
 	
@@ -135,6 +136,7 @@ public class RandomEventGenerator implements Serializable{
 	 * @return boolean first event
 	 */
 	public boolean checkStartEvent(){
+		Log.i(TAG,"checkStartEvent: "+(AppUtil.getStep()-getNextEventStepNum()));
 		if(getSizeOfEventList()!=0&&AppUtil.getStep()==getNextEventStepNum()){
 			return true;
 		}
@@ -146,6 +148,7 @@ public class RandomEventGenerator implements Serializable{
 	 * @return boolean last event
 	 */
 	public boolean checkEndEvent(){
+		Log.i(TAG,"checkEndEvent: "+(AppUtil.getStep()-(getNextEventStepNum()+getNextEventDuration())));
 		if(getSizeOfEventList()!=0&&AppUtil.getStep()==getNextEventStepNum()+getNextEventDuration()){
 			return true;
 		}

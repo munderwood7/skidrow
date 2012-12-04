@@ -85,7 +85,6 @@ public class ShipRepairShopActivity extends Activity {
 		 //String shipName, int armour, int respect, int hiddenStorage, boolean plateChanger, int turbo, int gunDamage, int fuelCapacity, double fuelEfficiency, int speed, int cargoSpace
 		 LayoutInflater inflater = this.getLayoutInflater();
 	     final LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.ship_popup, null);
-	     final TextView shipName = (TextView)layout.findViewById(R.id.shipName);
 	     final TextView shipPrice = (TextView)layout.findViewById(R.id.shipPrice);
 		 final TextView armour = (TextView)layout.findViewById(R.id.armour);
 		 final TextView respect = (TextView)layout.findViewById(R.id.respect);
@@ -99,7 +98,6 @@ public class ShipRepairShopActivity extends Activity {
 		 final TextView cargoSpace = (TextView)layout.findViewById(R.id.cargoSpace);
 		 final Ship car=AppUtil.game.getShipByName(ship);
 		 Log.i("ShipRepairSHopActivity", "Selected car: " + ship);
-		 shipName.setText("Model: "+ ship);
 		 shipPrice .setText("Price: $"+AppUtil.game.getShipPrice(car));
 		 speed.setText("Max Speed: "+ car.getSpeed());
 		 armour.setText("Armour: "+car.getArmour());
@@ -118,7 +116,7 @@ public class ShipRepairShopActivity extends Activity {
 		 cargoSpace.setText("Cargo Space: "+car.getMaxCargoSpace());
 		 AlertDialog.Builder popup = new AlertDialog.Builder(this);
 		 
-	     popup.setView(layout).setTitle("Model Specifications").setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+	     popup.setView(layout).setTitle("ship").setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
 	    			
 	    	 public void onClick(DialogInterface dialog, int which) {
 						

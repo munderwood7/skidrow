@@ -169,7 +169,7 @@ public class MapActivity extends Activity {
     		if(e==null)
     			eventGen.generateEvent();
     		else
-    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nCurrent move: "+AppUtil.game.getStep()+"\nStarts: "+eventGen.getNextEventStepNum());
+    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nCurrent move: "+AppUtil.game.getStep()+"\nStarts: "+eventGen.getNextEventStepNum()+"\nEnds: "+(eventGen.getNextEventStepNum()+eventGen.getNextEventDuration()));
             //AppUtil.displayError(this, "There is a(n) " + eventGen.getCurrE() + " here affecting the price by " );
     		AppUtil.game.makeMove(displayedCity, eventGen.getCurrE());
 	    	currentCity=displayedCity;
@@ -182,7 +182,7 @@ public class MapActivity extends Activity {
 				//show toast
 				e=eventGen.peek();
 				if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
-				showMessage("You are now in " + currentCity.getName()+".\n\nNewsflash!\n"+e.getDescription());
+				showMessage("You are now in " + currentCity.getName()+".","Newsflash!\n"+e.getDescription());
 				//AppUtil.displayMessage(this,e.getDescription());
 				//+ eventGen.getCurrE().getName() + " here affecting the price by " + eventGen.getCurrE().getPriceEffect());
 	    		
@@ -194,10 +194,10 @@ public class MapActivity extends Activity {
 				//generate new event
 				e=eventGen.pop();
 				if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
-				showMessage("You are now in " + currentCity.getName()+".Newsflash!\nThe event "+ eventGen.getCurrE().getName() + "is over." );
+				showMessage("You are now in " + currentCity.getName(),".\nNewsflash!\nThe event "+ eventGen.getCurrE().getName() + "is over." );
 				eventGen.generateEvent();
 			} else{
-				showMessage("You are now in " + currentCity.getName()+".");
+				showMessage("You are now in " + currentCity.getName()+".","");
 			}
 			AppUtil.game.generateMarket();
     	} else{
@@ -240,14 +240,15 @@ public class MapActivity extends Activity {
     	AppUtil.saveState(this, screen);
 
     }
-    public void showMessage(String message){
+    public void showMessage(String title,final String message){
  		LayoutInflater inflater = this.getLayoutInflater();
  		final LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.message_popup, null);
  		AlertDialog.Builder popup2 = new AlertDialog.Builder(this, 0);
- 		popup2.setView(layout).setTitle(message).setNegativeButton("Ok", new DialogInterface.OnClickListener(){
+ 		popup2.setView(layout).setTitle(title).setNegativeButton("Ok", new DialogInterface.OnClickListener(){
 			
 	    	 public void onClick(DialogInterface dialog, int which) {
-						
+	    		 		final TextView content = (TextView)layout.findViewById(R.id.message_content);
+	    		 		content.setText(message);
 					}
 					
 			 });
