@@ -299,4 +299,5 @@ public class MarketActivity extends Activity {
     	AppUtil.saveState(this, screen);
 
     }
+    
 }

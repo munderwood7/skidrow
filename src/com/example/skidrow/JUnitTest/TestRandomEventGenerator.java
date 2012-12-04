@@ -11,7 +11,7 @@ import com.example.skidrow.RandomEventGenerator;
 
 public class TestRandomEventGenerator {
 	Event e,e1,e2,e3,e4,e5,e51,e41,e31,e21,e11;
-	RandomEventGenerator rng= new RandomEventGenerator();
+	RandomEventGenerator rng;
 	
 	 
 	/**
@@ -23,6 +23,7 @@ public class TestRandomEventGenerator {
 	@Test
 	public void testConstructor() {
 		AppUtil.game=new Game();
+		rng= RandomEventGenerator.getInstance();
 		assertEquals("The size of the event array should be 10 since there are 10 different event types.",10, rng.getNumberOfEventTypes());
 	}
 	/**

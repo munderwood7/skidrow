@@ -30,8 +30,9 @@ public class RandomEventGenerator implements Serializable{
 	/**
 	 * This is the Random Event Generator that instantiates 10 different events for the game
 	 */
-	public RandomEventGenerator(){
-		rng=new Random();
+    private static RandomEventGenerator instance = null;
+    protected RandomEventGenerator() {
+    	rng=new Random();
 		list= new LinkedList();
 		eArray[0]= new Event("DROUGHT",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2);
 		eArray[1]= new Event("COLD",4,   " There has been a radical decrease of temperature in the surrounding areas, and homeless people are desperate to get some crack.", 1);
@@ -43,7 +44,14 @@ public class RandomEventGenerator implements Serializable{
 		eArray[7]= new Event("BEARISH_ECONOMY",12," An economic downturn just hit the surrounding areas, and people are forced to work long hours.", -1);
 		eArray[8]= new Event("FINALS",2,"A nearby university has finals week next week.", 1);
 		eArray[9]= new Event("HEROIN_CONFISCATION",2,"200 kilograms of heroin were confiscated in Guatemala.", 2);
-	}
+    }
+    public static RandomEventGenerator getInstance() {
+       if(instance == null) {
+          instance = new RandomEventGenerator();
+       }
+       return instance;
+    }
+
 	
 	/**
 	 * This method generates a random event
@@ -165,5 +173,8 @@ public class RandomEventGenerator implements Serializable{
 			return list.size();
 		}
 		return 0;
+	}
+	public void eraseCurrentInstance(){
+		instance=null;
 	}
 }

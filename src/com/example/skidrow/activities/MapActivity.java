@@ -14,11 +14,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,6 +29,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,10 +46,7 @@ public class MapActivity extends Activity {
      * True if we want to debug false otherwise
      */
     private boolean Debug=true;
-    /**
-     * Random generator used when traveling to a new city
-     */
-    private RandomEventGenerator eventGen; 
+    
     /**
      * Current city where player is at
      */
@@ -54,12 +55,14 @@ public class MapActivity extends Activity {
      * City to be shown 
      */
     private City displayedCity;
+    private RandomEventGenerator eventGen;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         currentCity=AppUtil.game.getCurrentCity();
+        eventGen=RandomEventGenerator.getInstance();
         //eventGen= new RandomEventGenerator();
         //eventGen.generateEvent();
         fillCityList();
@@ -162,27 +165,25 @@ public class MapActivity extends Activity {
      */
     public void travel(View view){
     	if(AppUtil.game.checkGas(displayedCity)){
-    		eventGen= new RandomEventGenerator();
             eventGen.generateEvent();
             //AppUtil.displayError(this, "There is a(n) " + eventGen.getCurrE() + " here affecting the price by " );
     		AppUtil.game.makeMove(displayedCity, eventGen.getCurrE());
 	    	currentCity=displayedCity;
-	    	AppUtil.displayError(this, "You are now in " + currentCity.getName());
-	    	AppUtil.displayError(this, "There is a " + eventGen.getCurrE().getName() + " here affecting the price by " + eventGen.getCurrE().getPriceEffect());
-    		if(Debug) {
-    			Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
-    			//AppUtil.displayError(this, "You have " + AppUtil.game.getGas() + " gas remaining");
-    		}
+	    	if(Debug) Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
 	    	if(Debug) Log.i(TAG, "new current city -> " + currentCity.getName());
 	    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
 	    	distance.setText(getDistance(displayedCity));
-	    	Event e;
+	    	Event e=eventGen.getCurrE();
+	    	showMessage("Current event: " + e.getDescription());
 			if(eventGen.checkStartEvent()){
 				//change the market values according to the event 
 				//show toast
 				e=eventGen.peek();
 				if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
-				AppUtil.displayMessage(this,e.getDescription());
+				showMessage("You are now in " + currentCity.getName()+".\n\nNewsflash!\n"+e.getDescription());
+				//AppUtil.displayMessage(this,e.getDescription());
+				//+ eventGen.getCurrE().getName() + " here affecting the price by " + eventGen.getCurrE().getPriceEffect());
+	    		
 				
 			}
 			else if(eventGen.checkEndEvent()){
@@ -191,7 +192,10 @@ public class MapActivity extends Activity {
 				//generate new event
 				e=eventGen.pop();
 				if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
+				showMessage("You are now in " + currentCity.getName()+".\n\nNewsflash!\nThe event "+ eventGen.getCurrE().getName() + "is over." );
 				eventGen.generateEvent();
+			} else{
+				showMessage("You are now in " + currentCity.getName()+".");
 			}
 			AppUtil.game.generateMarket();
     	} else{
@@ -234,4 +238,17 @@ public class MapActivity extends Activity {
     	AppUtil.saveState(this, screen);
 
     }
+    public void showMessage(String message){
+ 		LayoutInflater inflater = this.getLayoutInflater();
+ 		final LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.message_popup, null);
+ 		AlertDialog.Builder popup2 = new AlertDialog.Builder(this, 0);
+ 		popup2.setView(layout).setTitle(message).setNegativeButton("Ok", new DialogInterface.OnClickListener(){
+			
+	    	 public void onClick(DialogInterface dialog, int which) {
+						
+					}
+					
+			 });
+ 		popup2.create().show();
+ 	}
 }

@@ -32,6 +32,7 @@ public class Game implements Serializable{
     
 	
 	private Player player;
+	private RandomEventGenerator eventGen;
 	private City currentCity;
 	private Market currentMarket;
 	private RepairShop currentRepairShop;
@@ -79,6 +80,7 @@ public class Game implements Serializable{
 	 */
 	public void createGame(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String difficultyLevel){
 		player = new Player(name, communicationSkills, fighterSkills, driverSkills, dealerSkills, difficultyLevel);
+		eventGen= new RandomEventGenerator();
 		generateCountry();
 		currentCity=citiesList[17];//Atlanta is set as the default starting location
 		generateMarket();
