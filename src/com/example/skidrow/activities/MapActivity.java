@@ -165,7 +165,11 @@ public class MapActivity extends Activity {
      */
     public void travel(View view){
     	if(AppUtil.game.checkGas(displayedCity)){
-            eventGen.generateEvent();
+    		Event e=eventGen.getCurrE();
+    		if(e==null)
+    			eventGen.generateEvent();
+    		else
+    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nCurrent move: "+AppUtil.game.getStep()+"\nStarts: "+eventGen.getNextEventStepNum());
             //AppUtil.displayError(this, "There is a(n) " + eventGen.getCurrE() + " here affecting the price by " );
     		AppUtil.game.makeMove(displayedCity, eventGen.getCurrE());
 	    	currentCity=displayedCity;
@@ -173,8 +177,6 @@ public class MapActivity extends Activity {
 	    	if(Debug) Log.i(TAG, "new current city -> " + currentCity.getName());
 	    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
 	    	distance.setText(getDistance(displayedCity));
-	    	Event e=eventGen.getCurrE();
-	    	showMessage("Current event: " + e.getDescription());
 			if(eventGen.checkStartEvent()){
 				//change the market values according to the event 
 				//show toast
@@ -192,7 +194,7 @@ public class MapActivity extends Activity {
 				//generate new event
 				e=eventGen.pop();
 				if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
-				showMessage("You are now in " + currentCity.getName()+".\n\nNewsflash!\nThe event "+ eventGen.getCurrE().getName() + "is over." );
+				showMessage("You are now in " + currentCity.getName()+".Newsflash!\nThe event "+ eventGen.getCurrE().getName() + "is over." );
 				eventGen.generateEvent();
 			} else{
 				showMessage("You are now in " + currentCity.getName()+".");

@@ -60,7 +60,7 @@ public class RandomEventGenerator implements Serializable{
 		currentStep=AppUtil.getStep();
 		int rnd1=rng.nextInt(eArray.length);
 		currE=eArray[rnd1];
-		currE.setStepNum(currentStep+10+rng.nextInt(10));
+		currE.setStepNum(currentStep+rng.nextInt(5));
 		list.add(currE);
 	}
 	
