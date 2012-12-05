@@ -488,5 +488,8 @@ public class Game implements Serializable{
 	public HashMap<String,String> getHashMapOfShip(String shipName){
 		return currentRepairShop.getHashMapOfShip(shipName);
 	}
+	public double getHealth(){
+		return player.getHealth();
+	}
 	
 }

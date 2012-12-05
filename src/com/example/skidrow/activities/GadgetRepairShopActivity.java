@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -64,6 +65,7 @@ public class GadgetRepairShopActivity extends Activity {
     }
 	private void fillGadgetShopInfo() {
 		// TODO Auto-generated method stub
+		refreshBottomStats();
     	gadgetList = (ListView)this.findViewById(R.id.gadgetList);
     	TextView playerMoney = (TextView)this.findViewById(R.id.playerMoney);
     	String[] info = AppUtil.game.getPlayerStatInfo();
@@ -125,6 +127,27 @@ public class GadgetRepairShopActivity extends Activity {
 			});
 	        
 	        popup.create().show();
+	    }
+	 public void refreshBottomStats(){
+	    	TextView moneyText = (TextView)this.findViewById(R.id.moneyDynamic);
+	    	String[] playerInfo = AppUtil.game.getPlayerStatInfo();
+	        moneyText.setText(playerInfo[7]);
+	        TextView cityText = (TextView)this.findViewById(R.id.cityDynamic);
+	        cityText.setText(AppUtil.game.getCurrentCity().getName());
+	        ImageView[] arr=new ImageView[5];
+	        
+	        arr[0]=(ImageView)this.findViewById(R.id.heart1);
+	        arr[1]=(ImageView)this.findViewById(R.id.heart2);
+	        arr[2]=(ImageView)this.findViewById(R.id.heart3);
+	        arr[3]=(ImageView)this.findViewById(R.id.heart4);
+	        arr[4]=(ImageView)this.findViewById(R.id.heart5);
+	        for(int i=0;i<arr.length;i++){
+	        	arr[i].setVisibility(ImageView.INVISIBLE);
+	        }
+	        for(int i=0;i<(int) Math.floor(AppUtil.game.getHealth()/2);i++){
+	        	arr[i].setVisibility(ImageView.VISIBLE);
+	        }
+
 	    }
 	 	public void showMessage(String message){
 	 		LayoutInflater inflater = this.getLayoutInflater();

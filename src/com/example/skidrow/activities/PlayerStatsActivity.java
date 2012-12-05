@@ -7,11 +7,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PlayerStatsActivity extends Activity {
@@ -21,7 +23,7 @@ public class PlayerStatsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_stats);
-        
+        refreshBottomStats();
         fillPlayerStats();
     }
     
@@ -122,7 +124,27 @@ public class PlayerStatsActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    
+    public void refreshBottomStats(){
+    	TextView moneyText = (TextView)this.findViewById(R.id.moneyDynamic);
+    	String[] playerInfo = AppUtil.game.getPlayerStatInfo();
+        moneyText.setText(playerInfo[7]);
+        TextView cityText = (TextView)this.findViewById(R.id.cityDynamic);
+        cityText.setText(AppUtil.game.getCurrentCity().getName());
+        ImageView[] arr=new ImageView[5];
+        
+        arr[0]=(ImageView)this.findViewById(R.id.heart1);
+        arr[1]=(ImageView)this.findViewById(R.id.heart2);
+        arr[2]=(ImageView)this.findViewById(R.id.heart3);
+        arr[3]=(ImageView)this.findViewById(R.id.heart4);
+        arr[4]=(ImageView)this.findViewById(R.id.heart5);
+        for(int i=0;i<arr.length;i++){
+        	arr[i].setVisibility(ImageView.INVISIBLE);
+        }
+        for(int i=0;i<(int) Math.floor(AppUtil.game.getHealth()/2);i++){
+        	arr[i].setVisibility(ImageView.VISIBLE);
+        }
+
+    }
     public void saveStates2(View view){ 
     	View parent = (View)this.findViewById(R.id.player_stats_root);
     	Bitmap screen = Bitmap.createBitmap(parent.getWidth(), parent.getHeight(), Bitmap.Config.ARGB_8888);

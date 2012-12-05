@@ -135,7 +135,7 @@
 			        android:layout_alignParentBottom="true" 
 			         android:layout_toRightOf="@+id/cityStatic" 
 			        android:textStyle="bold"  
-			        android:layout_width="100dp"
+			        android:layout_width="200dp"
 			        android:layout_height="30dp"
 			        android:gravity="center_vertical"
 			        android:text="Atlanta"
@@ -162,7 +162,7 @@
 			        android:layout_height="30dp"
 			        android:layout_marginLeft="2dp"
 					android:layout_marginRight="2dp"
-			        android:src="@drawable/recruits" />
+			        android:src="@drawable/square" />
 			     <ImageView
 			        android:id="@+id/heart2"
 			        android:layout_alignParentBottom="true" 
@@ -171,7 +171,7 @@
 			        android:layout_height="30dp"
 			        android:layout_marginLeft="2dp"
 					android:layout_marginRight="2dp"
-			        android:src="@drawable/recruits" />
+			        android:src="@drawable/square" />
 			     <ImageView
 			        android:id="@+id/heart3"
 			        android:layout_alignParentBottom="true" 
@@ -180,7 +180,7 @@
 			        android:layout_height="30dp"
 			      android:layout_marginLeft="2dp"
 					android:layout_marginRight="2dp"
-			        android:src="@drawable/recruits" />
+			        android:src="@drawable/square" />
 			     <ImageView
 			        android:id="@+id/heart4"
 			        android:layout_alignParentBottom="true" 
@@ -189,7 +189,7 @@
 			        android:layout_height="30dp"
 			        android:layout_marginLeft="2dp"
 					android:layout_marginRight="2dp"
-			        android:src="@drawable/recruits" />
+			        android:src="@drawable/square" />
 			     <ImageView
 			        android:id="@+id/heart5"
 			        android:layout_alignParentBottom="true" 
@@ -198,7 +198,7 @@
 			        android:layout_height="30dp"
 			        android:layout_marginLeft="2dp"
 					android:layout_marginRight="2dp"
-			        android:src="@drawable/recruits" />
+			        android:src="@drawable/square" />
 		    
 		</RelativeLayout>
     

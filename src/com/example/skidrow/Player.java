@@ -48,14 +48,14 @@ public class Player implements Serializable{
 		this.fighterSkills = fighterSkills;
 		this.driverSkills = driverSkills;
 		this.dealerSkills = dealerSkills;
-		this.difficultyLevel= difficultyLevel;
+		this.setDifficultyLevel(difficultyLevel);
 		System.out.println("Name: " + name + " ComSkills: " + communicationSkills + 
 				" FightSkills: " + fighterSkills + " DriveSkills: " + driverSkills
 				+ " DealSkills: " + dealerSkills + " difficultyLevel: "+ difficultyLevel);
 		this.money = 10000;
 		this.car=new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10);
 		setGas(car.getFuelCapacity());
-		this.health = car.getArmour();
+		this.setHealth(car.getArmour());
 		this.attack = car.getGunDamage();
 		
 		initGoods();
@@ -254,5 +254,33 @@ public class Player implements Serializable{
 		}
 		
 		return damage;
+	}
+
+	/**
+	 * @return the health
+	 */
+	public double getHealth() {
+		return health;
+	}
+
+	/**
+	 * @param health the health to set
+	 */
+	public void setHealth(double health) {
+		this.health = health;
+	}
+
+	/**
+	 * @return the difficultyLevel
+	 */
+	public String getDifficultyLevel() {
+		return difficultyLevel;
+	}
+
+	/**
+	 * @param difficultyLevel the difficultyLevel to set
+	 */
+	public void setDifficultyLevel(String difficultyLevel) {
+		this.difficultyLevel = difficultyLevel;
 	}
 }

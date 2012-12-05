@@ -29,6 +29,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -72,6 +73,7 @@ public class MapActivity extends Activity {
      * Fills the listview with the cities
      */
     public void fillCityList(){
+    	refreshBottomStats();
     	ListView cities = (ListView)this.findViewById(R.id.cityList);
     	cities.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, AppUtil.game.getCityList()));
     	
@@ -90,6 +92,7 @@ public class MapActivity extends Activity {
      * @param index Index of the city in the citiesList
      */
     public void updateDisplayCity(int index){
+    	refreshBottomStats();
     	RelativeLayout cityInfo = (RelativeLayout)this.findViewById(R.id.cityInfo);
     	TextView name = (TextView)this.findViewById(R.id.crntCityName);
     	TextView techLevel = (TextView)this.findViewById(R.id.crntTechLevel);
@@ -164,6 +167,7 @@ public class MapActivity extends Activity {
      * @param view Travel button
      */
     public void travel(View view){
+		
     	if(AppUtil.game.checkGas(displayedCity)){
     		if(!AppUtil.game.getCurrentCity().getName().equals(displayedCity.getName())){
 	    		Event e=eventGen.getCurrE();
@@ -182,6 +186,7 @@ public class MapActivity extends Activity {
 					//show toast
 					e=eventGen.peek();
 					if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
+					refreshBottomStats();
 					showMessage2("You are now in " + currentCity.getName()+".","Newsflash!\n\n"+eventGen.getCurrE().getDescription());
 	
 					
@@ -205,6 +210,7 @@ public class MapActivity extends Activity {
     	} else{
     		showMessage2("You do not have enough fuel to reach this destination.","");
     	}
+    	refreshBottomStats();
     }
     
     @Override
@@ -256,4 +262,25 @@ public class MapActivity extends Activity {
 			 });
  		popup2.create().show();
  	}
+    public void refreshBottomStats(){
+    	TextView moneyText = (TextView)this.findViewById(R.id.moneyDynamic);
+    	String[] playerInfo = AppUtil.game.getPlayerStatInfo();
+        moneyText.setText(playerInfo[7]);
+        TextView cityText = (TextView)this.findViewById(R.id.cityDynamic);
+        cityText.setText(AppUtil.game.getCurrentCity().getName());
+        ImageView[] arr=new ImageView[5];
+        
+        arr[0]=(ImageView)this.findViewById(R.id.heart1);
+        arr[1]=(ImageView)this.findViewById(R.id.heart2);
+        arr[2]=(ImageView)this.findViewById(R.id.heart3);
+        arr[3]=(ImageView)this.findViewById(R.id.heart4);
+        arr[4]=(ImageView)this.findViewById(R.id.heart5);
+        for(int i=0;i<arr.length;i++){
+        	arr[i].setVisibility(ImageView.INVISIBLE);
+        }
+        for(int i=0;i<(int) Math.floor(AppUtil.game.getHealth()/2);i++){
+        	arr[i].setVisibility(ImageView.VISIBLE);
+        }
+
+    }
 }

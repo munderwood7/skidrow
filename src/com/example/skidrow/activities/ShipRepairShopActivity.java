@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -84,6 +85,7 @@ public class ShipRepairShopActivity extends ListActivity {
         private void fillShipShopInfo() {
                 // TODO Auto-generated method stub
         //shipsList = (ListView)this.findViewById(R.id.list);
+        refreshBottomStats();
         TextView playerMoney = (TextView)this.findViewById(R.id.playerMoney);
         String[] info = AppUtil.game.getPlayerStatInfo();
         String playerInfo[] = AppUtil.game.getPlayerStatInfo();
@@ -145,7 +147,6 @@ public class ShipRepairShopActivity extends ListActivity {
                                                 public void onClick(DialogInterface dialog, int which) {
                                                                 Log.i("ShipRepairSHopActivity", "Looking at your own car: " + car.getShipName());
                                                                 int buy=AppUtil.game.buyShip(car);
-                                                                fillShipShopInfo();
                                                         }
                                         });
                                 popup.create().show();
@@ -159,7 +160,6 @@ public class ShipRepairShopActivity extends ListActivity {
                                                   public void onClick(DialogInterface dialog, int which) {
                                                             Log.i("ShipRepairSHopActivity", "Trying to buy: " + car.getShipName());
                                                                 int buy=AppUtil.game.buyShip(car);
-                                                                fillShipShopInfo();
                                                                 if(ENOUGH_MONEY==buy) showMessage("Congrats! You just boought a "+car.getShipName()+".");
                                                                 else if(NOT_ENOUGH_MONEY==buy)  showMessage("You do not have enough money to buy a "+car.getShipName()+".");
                                                                 else if(SAME_CAR==buy)  showMessage("You already have this car.");
@@ -167,7 +167,29 @@ public class ShipRepairShopActivity extends ListActivity {
                                         });
                                 popup.create().show();
                             }
+                         refreshBottomStats();
                         }
+                public void refreshBottomStats(){
+                	TextView moneyText = (TextView)this.findViewById(R.id.moneyDynamic);
+                	String[] playerInfo = AppUtil.game.getPlayerStatInfo();
+                    moneyText.setText(playerInfo[7]);
+                    TextView cityText = (TextView)this.findViewById(R.id.cityDynamic);
+                    cityText.setText(AppUtil.game.getCurrentCity().getName());
+                    ImageView[] arr=new ImageView[5];
+                    
+                    arr[0]=(ImageView)this.findViewById(R.id.heart1);
+                    arr[1]=(ImageView)this.findViewById(R.id.heart2);
+                    arr[2]=(ImageView)this.findViewById(R.id.heart3);
+                    arr[3]=(ImageView)this.findViewById(R.id.heart4);
+                    arr[4]=(ImageView)this.findViewById(R.id.heart5);
+                    for(int i=0;i<arr.length;i++){
+                    	arr[i].setVisibility(ImageView.INVISIBLE);
+                    }
+                    for(int i=0;i<(int) Math.floor(AppUtil.game.getHealth()/2);i++){
+                    	arr[i].setVisibility(ImageView.VISIBLE);
+                    }
+
+                }
                 public void showMessage(String message){
                         LayoutInflater inflater = this.getLayoutInflater();
                         final LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.message_popup, null);
