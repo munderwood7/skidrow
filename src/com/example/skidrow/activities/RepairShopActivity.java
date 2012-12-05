@@ -1,13 +1,19 @@
 package com.example.skidrow.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -76,6 +82,91 @@ public class RepairShopActivity extends Activity{
         recruitsText.setText("Communication Skills: "+info[0]+"\nDriver Skills: "+info[1]+"\nFighting Skills: "+info[2]+"\nDealer Skills: "+info[3]);
         
     }
+	public void gasTransaction(View view){
+    	
+    	final double gasPrice=AppUtil.game.getGasPrice(AppUtil.game.getCurrentCity());
+    	final double availableSpace=AppUtil.game.getShip().getFuelCapacity()-AppUtil.game.getGas();
+    	//Setting all the appropriate listeners for the dialog layout
+    	LayoutInflater inflater = this.getLayoutInflater();
+    	final RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.buy_gas_popup, null);
+    	final TextView goodCost = (TextView)layout.findViewById(R.id.fuelCost);
+    	final TextView quantity = (TextView)layout.findViewById(R.id.quantityValue);
+    	final TextView playerMoneyView = (TextView)layout.findViewById(R.id.playerMoney);
+    	final TextView availableCargo = (TextView)layout.findViewById(R.id.availableFuel);
+    	final TextView textView2 = (TextView)layout.findViewById(R.id.textView7);
+    	textView2.setText("Available: ");
+    	goodCost.setText("$"+gasPrice);
+    	playerMoneyView.setText(AppUtil.game.getPlayerStatInfo()[7]);
+    	availableCargo.setText(String.format("%.2f", availableSpace));
+    	SeekBar slider = (SeekBar)layout.findViewById(R.id.buySellQuantity);
+    	slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				double buySellQuant =  ((progress*availableSpace)/100);
+				Log.i("GasReapirShop","Progess: "+buySellQuant);
+				String playerMoneyStr = AppUtil.game.getPlayerStatInfo()[7];
+				double playerMoney = Integer.parseInt((String) playerMoneyStr.subSequence(1, playerMoneyStr.length()));
+				availableCargo.setText(String.format("%.2f", Math.max(availableSpace-buySellQuant,0)));
+				quantity.setText(String.format("%.2f", buySellQuant));
+				playerMoney = playerMoney - buySellQuant * gasPrice;
+				textView2.setText("Available: ");
+				playerMoneyView.setText("$"+String.format("%.2f",playerMoney));
+			}
+		});
+    	
+        AlertDialog.Builder popup = new AlertDialog.Builder(this);
+        popup.setView(layout)
+        	.setTitle("Buy Gas")
+			.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			})
+			.setPositiveButton("Buy", new DialogInterface.OnClickListener() {
+				
+				
+				
+				public void onClick(DialogInterface dialog, int which) {
+					buyGas(Double.parseDouble(quantity.getText().toString()));
+				}
+			});
+        popup.create().show();
+    }
+	public void buyGas(double quant) {
+		 if(quant*AppUtil.game.getGasPrice(AppUtil.game.getCurrentCity())<AppUtil.game.getMoney()){
+			 AppUtil.game.setMoney((int)(AppUtil.game.getMoney()-quant*AppUtil.game.getGasPrice(AppUtil.game.getCurrentCity())));
+			 AppUtil.game.setGas(AppUtil.game.getGas()+quant);
+			 showMessage("Transaction Completed");
+		 } else{
+			 showMessage("Not enough money!");
+		 }
+	}
+	public void showMessage(String message){
+ 		LayoutInflater inflater = this.getLayoutInflater();
+ 		final LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.message_popup, null);
+ 		AlertDialog.Builder popup2 = new AlertDialog.Builder(this, 0);
+ 		popup2.setView(layout).setTitle(message).setNegativeButton("Ok", new DialogInterface.OnClickListener(){
+			
+	    	 public void onClick(DialogInterface dialog, int which) {
+						
+					}
+					
+			 });
+ 		popup2.create().show();
+ 	}
 	public static Context getContext(){
 		return RepairShopActivity.getContext();
 	}

@@ -36,7 +36,6 @@ public class RepairShop implements Serializable{
 		shipList.put(new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10),0);
 		shipList.put(new Ship("1986 Detroit SUV", 30, 1, 2, false, 0, 2, 220, 6,70,16),2000);
 		shipList.put(new Ship("2006 Beijing Sedan", 20, 2, 2, false, 1, 3, 180, 4,120,12),6000);
-		shipList.put(new Ship("2000 Berlin Sedan", 20, 3, 3, false, 2, 4, 210, 3,130,14),12000);
 		shipList.put(new Ship("2005 Detroit SUV", 40, 3, 4, false, 2, 5, 230, 5,100,18),20000);
 		shipList.put(new Ship("2010 Tokyo Sedan", 30, 3, 4, false, 3, 5, 210, 2,130,14),15000);
 		shipList.put(new Ship("2012 Kyoto Coupe", 40, 5, 4, false, 3, 6, 210, 1,140,12),35000);
@@ -49,7 +48,6 @@ public class RepairShop implements Serializable{
 		nameList.put("1977 Tokyo Sedan",new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10));
 		nameList.put("1986 Detroit SUV",new Ship("1986 Detroit SUV", 30, 1, 2, false, 0, 2, 60, 6,70,16));
 		nameList.put("2006 Beijing Sedan",new Ship("2006 Beijing Sedan", 20, 2, 2, false, 1, 3, 50, 4,120,12));
-		nameList.put("2000 Berlin Sedan",new Ship("Berlin Sedan 2000", 20, 3, 3, false, 2, 4, 50, 3,130,14));
 		nameList.put("2005 Detroit SUV",new Ship("2005 Detroit SUV", 40, 3, 4, false, 2, 5, 70, 5,100,18));
 		nameList.put("2010 Tokyo Sedan",new Ship("2010 Tokyo Sedan", 30, 3, 4, false, 3, 5, 50, 2,130,14));
 		nameList.put("2012 Kyoto Coupe",new Ship("2012 Kyoto Coupe", 40, 5, 4, false, 3, 6, 50, 1,140,12));
@@ -62,7 +60,6 @@ public class RepairShop implements Serializable{
 		priceList.put("1977 Tokyo Sedan",0);
 		priceList.put("1986 Detroit SUV",2000);
 		priceList.put("2006 Beijing Sedan",6000);
-		priceList.put("2000 Berlin Sedan",12000);
 		priceList.put("2005 Detroit SUV", 20000);
 		priceList.put("2010 Tokyo Sedan",15000);
 		priceList.put("2012 Kyoto Coupe",35000);
@@ -94,6 +91,13 @@ public class RepairShop implements Serializable{
 		}
 		return arr;
 		
+	}
+	public HashMap<String,String> getHashMapOfShip(String shipName){
+		HashMap<String,String> temp = new HashMap<String,String>();
+		temp.put("carModel",shipName);
+    	temp.put("price", "Price: $"+Integer.toString(priceList.get(shipName)));
+    	temp.put("speed","Max speed: "+Integer.toString(nameList.get(shipName).getSpeed())+" mph");
+		return temp;
 	}
 	public Ship getShipByName(String shipName){
 		return nameList.get(shipName);

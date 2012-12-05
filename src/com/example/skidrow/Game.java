@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -483,6 +484,9 @@ public class Game implements Serializable{
 	}
 	public double getGasPrice(City c){
 		return currentRepairShop.getGasPrice(c.getTechLevelInt());
+	}
+	public HashMap<String,String> getHashMapOfShip(String shipName){
+		return currentRepairShop.getHashMapOfShip(shipName);
 	}
 	
 }
