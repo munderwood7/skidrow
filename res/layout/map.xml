@@ -203,7 +203,116 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+         android:layout_above="@+id/lowerStats" 
         android:layout_below="@+id/cityInfo" >
+        
     </ListView>
+     <RelativeLayout
+		        android:id="@+id/lowerStats"
+		        android:layout_width="fill_parent"
+		        android:layout_height="60dp"
+		        android:layout_alignParentBottom="true"
+		        android:gravity="bottom"
+		        android:textColor="#000000">
+			    <TextView
+			        android:id="@+id/moneyStatic"
+			        android:layout_above="@+id/cityStatic"
+			        android:textStyle="bold"   
+			        android:layout_width="90dp"
+			        android:layout_height="30dp"
+			        android:gravity="center_vertical"
+			        android:text="Money: "
+			        android:textAppearance="?android:attr/textAppearanceLarge"/>
+			     <TextView
+			        android:id="@+id/moneyDynamic"
+			        android:layout_toRightOf="@+id/moneyStatic"
+			        android:layout_above="@+id/cityDynamic"
+			        android:textColor="#FFFF00"   
+			        android:textStyle="bold"  
+			        android:layout_width="150dp"
+			        android:layout_height="30dp"
+			        android:gravity="center_vertical"
+			        android:text="$XXXXXX"
+			        android:textAppearance="?android:attr/textAppearanceLarge"/>
+			      <TextView
+			        android:id="@+id/cityStatic"
+			        android:layout_alignParentBottom="true" 
+			        android:textStyle="bold"  
+			        android:layout_width="70dp"
+			        android:layout_height="30dp"
+			        android:gravity="center_vertical"
+			        android:text="City: "
+			        android:textAppearance="?android:attr/textAppearanceLarge"/>
+			       <TextView
+			        android:id="@+id/cityDynamic"  
+			        android:layout_alignParentBottom="true" 
+			         android:layout_toRightOf="@+id/cityStatic" 
+			        android:textStyle="bold"  
+			        android:layout_width="100dp"
+			        android:layout_height="30dp"
+			        android:gravity="center_vertical"
+			        android:text="Atlanta"
+			        android:textAppearance="?android:attr/textAppearanceLarge"/>
+	
+			     <TextView
+			         android:id="@+id/healthStatic"
+			         android:layout_alignParentBottom="true" 
+			         android:layout_toRightOf="@+id/moneyDynamic"
+			         android:layout_width="70dp"
+			         android:layout_height="30dp"
+			         android:gravity="center_vertical"
+			         android:layout_marginLeft="10dp"
+			         android:text="Health: "
+			         android:textAppearance="?android:attr/textAppearanceLarge"
+			         android:textStyle="bold" 
+			         android:layout_marginRight="10dp"/>
+	
+			     <ImageView
+			        android:id="@+id/heart1"
+			        android:layout_alignParentBottom="true" 
+			        android:layout_toRightOf="@+id/healthStatic"
+			        android:layout_width="30dp"
+			        android:layout_height="30dp"
+			        android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+			        android:src="@drawable/recruits" />
+			     <ImageView
+			        android:id="@+id/heart2"
+			        android:layout_alignParentBottom="true" 
+			        android:layout_toRightOf="@+id/heart1"
+			        android:layout_width="30dp"
+			        android:layout_height="30dp"
+			        android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+			        android:src="@drawable/recruits" />
+			     <ImageView
+			        android:id="@+id/heart3"
+			        android:layout_alignParentBottom="true" 
+			        android:layout_toRightOf="@+id/heart2"
+			        android:layout_width="30dp"
+			        android:layout_height="30dp"
+			      android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+			        android:src="@drawable/recruits" />
+			     <ImageView
+			        android:id="@+id/heart4"
+			        android:layout_alignParentBottom="true" 
+			        android:layout_toRightOf="@+id/heart3"
+			        android:layout_width="30dp"
+			        android:layout_height="30dp"
+			        android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+			        android:src="@drawable/recruits" />
+			     <ImageView
+			        android:id="@+id/heart5"
+			        android:layout_alignParentBottom="true" 
+			        android:layout_toRightOf="@+id/heart4"
+			        android:layout_width="30dp"
+			        android:layout_height="30dp"
+			        android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+			        android:src="@drawable/recruits" />
+		    
+		</RelativeLayout>
    
 </RelativeLayout>
