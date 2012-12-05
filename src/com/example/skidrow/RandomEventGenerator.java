@@ -33,6 +33,7 @@ public class RandomEventGenerator implements Serializable{
 	 */
     private static RandomEventGenerator instance = null;
     protected RandomEventGenerator() {
+    	list=new LinkedList();
     	ArrayList<String> affectedGoods = new ArrayList<String>();
     	rng=new Random();
 		eArray[0]= new Event("drought","It has been raining the last couple of days",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2, "PsychedelicMushroom");

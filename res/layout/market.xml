@@ -117,7 +117,8 @@
 	    android:layout_alignTop="@+id/buySellChoice"
 	    android:layout_marginRight="5dp"
 	    android:text="$10"
-	    android:textAppearance="?android:attr/textAppearanceSmall" />
+	    android:textColor="#FFFF00"   
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	<TextView
 	    android:id="@+id/textView1"
@@ -128,7 +129,7 @@
 	    android:layout_toLeftOf="@+id/playerMoney"
 	    android:layout_marginRight="5dp"
 	    android:text="Your Money:"
-	    android:textAppearance="?android:attr/textAppearanceSmall" />
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	<TextView
 	    android:id="@+id/marketMoney"
@@ -139,7 +140,7 @@
 	    android:layout_marginTop="2dp"
 	    android:layout_marginRight="5dp"
 	    android:text="$200"
-	    android:textAppearance="?android:attr/textAppearanceSmall" />
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	<TextView
 	    android:id="@+id/textView2"
@@ -150,7 +151,7 @@
 	    android:layout_toLeftOf="@+id/marketMoney"
 	    android:layout_marginRight="5dp"
 	    android:text="Market Money:"
-	    android:textAppearance="?android:attr/textAppearanceSmall" />
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
 	 <RelativeLayout
 		        android:layout_below="@+id/goodsList"
 		        android:layout_width="fill_parent"

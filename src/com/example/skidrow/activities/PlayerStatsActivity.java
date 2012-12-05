@@ -1,9 +1,13 @@
 package com.example.skidrow.activities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.R;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,57 +18,40 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class PlayerStatsActivity extends Activity {
-
+public class PlayerStatsActivity extends ListActivity {
+	 public static final ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 	Button saveButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_stats);
+        SimpleAdapter adapter = new SimpleAdapter(
+                this,
+                list,
+                R.layout.row,
+                new String[] {"carModel","price","speed"},
+                new int[] {R.id.text1,R.id.text2, R.id.text3}
+                );
+        setListAdapter(adapter);
         refreshBottomStats();
         fillPlayerStats();
+        
+        
+        
     }
     
     /**
      * Fills the player stats view of the layout with the appropriate values.
      */
     public void fillPlayerStats(){
-        TextView playerFighting = (TextView)this.findViewById(R.id.playerFightingLevel);
-        TextView playerDealing = (TextView)this.findViewById(R.id.playerDealerLevel);
-        TextView playerCommunications = (TextView)this.findViewById(R.id.playerCommunicationsLevel);
-        TextView playerDriving = (TextView)this.findViewById(R.id.playerDriverLevel);
-        TextView playerCity = (TextView)this.findViewById(R.id.playerCity);
-        TextView playerName = (TextView)this.findViewById(R.id.playerName);
-        TextView playerHealth = (TextView)this.findViewById(R.id.playerHealth);
-        TextView playerMoney = (TextView)this.findViewById(R.id.playerMoney);
-        TextView playerGas = (TextView)this.findViewById(R.id.playerGas);
-        TextView armour = (TextView)this.findViewById(R.id.armourValue);
-        TextView turbo = (TextView)this.findViewById(R.id.turboValue);
-        TextView speed = (TextView)this.findViewById(R.id.speedValue);
-        TextView gunDamage = (TextView)this.findViewById(R.id.gunDamageValue);
-        TextView storage = (TextView)this.findViewById(R.id.storageValue);
-        TextView fuelEfficiency = (TextView)this.findViewById(R.id.fuelEfficiencyValue);
-        TextView carType = (TextView)this.findViewById(R.id.carTypeValue);
-        String[] playerInfo = AppUtil.game.getPlayerStatInfo();
-        String[] carInfo = AppUtil.game.getShipInfo();
-        
-        playerCommunications.setText(playerInfo[0]);
-        playerFighting.setText(playerInfo[1]);
-        playerDriving.setText(playerInfo[2]);
-        playerDealing.setText(playerInfo[3]);
-        playerCity.setText(playerInfo[4]);
-        playerName.setText(playerInfo[6]);
-        playerMoney.setText(playerInfo[7]);
-        playerGas.setText(playerInfo[8]);
-        armour.setText(carInfo[0]);
-        turbo.setText(carInfo[1]);
-        speed.setText(carInfo[2]);
-        gunDamage.setText(carInfo[3]);
-        storage.setText(carInfo[4]);
-        fuelEfficiency.setText(carInfo[5]);
-        carType.setText(carInfo[6]);
+    	String[] shipNames=AppUtil.game.getNamesOfShips();
+        for(int i=0;i<shipNames.length;i++){
+                HashMap<String,String> temp=AppUtil.game.getHashMapOfShip(shipNames[i]);
+                list.add(temp);
+        }
     }
     
     
