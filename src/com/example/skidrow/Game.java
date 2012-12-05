@@ -314,11 +314,15 @@ public class Game implements Serializable{
 	 * @return
 	 */
 	public String marketToPlayer(String drug, int quantity){
-		int priceIncrease;
-		if(currEvent != null)
-			priceIncrease = currEvent.getPriceEffect();
-		else
-			priceIncrease = 0;
+		int priceIncrease = 0;
+		if(currEvent != null){
+			if (currEvent.getDrugAffected().compareTo(drug)==0){
+				priceIncrease = currEvent.getPriceEffect();
+				Log.i(TAG, drug + "  price is affected my event by: " + priceIncrease);
+			}
+		}else{
+			Log.i(TAG, drug + "  price is not affected by event");
+		}
 		int transPrice = (currentMarket.getPrice(currentMarket.getGoodFromString(drug))+priceIncrease)*quantity;
 		if(player.getMoney()<transPrice){
 			return "You are $" + (transPrice-player.getMoney()) + " short of buying " + quantity + " " + drug;
@@ -345,11 +349,15 @@ public class Game implements Serializable{
 	 * @return
 	 */
 	public String playerToMarket(String drug, int quantity){
-		int priceIncrease;
-		if(currEvent != null)
-			priceIncrease = currEvent.getPriceEffect();
-		else
-			priceIncrease = 0;
+		int priceIncrease=0;
+		if(currEvent != null){
+			if (currEvent.getDrugAffected().compareTo(drug)==0){
+				priceIncrease = currEvent.getPriceEffect();
+			}
+			Log.i(TAG, drug + "  price is affected my event by: " + priceIncrease);
+		}else{
+			Log.i(TAG, drug + "  price is not affected by event");
+		}
 		int transPrice = (currentMarket.getPrice(currentMarket.getGoodFromString(drug))+priceIncrease)*quantity;
 		if(currentMarket.getMoney()<transPrice){
 			return "The market does not have enough money to buy your goods";

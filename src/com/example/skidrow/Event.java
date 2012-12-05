@@ -1,6 +1,7 @@
 package com.example.skidrow;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Class that represents an event created by the simulator
@@ -36,13 +37,14 @@ public class Event implements Serializable
 	 * @param description brief description of the event
 	 * @param priceEffect int value of event effect on prices of goods. Can be either positive or negative
 	 */
-	public Event(String name,String terminationMessage, int duration, String description, int priceEffect)
+	public Event(String name,String terminationMessage, int duration, String description, int priceEffect, String goodAffected)
 	{
 		this.name=name;
 		this.description=description;
 		this.duration=duration;
 		this.priceEffect=priceEffect;
 		this.setTerminationMessage(terminationMessage);
+		this.drugAffected =  goodAffected;
 	}
 	
 	/**

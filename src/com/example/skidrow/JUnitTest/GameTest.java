@@ -1,5 +1,7 @@
 package com.example.skidrow.JUnitTest;
 
+import java.util.ArrayList;
+
 import com.example.skidrow.Event;
 import com.example.skidrow.Game;
 import com.example.skidrow.Market;
@@ -51,7 +53,8 @@ public class GameTest extends TestCase {
 		super.setUp();
 		// Add additional set up code here
 		currMarket = new Market(7);
-		currEvent =  new Event("DROUGHT","The drought is over",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2);
+		String good= "Weed";
+		currEvent =  new Event("DROUGHT","The drought is over",4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2, good);
 		player = new Player("Lesly", 4, 4, 4, 4, "medium");
 	}
 
