@@ -9,9 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="14dp"
         android:text="Cost:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/fuelCost"
@@ -19,10 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
-        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/textView1"
         android:text="$200"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <SeekBar
         android:id="@+id/buySellQuantity"
@@ -39,7 +37,7 @@
         android:layout_above="@+id/buySellQuantity"
         android:layout_alignRight="@+id/quantityValue"
         android:text="0"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textView8"
@@ -49,7 +47,7 @@
         android:layout_below="@+id/buySellQuantity"
         android:layout_marginTop="21dp"
         android:text="Player:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/playerMoney"
@@ -59,8 +57,7 @@
         android:layout_alignBottom="@+id/textView8"
         android:layout_toRightOf="@+id/textView8"
         android:text="$900"
-        android:layout_marginLeft="4dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textView7"
@@ -68,8 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/buySellQuantity"
         android:layout_toLeftOf="@+id/availableFuel"
-        android:text="Available: "
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="Fuel Tank: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/quantityValue"
@@ -78,7 +75,7 @@
         android:layout_alignRight="@+id/buySellQuantity"
         android:layout_below="@+id/buySellQuantity"
         android:text="3000"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textView2"
@@ -87,7 +84,7 @@
         android:layout_alignBaseline="@+id/quantityValue"
         android:layout_alignBottom="@+id/quantityValue"
         android:layout_toLeftOf="@+id/quantityValue"
-        android:text="Tank: "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="Amount Purchased: "
+       android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

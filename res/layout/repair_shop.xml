@@ -87,7 +87,10 @@
 					android:layout_marginRight="5dp"
 					android:layout_marginTop="5dp"
 					android:layout_marginBottom="5dp"
+					android:textColor="#FFFF00"   
 		            android:text="Money"
+		            android:textStyle="bold" 
+		            android:textSize="24sp"   
 		            android:textAppearance="?android:attr/textAppearanceLarge"
 		            android:layout_weight="1" />
 
@@ -101,22 +104,33 @@
 				android:layout_marginTop="5dp"
 				android:layout_marginBottom="5dp"
 		        android:clickable="true"
-		        android:onClick="gasTransaction"
+		        android:onClick="gettingGas"
 		        android:src="@drawable/gas" />
-		      <TextView
-		        android:id="@+id/gasSpecs"
+		     <TextView
+		        android:id="@+id/gasTitle"
 		        android:layout_below="@+id/moneyTextViewRepairShop"
 		        android:layout_toRightOf="@+id/gasRepairShopView"
-		        android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
-				android:layout_marginTop="5dp"
-				android:layout_marginBottom="5dp"
 		        android:layout_width="300dp"
-		        android:layout_height="170dp"
+		        android:layout_height="40dp"
+		        android:textStyle="bold" 
+		        android:textSize="28sp"       
+		        android:text="Gas Station"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="top"
+		        android:layout_weight="1" />
+		      <TextView
+		        android:id="@+id/gasSpecs"
+		        android:layout_below="@+id/gasTitle"
+		        android:layout_toRightOf="@+id/gasRepairShopView"
+		        android:layout_above="@+id/shipRepairShopView"
+		        android:layout_width="300dp"
+		        android:layout_height="120dp"
+		        android:textStyle="italic"   
+		        android:textColor="#aaaaaa"  
 		        android:text="gas specs"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
-		        android:gravity="center_vertical"
-		        android:layout_weight="1" />
+		        android:layout_weight="1" 
+		        android:gravity="top"/>
 
 		    <ImageView
 		        android:id="@+id/shipRepairShopView"
@@ -131,18 +145,29 @@
 		        android:onClick="changeGameLayout"
 		        android:src="@drawable/car" />
 		    <TextView
-		        android:id="@+id/shipSpecs"
-		        android:layout_below="@+id/gasSpecs"
+		        android:id="@+id/shipTitle"
 		        android:layout_toRightOf="@+id/shipRepairShopView"
-		        android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
-				android:layout_marginTop="5dp"
-				android:layout_marginBottom="5dp"
+		        android:layout_below="@+id/gasSpecs"
+				android:textStyle="bold" 
+		        android:textSize="28sp"       
 		        android:layout_width="300dp"
-		        android:layout_height="170dp"
+		        android:layout_height="40dp"
+		        android:text="Car Dealership"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="top"
+		        android:layout_weight="1" />
+		    <TextView
+		        android:id="@+id/shipSpecs"
+		        android:layout_below="@+id/shipTitle"
+		        android:layout_toRightOf="@+id/shipRepairShopView"
+		        android:layout_above="@+id/gadgetRepairShopView"  
+		        android:gravity="top"
+				android:textStyle="italic" 
+		        android:layout_width="300dp"
+		        android:layout_height="120dp"
+		        android:textColor="#aaaaaa"
 		        android:text="ship specs"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
-		        android:gravity="center_vertical"
 		        android:layout_weight="1" />
 
 		    <ImageView
@@ -158,18 +183,29 @@
 		        android:onClick="changeGameLayout"
 		        android:src="@drawable/gun" />
 		    <TextView
-		        android:id="@+id/gadgetSpecs"
+		        android:id="@+id/gadgetTitle"
 		        android:layout_below="@+id/shipSpecs"
 		        android:layout_toRightOf="@+id/gadgetRepairShopView"
-		        android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
-				android:layout_marginTop="5dp"
-				android:layout_marginBottom="5dp"
+		        
+				android:textStyle="bold" 
+		        android:textSize="28sp"  
 		        android:layout_width="300dp"
-		        android:layout_height="170dp"
-		        android:text="gadget specs"
+		        android:layout_height="40dp"
+		        android:text="Gadget Store"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
 		        android:gravity="center_vertical"
+		        android:layout_weight="1" />
+		    <TextView
+		        android:id="@+id/gadgetSpecs"
+		        android:layout_below="@+id/gadgetTitle"
+		        android:layout_toRightOf="@+id/gadgetRepairShopView"
+		        android:textStyle="italic"    
+		        android:layout_width="300dp"
+		        android:layout_height="120dp"
+		        android:textColor="#aaaaaa"
+		        android:text="gadget specs"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="top"
 		        android:layout_weight="1" />
 
 		   <ImageView
@@ -184,19 +220,30 @@
 		        android:clickable="true"
 		        android:onClick="changeGameLayout"
 		        android:src="@drawable/recruits" />
-		    <TextView
-		        android:id="@+id/recruitSpecs"
-		        android:layout_below="@+id/gadgetSpecs"
+		   <TextView
+		        android:id="@+id/recruitTitle"
+		        android:layout_below="@+id/gadgetRepairShopView"
 		        android:layout_toRightOf="@+id/recruitRepairShopView"
-		        android:layout_marginLeft="5dp"
-				android:layout_marginRight="5dp"
-				android:layout_marginTop="5dp"
-				android:layout_marginBottom="5dp"
+		        
+				android:textStyle="bold" 
+		        android:textSize="28sp"    
 		        android:layout_width="300dp"
-		        android:layout_height="170dp"
-		        android:text="recruits specs"
+		        android:layout_height="40dp"
+		        android:text="Recruit People"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
 		         android:gravity="center_vertical"
+		        android:layout_weight="1" />
+		    <TextView
+		        android:id="@+id/recruitSpecs"
+		        android:layout_below="@+id/recruitTitle"
+		        android:layout_toRightOf="@+id/recruitRepairShopView"
+		        android:textStyle="italic"   
+		        android:layout_width="300dp"
+		        android:layout_height="120dp"
+		        android:text="recruits specs"
+		        android:textColor="#aaaaaa"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:gravity="top"
 		        android:layout_weight="1" />
 
 	</RelativeLayout>

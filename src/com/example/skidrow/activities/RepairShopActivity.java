@@ -51,9 +51,7 @@ public class RepairShopActivity extends Activity{
     		case R.id.shipRepairShopView:
     			intent = new Intent(this, ShipRepairShopActivity.class);
     			break;
-    		case R.id.gasRepairShopView:
-    			intent = new Intent(this, GasRepairShopActivity.class);
-    			break;
+    		
     		case R.id.gadgetRepairShopView:
     			intent = new Intent(this, GadgetRepairShopActivity.class);
     			break;
@@ -77,11 +75,18 @@ public class RepairShopActivity extends Activity{
         
         playerMoney.setText("Money: "+info[7]);
         gasText.setText("Gas Left: "+AppUtil.game.getGas()+"\nGas Efficiency: "+AppUtil.game.getFuelEfficiency()+"\nMax Distance: "+String.format("%.2f", AppUtil.game.getShip().getFuelCapacity()/AppUtil.game.getFuelEfficiency()));
-        gadgetText.setText("Fire Power: " +AppUtil.game.getShip().getGunDamage()+"\nArmour: "+AppUtil.game.getShip().getArmour());
-        shipText.setText("Your Car: "+AppUtil.game.getShip().getShipName()+"\nSpeed: "+AppUtil.game.getShip().getSpeed()+"\nTurbo level: "+AppUtil.game.getShip().getTurbo()+"\nSecret Containers: "+AppUtil.game.getShip().getHiddenStorage());
+        gadgetText.setText("Fire Power: " +AppUtil.game.getShip().getGunDamage()+"\nArmour: "+AppUtil.game.getShip().getArmour()+"\nRespect: "+AppUtil.game.getShip().getRespect());
+        shipText.setText("Your Car: "+AppUtil.game.getShip().getShipName()+"\nSpeed: "+AppUtil.game.getShip().getSpeed()+" mph\nTurbo level: "+AppUtil.game.getShip().getTurbo()+"\nSecret Containers: "+AppUtil.game.getShip().getHiddenStorage());
         recruitsText.setText("Communication Skills: "+info[0]+"\nDriver Skills: "+info[1]+"\nFighting Skills: "+info[2]+"\nDealer Skills: "+info[3]);
         
     }
+	public void gettingGas(View view){
+		if(AppUtil.game.getShip().getFuelCapacity()!=(int) AppUtil.game.getGas()){
+			gasTransaction(view);
+		} else{
+			showMessage("Your tank is full.");
+		}
+	}
 	public void gasTransaction(View view){
     	
     	final double gasPrice=AppUtil.game.getGasPrice(AppUtil.game.getCurrentCity());
@@ -92,13 +97,18 @@ public class RepairShopActivity extends Activity{
     	final TextView goodCost = (TextView)layout.findViewById(R.id.fuelCost);
     	final TextView quantity = (TextView)layout.findViewById(R.id.quantityValue);
     	final TextView playerMoneyView = (TextView)layout.findViewById(R.id.playerMoney);
-    	final TextView availableCargo = (TextView)layout.findViewById(R.id.availableFuel);
+    	final TextView carGas = (TextView)layout.findViewById(R.id.availableFuel);
     	final TextView textView2 = (TextView)layout.findViewById(R.id.textView7);
     	textView2.setText("Available: ");
     	goodCost.setText("$"+gasPrice);
-    	playerMoneyView.setText(AppUtil.game.getPlayerStatInfo()[7]);
-    	availableCargo.setText(String.format("%.2f", availableSpace));
+    	String playerMoneyStr = AppUtil.game.getPlayerStatInfo()[7];
+    	playerMoneyView.setText(playerMoneyStr);
+    	carGas.setText(String.format("%.2f", availableSpace));
     	SeekBar slider = (SeekBar)layout.findViewById(R.id.buySellQuantity);
+		double playerMoney = Integer.parseInt((String) playerMoneyStr.subSequence(1, playerMoneyStr.length()));
+		carGas.setText(String.format("%.2f", Math.min(Math.max(AppUtil.game.getGas(),0),AppUtil.game.getShip().getFuelCapacity())));
+		quantity.setText("0");
+		playerMoneyView.setText("$"+String.format("%.2f",playerMoney));
     	slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			
 			public void onStopTrackingTouch(SeekBar seekBar) {
@@ -116,10 +126,9 @@ public class RepairShopActivity extends Activity{
 				Log.i("GasReapirShop","Progess: "+buySellQuant);
 				String playerMoneyStr = AppUtil.game.getPlayerStatInfo()[7];
 				double playerMoney = Integer.parseInt((String) playerMoneyStr.subSequence(1, playerMoneyStr.length()));
-				availableCargo.setText(String.format("%.2f", Math.max(availableSpace-buySellQuant,0)));
+				carGas.setText(String.format("%.2f", Math.min(Math.max(AppUtil.game.getGas()+buySellQuant,0),AppUtil.game.getShip().getFuelCapacity())));
 				quantity.setText(String.format("%.2f", buySellQuant));
 				playerMoney = playerMoney - buySellQuant * gasPrice;
-				textView2.setText("Available: ");
 				playerMoneyView.setText("$"+String.format("%.2f",playerMoney));
 			}
 		});
@@ -150,6 +159,7 @@ public class RepairShopActivity extends Activity{
 			 AppUtil.game.setMoney((int)(AppUtil.game.getMoney()-quant*AppUtil.game.getGasPrice(AppUtil.game.getCurrentCity())));
 			 AppUtil.game.setGas(AppUtil.game.getGas()+quant);
 			 showMessage("Transaction Completed");
+			 fillRepairShopInfo();
 		 } else{
 			 showMessage("Not enough money!");
 		 }
