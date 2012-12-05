@@ -430,6 +430,9 @@ public class Game implements Serializable{
 	 * Returns the amount of gas left
 	 * @return a double representing the amount of gas left
 	 */
+	public double getFuelEfficiency(){
+		return player.getFuelEfficiency();
+	}
 	public double getGas(){
 		return player.getGas();
 	}

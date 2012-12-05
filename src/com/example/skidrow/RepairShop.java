@@ -105,6 +105,7 @@ public class RepairShop implements Serializable{
 		
 	}
 	public int getShipPrice(Ship ship){
+		if(priceList.get(ship.getShipName())==null)Log.i(TAG,"Price of " +ship.getShipName()+" is not in price list.");
 		return priceList.get(ship.getShipName());
 	}
 	public int buyShip(Ship newShip){

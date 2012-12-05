@@ -97,6 +97,7 @@ public class ShipRepairShopActivity extends Activity {
 		 final TextView speed = (TextView)layout.findViewById(R.id.speed);
 		 final TextView cargoSpace = (TextView)layout.findViewById(R.id.cargoSpace);
 		 final Ship car=AppUtil.game.getShipByName(ship);
+		 
 		 Log.i("ShipRepairSHopActivity", "Selected car: " + ship);
 		 shipPrice .setText("Price: $"+AppUtil.game.getShipPrice(car));
 		 speed.setText("Max Speed: "+ car.getSpeed());
@@ -115,10 +116,13 @@ public class ShipRepairShopActivity extends Activity {
 		 speed.setText("Speed: "+car.getSpeed());
 		 cargoSpace.setText("Cargo Space: "+car.getMaxCargoSpace());
 		 AlertDialog.Builder popup = new AlertDialog.Builder(this);
-		 
-	     popup.setView(layout).setTitle(ship).setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-	    			
-	    	 public void onClick(DialogInterface dialog, int which) {
+		 String title;
+		 if(AppUtil.game.getShip().getShipName().equals(ship))
+			 title=ship+" (Current Car)";
+		 else 
+			 title=ship;
+	     popup.setView(layout).setTitle(title).setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+	    	public void onClick(DialogInterface dialog, int which) {
 						
 					}
 					

@@ -63,9 +63,18 @@ public class RepairShopActivity extends Activity{
     }
 	public void fillRepairShopInfo(){
         TextView playerMoney = (TextView)this.findViewById(R.id.moneyTextViewRepairShop);
+        TextView gadgetText = (TextView)this.findViewById(R.id.gadgetSpecs);
+        TextView shipText = (TextView)this.findViewById(R.id.shipSpecs);
+        TextView recruitsText = (TextView)this.findViewById(R.id.recruitSpecs);
+        TextView gasText = (TextView)this.findViewById(R.id.gasSpecs);
         String[] info = AppUtil.game.getPlayerStatInfo();
         
         playerMoney.setText("Money: "+info[7]);
+        gasText.setText("Gas Left: "+AppUtil.game.getGas()+"\nGas Efficiency: "+AppUtil.game.getFuelEfficiency()+"\nMax Distance: "+String.format("%.2f", AppUtil.game.getShip().getFuelCapacity()/AppUtil.game.getFuelEfficiency()));
+        gadgetText.setText("Fire Power: " +AppUtil.game.getShip().getGunDamage()+"\nArmour: "+AppUtil.game.getShip().getArmour());
+        shipText.setText("Your Car: "+AppUtil.game.getShip().getShipName()+"\nSpeed: "+AppUtil.game.getShip().getSpeed()+"\nTurbo level: "+AppUtil.game.getShip().getTurbo()+"\nSecret Containers: "+AppUtil.game.getShip().getHiddenStorage());
+        recruitsText.setText("Communication Skills: "+info[0]+"\nDriver Skills: "+info[1]+"\nFighting Skills: "+info[2]+"\nDealer Skills: "+info[3]);
+        
     }
 	public static Context getContext(){
 		return RepairShopActivity.getContext();

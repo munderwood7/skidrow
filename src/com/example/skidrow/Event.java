@@ -15,6 +15,7 @@ public class Event implements Serializable
 	private int stepNum;
 	private int priceEffect;
 	private String terminationMessage;
+	private String drugAffected;
 	
 	/**
 	 * This is the construction for a event sets default duration to zero
@@ -123,6 +124,20 @@ public class Event implements Serializable
 	 */
 	public void setTerminationMessage(String terminationMessage) {
 		this.terminationMessage = terminationMessage;
+	}
+
+	/**
+	 * @return the drugAffected
+	 */
+	public String getDrugAffected() {
+		return drugAffected;
+	}
+
+	/**
+	 * @param drugAffected the drugAffected to set
+	 */
+	public void setDrugAffected(String drugAffected) {
+		this.drugAffected = drugAffected;
 	}
 
 	
