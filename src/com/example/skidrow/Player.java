@@ -17,9 +17,11 @@ public class Player implements Serializable{
 	
 	private static final double SMALL_CRIT_MULT = .5;
 	private static final double LARGE_CRIT_MULT = .5;
-	private static final int SMALL_CRIT_PROB = 2;
-	private static final int LARGE_CRIT_PROB = 3;
+	private static final int MAX_FORTIFY = 5;
 	private static final int TOTAL_PROB = 8;
+	private int SMALL_CRIT_PROB = 2;
+	private int LARGE_CRIT_PROB = 3;
+
 	private String name;
 	private Random rand;
 	private int money;
@@ -254,6 +256,32 @@ public class Player implements Serializable{
 		}
 		
 		return damage;
+	}
+	
+	public int fortifyAttack(boolean test){
+		if(test)
+			return SMALL_CRIT_PROB+(MAX_FORTIFY/2);
+		
+		int probability_increase = rand.nextInt(MAX_FORTIFY);
+		SMALL_CRIT_PROB+=probability_increase;
+		LARGE_CRIT_PROB+=probability_increase;
+		
+		return 0;
+	}
+	
+	public double[] getOrigingalFightVals(){
+		return new double[]{this.health, this.attack, this.SMALL_CRIT_PROB, this.LARGE_CRIT_PROB};
+	}
+	
+	public void setOriginalFightVals(boolean[] setVals, double[] vals){
+		if(setVals[0])
+			this.health = vals[0];
+		if(setVals[1])
+			this.attack = vals[1];
+		if(setVals[2])
+			this.SMALL_CRIT_PROB = (int)vals[2];
+		if(setVals[3])
+			this.LARGE_CRIT_PROB = (int)vals[3];
 	}
 
 	/**
