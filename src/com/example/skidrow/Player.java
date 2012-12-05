@@ -55,7 +55,7 @@ public class Player implements Serializable{
 		this.money = 10000;
 		this.car=new Ship("1977 Tokyo Sedan", 10, 1, 1, false, 0, 1, 1000, 5,80,10);
 		setGas(car.getFuelCapacity());
-		this.setHealth(car.getArmour());
+		this.health = car.getArmour();
 		this.attack = car.getGunDamage();
 		
 		initGoods();
