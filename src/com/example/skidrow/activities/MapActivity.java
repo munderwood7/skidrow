@@ -63,10 +63,21 @@ public class MapActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         currentCity=AppUtil.game.getCurrentCity();
-        eventGen=RandomEventGenerator.getInstance();
+        eventGen=new RandomEventGenerator(this);
         //eventGen= new RandomEventGenerator();
         //eventGen.generateEvent();
         fillCityList();
+    }
+    @Override
+    protected void onResume() {
+      eventGen.open();
+      super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+      eventGen.close();
+      super.onPause();
     }
 
     /**
@@ -167,15 +178,15 @@ public class MapActivity extends Activity {
      * @param view Travel button
      */
     public void travel(View view){
-		
+		if(AppUtil.game.getStep()==1){
+			eventGen.generateEvent();
+		}
     	if(AppUtil.game.checkGas(displayedCity)){
     		if(!AppUtil.game.getCurrentCity().getName().equals(displayedCity.getName())){
-	    		Event e=eventGen.getCurrE();
-	    		if(e==null)
-	    			eventGen.generateEvent();
-	    		else
+	    		Event e=eventGen.peek();
+	    		if(e!=null)
 	    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nCurrent move: "+AppUtil.game.getStep()+"\nStarts: "+eventGen.getNextEventStepNum()+"\nEnds: "+(eventGen.getNextEventStepNum()+eventGen.getNextEventDuration()));
-	            AppUtil.game.makeMove(displayedCity, eventGen.getCurrE());
+	            AppUtil.game.makeMove(displayedCity, eventGen.findNextEvent());
 		    	currentCity=displayedCity;
 		    	if(Debug) Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
 		    	if(Debug) Log.i(TAG, "new current city -> " + currentCity.getName());
@@ -187,7 +198,7 @@ public class MapActivity extends Activity {
 					e=eventGen.peek();
 					if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
 					refreshBottomStats();
-					showMessage2("You are now in " + currentCity.getName()+".","Newsflash!\n\n"+eventGen.getCurrE().getDescription());
+					showMessage2("You are now in " + currentCity.getName()+".","Newsflash!\n\n"+eventGen.peek().getDescription());
 	
 					
 				}
@@ -197,7 +208,7 @@ public class MapActivity extends Activity {
 					//generate new event
 					e=eventGen.pop();
 					if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
-					showMessage2("You are now in " + currentCity.getName(),"Newsflash!\n\n"+ eventGen.getCurrE().getTerminationMessage() );
+					showMessage2("You are now in " + currentCity.getName(),"Newsflash!\n\n"+ eventGen.peek().getTerminationMessage() );
 					eventGen.generateEvent();
 				} else{
 					showMessage2("You are now in " + currentCity.getName()+".","");

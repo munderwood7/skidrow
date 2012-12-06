@@ -81,7 +81,6 @@ public class Game implements Serializable{
 	 */
 	public void createGame(String name, int communicationSkills, int fighterSkills, int driverSkills, int dealerSkills, String difficultyLevel){
 		player = new Player(name, communicationSkills, fighterSkills, driverSkills, dealerSkills, difficultyLevel);
-		eventGen= new RandomEventGenerator();
 		generateCountry();
 		currentCity=citiesList[17];//Atlanta is set as the default starting location
 		generateMarket();
@@ -502,5 +501,6 @@ public class Game implements Serializable{
 	public double getHealth(){
 		return player.getHealth();
 	}
+	
 	
 }

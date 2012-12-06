@@ -13,10 +13,12 @@ public class Event implements Serializable
 	private String description;
 	private String name;
 	private int duration;
-	private int stepNum;
-	private int priceEffect;
+	private int stepNum;//when it start
+	private int priceEffect;//how much it lasts
 	private String terminationMessage;
+	private String city;
 	private String drugAffected;
+	private long id;
 	
 	/**
 	 * This is the construction for a event sets default duration to zero
@@ -29,6 +31,10 @@ public class Event implements Serializable
 		this.description=description;
 		this.duration=0;
 	}
+	public Event()
+	{
+
+	}
 	
 	/**
 	 * Constructor with more parameters that determine its duration and price effect
@@ -37,14 +43,19 @@ public class Event implements Serializable
 	 * @param description brief description of the event
 	 * @param priceEffect int value of event effect on prices of goods. Can be either positive or negative
 	 */
-	public Event(String name,String terminationMessage, int duration, String description, int priceEffect, String goodAffected)
-	{
+	
+	public Event(String name, String terminationMessage,int initialStep, int duration, String description, int priceEffect, String goodAffected, String city) {
+
 		this.name=name;
-		this.description=description;
+		this.terminationMessage=terminationMessage;
+		this.stepNum=initialStep;
 		this.duration=duration;
+		this.description=description;
 		this.priceEffect=priceEffect;
-		this.setTerminationMessage(terminationMessage);
 		this.drugAffected =  goodAffected;
+		this.city=city;
+		
+
 	}
 	
 	/**
@@ -55,7 +66,13 @@ public class Event implements Serializable
 	{
 		return description;
 	}
-	
+	public void setDescription(String description)
+	{
+		this.description=description;
+	}
+	public void setPriceEffect(int priceEffec){
+		this.priceEffect=priceEffect;
+	}
 	/**
 	 * Returns the name of the event
 	 * @return event's name
@@ -63,6 +80,10 @@ public class Event implements Serializable
 	public String getName()
 	{
 		return name;
+	}
+	public  void setName(String name)
+	{
+		this.name=name;
 	}
 	
 	/**
@@ -141,6 +162,36 @@ public class Event implements Serializable
 	public void setDrugAffected(String drugAffected) {
 		this.drugAffected = drugAffected;
 	}
+
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the terminationNum
+	 */
+
 
 	
 

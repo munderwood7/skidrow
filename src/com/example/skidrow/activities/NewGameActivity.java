@@ -1,9 +1,11 @@
 package com.example.skidrow.activities;
 import com.example.skidrow.AppUtil;
+import com.example.skidrow.MySQLiteHelper;
 import com.example.skidrow.R;
 import com.example.skidrow.R.id;
 import com.example.skidrow.R.layout;
 import com.example.skidrow.R.menu;
+import com.example.skidrow.RandomEventGenerator;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -28,12 +30,13 @@ public class NewGameActivity extends Activity {
      * True if we want to debug false otherwise
      */
     private boolean Debug=true;
+    private RandomEventGenerator db; 
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_game);
-        
+        db= new RandomEventGenerator(this);
         AppUtil.forceLayout(this);
         setListeners();
     }
@@ -124,6 +127,7 @@ public class NewGameActivity extends Activity {
         }
         if(ensureSkillPointsArePositiveIntegers()){
             if(sum==16 && !playerName.getText().toString().equals("")){
+            	//Destroy Old database
                 AppUtil.game.createGame(playerName.getText().toString(), skill[0], skill[1], skill[2], skill[3],difficLevel);
                 Intent intent = new Intent(this, PlayerStatsActivity.class);
                 //Clears the activity stack

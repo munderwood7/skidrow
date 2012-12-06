@@ -2,9 +2,15 @@ package com.example.skidrow.activities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.example.skidrow.AppUtil;
+import com.example.skidrow.Event;
 import com.example.skidrow.R;
+import com.example.skidrow.RandomEventGenerator;
+import com.example.skidrow.Ship;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -22,22 +28,32 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class PlayerStatsActivity extends ListActivity {
-	 public static final ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+	public static final ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+	private RandomEventGenerator datasource;
 	Button saveButton;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_stats);
+        
+        datasource = new RandomEventGenerator(this);
+        datasource.open();
+        
         SimpleAdapter adapter = new SimpleAdapter(
                 this,
                 list,
-                R.layout.row,
-                new String[] {"carModel","price","speed"},
-                new int[] {R.id.text1,R.id.text2, R.id.text3}
+                R.layout.row_event,
+                new String[] {"eventName","drug","deltaPrice","city","termination"},
+                new int[] {R.id.eventName,R.id.eventDrugDynamic,R.id.eventPriceDynamic, R.id.eventCityDynamic,R.id.eventTerminationDynamic}
                 );
-        setListAdapter(adapter);
-        refreshBottomStats();
-        fillPlayerStats();
+        
+	     setListAdapter(adapter);
+	     refreshBottomStats();
+	     fillEventsList();
+        
+        
+        
         
         
         
@@ -46,10 +62,13 @@ public class PlayerStatsActivity extends ListActivity {
     /**
      * Fills the player stats view of the layout with the appropriate values.
      */
-    public void fillPlayerStats(){
-    	String[] shipNames=AppUtil.game.getNamesOfShips();
-        for(int i=0;i<shipNames.length;i++){
-                HashMap<String,String> temp=AppUtil.game.getHashMapOfShip(shipNames[i]);
+    public void fillEventsList(){
+    	Event[] events=datasource.getAllCurrentEventsSortedByInitialStepArr();
+    	Log.i("PlayerStatsActivity","Number of elements returned by datasource.getAllCurrentEventsSortedByInitialStepArr(): "+events.length);
+        for(int i=0;i<events.length;i++){
+                HashMap<String,String> temp=datasource.getHashMapOfEvent(events[i]);
+                System.out.println("eventName: "+temp.get("eventName"));
+                System.out.println("price effect: "+temp.get("deltaPrice"));
                 list.add(temp);
         }
     }
@@ -139,4 +158,14 @@ public class PlayerStatsActivity extends ListActivity {
     	parent.draw(canvas);
     	AppUtil.saveState(this, screen);
     }
+    protected void onResume() {
+        datasource.open();
+        super.onResume();
+      }
+
+      @Override
+      protected void onPause() {
+        datasource.close();
+        super.onPause();
+      }
 }
