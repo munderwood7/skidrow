@@ -65,7 +65,7 @@ public class FightEventActivity extends Activity {
     	ImageView image = (ImageView)this.findViewById(R.id.imageView1);
     	double skillMult;
     	Random rand = new Random();
-    	int randNum = 1;//new Random().nextInt(2);
+    	int randNum = 0;//new Random().nextInt(2);
     	if(randNum == 0){
     		currentEnemy = enemy.PIRATE;
     		enemeyStr = "Dealer";
