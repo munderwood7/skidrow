@@ -38,7 +38,7 @@
          android:layout_below="@+id/eventName" 
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:text="Change in Price: "/>
+        android:text=""/>
 <TextView android:id="@+id/eventPriceDynamic"
         android:textSize="16sp"
         android:textStyle="italic"

@@ -82,7 +82,7 @@ public class PlayerStatsActivity extends ListActivity {
 			@Override
 			public int compare(HashMap<String, String> arg0, HashMap<String, String> arg1) {
 				// TODO Auto-generated method stub
-				return Integer.parseInt(arg0.get("termination"))-Integer.parseInt(arg1.get("termination"));
+				return Integer.parseInt(arg1.get("termination"))-Integer.parseInt(arg0.get("termination"));
 			}
 		});
     }
