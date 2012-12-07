@@ -41,6 +41,7 @@ public class Game implements Serializable{
 	private City[] citiesList;
 	private int step;
 	private Event currEvent;
+	private AIAgent com;
 	
 
 	//Tag for logcat
@@ -502,5 +503,70 @@ public class Game implements Serializable{
 		return player.getHealth();
 	}
 	
-	
+	public double[] miniMaxTree(String personMakingMove, int depth, int maxDepth, int moveType){
+		if(player.getHealth() <=0 || com.getHealth() <=0 || depth >= maxDepth){
+			return new double[]{heuristicEval(personMakingMove), moveType};
+		}
+		else{
+			double smallMove;
+			double largeMove;
+			double fortify;
+			double[] playerOrigVals = player.getOrigingalFightVals();
+			double[] comOrigVals = com.getOrigingalFightVals();
+			boolean[] setVals = {true,true,true,true};
+			if(personMakingMove.equals("player")){
+				if(moveType == 1){
+					smallMove = miniMaxTree("com", depth+1, maxDepth, 0)[0];
+					largeMove = miniMaxTree("com", depth+1, maxDepth, 1)[0];
+					fortify = miniMaxTree("com", depth+1, maxDepth, 2)[0];
+				}
+				else{
+					player.smallAttack(false, com);
+					smallMove = miniMaxTree("com", depth+1, maxDepth, 0)[0];
+					com.setOriginalFightVals(setVals, comOrigVals);
+					
+					player.largeAttack(false, com);
+					largeMove = miniMaxTree("com", depth+1, maxDepth, 1)[0];
+					com.setOriginalFightVals(setVals, comOrigVals);
+					
+					player.fortifyAttack(false);
+					fortify = miniMaxTree("com", depth+1, maxDepth, 2)[0];
+					player.setOriginalFightVals(setVals, playerOrigVals);
+				}
+			}
+			else{
+				if(moveType == 1){
+					smallMove = miniMaxTree("player", depth+1, maxDepth, 0)[0];
+					largeMove = miniMaxTree("player", depth+1, maxDepth, 1)[0];
+					fortify = miniMaxTree("player", depth+1, maxDepth, 2)[0];
+				}
+				else{
+					com.smallAttack(false, player);
+					smallMove = miniMaxTree("player", depth+1, maxDepth, 0)[0];
+					player.setOriginalFightVals(setVals, playerOrigVals);
+					
+					com.largeAttack(false, player);
+					largeMove = miniMaxTree("player", depth+1, maxDepth, 1)[0];
+					player.setOriginalFightVals(setVals, playerOrigVals);
+					
+					com.fortifyAttack(false);
+					fortify = miniMaxTree("player", depth+1, maxDepth, 2)[0];
+					com.setOriginalFightVals(setVals, comOrigVals);
+				}
+			}
+			
+			if(smallMove > largeMove && smallMove > fortify)
+				return new double[]{smallMove, 0};
+			else if(largeMove > smallMove && largeMove > fortify)
+				return new double[]{largeMove, 1};
+			else
+				return new double[]{fortify, 2};
+		}
+	}
+	private double heuristicEval(String personMakingMove){
+		double playerHealth = player.getHealth();
+		double comHealth = com.getHealth();
+		
+		return comHealth-playerHealth;
+	}
 }
