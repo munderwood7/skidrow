@@ -188,6 +188,11 @@ public class MapActivity extends Activity {
 		}
     	if(AppUtil.game.checkGas(displayedCity)){
     		if(!AppUtil.game.getCurrentCity().getName().equals(displayedCity.getName())){
+    			if(AppUtil.game.checkForEncounter(1)){
+					Intent intent = new Intent(this, FightEventActivity.class);
+					this.startActivity(intent);
+				}
+    			
 	    		Event e=eventGen.peek();
 	    		if(e!=null)
 	    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nStarts: "+eventGen.getNextEventStepNum()+"\nEnds: "+(eventGen.getNextEventStepNum()+eventGen.getNextEventDuration()));
@@ -217,10 +222,6 @@ public class MapActivity extends Activity {
 					
 				} else{
 					showMessage2("You are now in " + currentCity.getName()+".","");
-				}
-				if(AppUtil.game.checkForEncounter(1)){
-					Intent intent = new Intent(this, FightEventActivity.class);
-					this.startActivity(intent);
 				}
 				AppUtil.game.generateMarket();
     		}else{
