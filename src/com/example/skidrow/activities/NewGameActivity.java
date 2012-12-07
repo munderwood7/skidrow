@@ -131,7 +131,7 @@ public class NewGameActivity extends Activity {
             	//Destroy Old database
             	this.getBaseContext().deleteDatabase(DATABASE_NAME);
                 AppUtil.game.createGame(playerName.getText().toString(), skill[0], skill[1], skill[2], skill[3],difficLevel);
-                Intent intent = new Intent(this, PlayerStatsActivity.class);
+                Intent intent = new Intent(this, RepairShopActivity.class);
                 //Clears the activity stack
             	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

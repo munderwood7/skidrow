@@ -188,7 +188,7 @@ public class MapActivity extends Activity {
 		}
     	if(AppUtil.game.checkGas(displayedCity)){
     		if(!AppUtil.game.getCurrentCity().getName().equals(displayedCity.getName())){
-    			if(AppUtil.game.checkForEncounter(1)){
+    			if(AppUtil.game.checkForEncounter(.5)){
 					Intent intent = new Intent(this, FightEventActivity.class);
 					this.startActivity(intent);
 				}
