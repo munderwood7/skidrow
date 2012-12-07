@@ -72,6 +72,10 @@ public class AIAgent {
 		return damage;
 	}
 	
+	public int getMaxDepth(){
+		return this.searchDepth;
+	}
+	
 	public double getHealth(){
 		return this.health;
 	}

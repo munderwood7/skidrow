@@ -59,6 +59,7 @@ public class Player implements Serializable{
 		setGas(car.getFuelCapacity());
 		this.health = car.getArmour();
 		this.attack = car.getGunDamage();
+		this.rand = new Random();
 		
 		initGoods();
 
@@ -243,7 +244,8 @@ public class Player implements Serializable{
 			damage = damage * SMALL_CRIT_MULT;
 		}
 		
-		com.setHealth(com.getHealth()-damage);
+		if(com!=null)
+			com.setHealth(com.getHealth()-damage);
 		
 		return damage;
 	}
