@@ -16,8 +16,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
+import java.util.Random;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -222,6 +223,15 @@ public class Game implements Serializable{
 		currEvent = e;
 		increaseStep();
 		
+	}
+	
+	private boolean checkForEncounter(double encounterProb, double[] typeProb){
+		Random rand = new Random();
+		if(rand.nextDouble()<encounterProb){
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/**
