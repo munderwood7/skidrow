@@ -218,7 +218,7 @@ public class MapActivity extends Activity {
 				} else{
 					showMessage2("You are now in " + currentCity.getName()+".","");
 				}
-				if(AppUtil.game.checkForEncounter(1)){
+				if(AppUtil.game.checkForEncounter(0)){
 					Intent intent = new Intent(this, FightEventActivity.class);
 					this.startActivity(intent);
 				}
