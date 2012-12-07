@@ -81,7 +81,6 @@ public class RepairShop implements Serializable{
 			list.add((Ship)entry.getKey());
 		}
 		Collections.sort(list, new Comparator<Ship>() {
-			@Override
 			public int compare(Ship a, Ship b) {
 				return priceList.get(a.getShipName())-priceList.get(b.getShipName());
 			}

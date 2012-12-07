@@ -25,6 +25,8 @@ public class City implements Serializable{
 	 * @param CityName string of city name
 	 */
 	public City(String CityName){
+		Random rand = new Random();
+		
 		Name = CityName;
 		setTechLevel();
 		setLocation();

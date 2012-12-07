@@ -1,0 +1,251 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="150dp"
+        android:layout_height="235dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/pirate" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="235dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="-35dp"
+        android:src="@drawable/person" />
+
+    <RelativeLayout
+        android:id="@+id/textField"
+        android:layout_width="fill_parent"
+        android:layout_height="170dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:id="@+id/encouterText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="You have encountered a pirate"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="5dp"
+            android:textColor="#000000" />
+
+        <View
+            android:id="@+id/View01"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/encouterText"
+            android:background="#808080"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+
+        <Button
+            android:id="@+id/fightButton"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/View01"
+            android:layout_below="@+id/View01"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="19dp"
+            android:text="Fight"
+            android:onClick="fightOptionSelected" />
+
+        <Button
+            android:id="@+id/specialButton"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"
+            android:text="Trade"
+            android:onClick="fightOptionSelected" />
+
+        <Button
+            android:id="@+id/fleeButton"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/fightButton"
+            android:layout_alignBottom="@+id/fightButton"
+            android:layout_alignRight="@+id/View01"
+            android:layout_marginRight="26dp"
+            android:text="Flee"
+            android:onClick="fightOptionSelected" />
+
+        <Button
+            android:id="@+id/fortifyAttackButton"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/specialButton"
+            android:layout_alignLeft="@+id/fightButton"
+            android:text="Fortify"
+            android:visibility="invisible"
+            android:onClick="fightOptionSelected" />
+
+        <Button
+            android:id="@+id/fleeDurringBattleButton"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/specialButton"
+            android:layout_alignRight="@+id/fleeButton"
+            android:text="Flee"
+            android:visibility="invisible"
+            android:onClick="fightOptionSelected" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/textField"
+    	android:layout_width="190dp"
+        android:layout_height="110dp"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_marginRight="25dp"
+        android:layout_toLeftOf="@+id/imageView1"
+        android:background="#808080" />
+
+    <View
+        android:id="@+id/View01"
+        android:layout_width="190dp"
+        android:layout_height="110dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/imageView2"
+        android:background="#808080" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textField"
+        android:layout_alignTop="@+id/textField"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:text="Fighting: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textField"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:text="Health: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/comFighting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="2000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/comHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="15000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/View01"
+        android:layout_alignTop="@+id/View01"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="2dp"
+        android:text="Health: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/View01"
+        android:layout_alignTop="@+id/View01"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="2dp"
+        android:text="Fighting: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView432"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:text="Speed: "
+        android:layout_marginTop="5dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/comSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView432"
+        android:layout_alignBottom="@+id/textView432"
+        android:layout_toRightOf="@+id/textView432"
+        android:text="30"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignTop="@+id/View01"
+        android:layout_marginTop="65dp"
+        android:text="Speed: "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/playerFighting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/View01"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_marginTop="5dp"
+        android:text="1500"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/playerHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/View01"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_marginTop="35dp"
+        android:text="25430"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/playerSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/View01"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_marginTop="65dp"
+        android:text="32"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

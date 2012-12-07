@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.skidrow"
     android:versionCode="1"
@@ -11,7 +12,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.example.skidrow.activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
@@ -21,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.CntinueActivity"
+            android:name="com.example.skidrow.activities.CntinueActivity"
             android:label="@string/title_activity_cntinue"
             android:theme="@style/noAnimTheme" >
             <meta-data
@@ -29,7 +30,7 @@
                 android:value="MainActivity" />
         </activity>
         <activity
-            android:name=".activities.NewGameActivity"
+            android:name="com.example.skidrow.activities.NewGameActivity"
             android:label="@string/title_activity_new_game"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
@@ -37,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.HighScoreActivity"
+            android:name="com.example.skidrow.activities.HighScoreActivity"
             android:label="@string/title_activity_high_score"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
@@ -45,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MapActivity"
+            android:name="com.example.skidrow.activities.MapActivity"
             android:label="@string/title_activity_map"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
@@ -53,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-    		android:name=".activities.PlayerStatsActivity"
+            android:name="com.example.skidrow.activities.PlayerStatsActivity"
             android:label="@string/title_activity_player_stats"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
@@ -61,31 +62,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MarketActivity"
-            android:label="@string/title_activity_market" 
-            android:theme="@style/noAnimTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-         <activity
-            android:name=".activities.RepairShopActivity"
-            android:label="@string/title_activity_repair_shop" 
+            android:name="com.example.skidrow.activities.MarketActivity"
+            android:label="@string/title_activity_market"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ShipRepairShopActivity"
-            android:label="@string/title_activity_ship_repair_shop" 
+            android:name="com.example.skidrow.activities.RepairShopActivity"
+            android:label="@string/title_activity_repair_shop"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.GasRepairShopActivity"
+            android:name="com.example.skidrow.activities.ShipRepairShopActivity"
+            android:label="@string/title_activity_ship_repair_shop"
+            android:theme="@style/noAnimTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.skidrow.activities.GasRepairShopActivity"
             android:label="@string/title_activity_gas_repair_shop"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
@@ -93,7 +94,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.GadgetRepairShopActivity"
+            android:name="com.example.skidrow.activities.GadgetRepairShopActivity"
             android:label="@string/title_activity_gadget_repair_shop"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
@@ -101,12 +102,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.RecruitRepairShopActivity"
+            android:name="com.example.skidrow.activities.RecruitRepairShopActivity"
             android:label="@string/title_activity_recruit_repair_shop"
             android:theme="@style/noAnimTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.skidrow.activities.FightEventActivity"
+            android:label="@string/title_activity_fight"
+            android:theme="@style/noAnimTheme" >
         </activity>
     </application>
 

@@ -65,13 +65,13 @@ public class FightEventActivity extends Activity {
     	else
     		currentEnemy = enemy.COP;
     	
-    	String playerDifficulty = AppUtil.game.getPlayerStatInfo()[9];
+    	String playerDifficulty = AppUtil.game.getPlayerDifficulty();
     	int searchDepth;
-    	if(playerDifficulty.equals("easy")){
+    	if(playerDifficulty.equals("Easy")){
     		skillMult = -Math.abs(.5-rand.nextDouble());
     		searchDepth=5;
     	}
-    	else if(playerDifficulty.equals("medium")){
+    	else if(playerDifficulty.equals("Medium")){
     		skillMult = Math.abs(.5-rand.nextDouble());
     		searchDepth=8;
     	}
@@ -79,9 +79,9 @@ public class FightEventActivity extends Activity {
     		skillMult = 2-rand.nextDouble();
     		searchDepth=10;
     	}
-    	double comAttack = AppUtil.game.getPlayerFightInfo()[0] - AppUtil.game.getPlayerFightInfo()[0]*skillMult;
-    	double comHealth = AppUtil.game.getPlayerFightInfo()[1] - AppUtil.game.getPlayerFightInfo()[1]*skillMult;
-    	double comSpeed = AppUtil.game.getPlayerFightInfo()[2] - AppUtil.game.getPlayerFightInfo()[2]*skillMult;
+    	double comAttack = AppUtil.game.getPlayerFightInfo()[0] + AppUtil.game.getPlayerFightInfo()[0]*skillMult;
+    	double comHealth = AppUtil.game.getPlayerFightInfo()[1] + AppUtil.game.getPlayerFightInfo()[1]*skillMult - Math.abs(.5-rand.nextDouble());
+    	double comSpeed = AppUtil.game.getPlayerFightInfo()[2] + AppUtil.game.getPlayerFightInfo()[2]*skillMult - Math.abs(.5-rand.nextDouble());
     	
     	
     	com = new AIAgent(10, searchDepth, comAttack, comHealth, comSpeed);
@@ -119,8 +119,26 @@ public class FightEventActivity extends Activity {
     	playerFighting.setText(df.format(AppUtil.game.getPlayerFightInfo()[0]));
     	playerHealth.setText(df.format(AppUtil.game.getPlayerFightInfo()[1]));
     	playerSpeed.setText(df.format(AppUtil.game.getPlayerFightInfo()[2]));
-    	playerFighting.setText(df.format(com.getAttack()));
-    	playerHealth.setText(df.format(com.getHealth()));
-    	playerSpeed.setText(df.format(com.getSpeed()));
+    	comFighting.setText(df.format(com.getAttack()));
+    	comHealth.setText(df.format(com.getHealth()));
+    	comSpeed.setText(df.format(com.getSpeed()));
+    }
+    
+    public void fightOptionSelected(View view){
+    	switch(view.getId()){
+    		case R.id.fightButton:
+    			fight();
+    			break;
+    		case R.id.fleeButton:
+    			flee();
+    			break;
+    	}
+    }
+    
+    private void fight(){
+    	
+    }
+    
+    private void flee(){
     }
 }

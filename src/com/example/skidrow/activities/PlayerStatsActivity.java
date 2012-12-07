@@ -79,7 +79,6 @@ public class PlayerStatsActivity extends ListActivity {
         }
         Collections.sort(list, new Comparator< HashMap<String,String>>() {
 
-			@Override
 			public int compare(HashMap<String, String> arg0, HashMap<String, String> arg1) {
 				// TODO Auto-generated method stub
 				return Integer.parseInt(arg1.get("termination"))-Integer.parseInt(arg0.get("termination"));

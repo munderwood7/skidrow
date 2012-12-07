@@ -78,7 +78,6 @@ public class GadgetShop {
 			list.add((Gadget)entry.getKey());
 		}
 		Collections.sort(list, new Comparator<Gadget>() {
-			@Override
 			public int compare(Gadget a, Gadget b) {
 				return priceList.get(a.getGadgetName())-priceList.get(b.getGadgetName());
 			}

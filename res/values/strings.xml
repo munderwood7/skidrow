@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Skid Row</string>
@@ -13,7 +14,6 @@
         <item>Medium</item>
         <item>Hard</item>
     </string-array>
-    
     <string-array name="buySell">
         <item>Buy</item>
         <item>Sell</item>
@@ -29,7 +29,8 @@
     <string name="title_activity_gas_repair_shop">GasStoreActivity</string>
     <string name="title_activity_ship_repair_shop">ShipStoreActivity</string>
     <string name="title_activity_gadget_repair_shop">GadgetStoreActivity</string>
-     <string name="title_activity_recruit_repair_shop">RecruitStoreActivity</string>
+    <string name="title_activity_recruit_repair_shop">RecruitStoreActivity</string>
     <string name="SAVE">SAVE_GAME</string>
+    <string name="title_activity_fight">FightActivity</string>
 
 </resources>

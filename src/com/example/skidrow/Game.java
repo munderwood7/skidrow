@@ -197,9 +197,13 @@ public class Game implements Serializable{
 		info[6] = player.getName();
 		info[7] = "$"+Integer.toString(player.getMoney());
 		info[8] = Double.toString(getGas());
-		
+		//info[9] = player.getDifficultyLevel();
 		
 		return info;
+	}
+	
+	public String getPlayerDifficulty(){
+		return player.getDifficultyLevel();
 	}
 	
 	/**
@@ -225,7 +229,7 @@ public class Game implements Serializable{
 		
 	}
 	
-	private boolean checkForEncounter(double encounterProb, double[] typeProb){
+	public boolean checkForEncounter(double encounterProb){
 		Random rand = new Random();
 		if(rand.nextDouble()<encounterProb){
 			return true;
@@ -578,5 +582,9 @@ public class Game implements Serializable{
 		double comHealth = com.getHealth();
 		
 		return comHealth-playerHealth;
+	}
+	
+	public double[] getPlayerFightInfo(){
+		return new double[]{player.getAttack(), player.getHealth(), player.getSpeed()};
 	}
 }
