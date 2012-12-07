@@ -11,25 +11,19 @@ public class AIAgent {
 	private static final int MAX_FORTIFY=5;
 	
 	private Random rand;
-	private String name;
-	private boolean fightPossible;
-	private boolean fleePossible;
-	private boolean tradePossible;
 	private int aggression;
 	private double attack;
 	private int searchDepth;
 	private double health;
+	private double speed;
 	
-	public AIAgent(String name, boolean fight, boolean flee, boolean trade, int aggression, double attack, int level, double health){
-		this.name = name;
-		this.fightPossible = fight;
-		this.fleePossible = flee;
-		this.tradePossible = trade;
+	public AIAgent(int aggression, int level, double attack, double health, double speed){
 		this.aggression = aggression;
 		this.rand = new Random();
 		this.searchDepth = level;
 		this.attack = attack;
 		this.health = health;
+		this.speed = speed;
 	}
 	
 	/**
@@ -80,6 +74,14 @@ public class AIAgent {
 	
 	public double getHealth(){
 		return this.health;
+	}
+	
+	public double getAttack(){
+		return this.attack;
+	}
+	
+	public double getSpeed(){
+		return this.speed;
 	}
 	
 	public void setHealth(double health){

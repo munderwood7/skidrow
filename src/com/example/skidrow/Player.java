@@ -73,6 +73,14 @@ public class Player implements Serializable{
 		return name;
 	}
 	
+	public double getAttack(){
+		return attack;
+	}
+	
+	public double getSpeed(){
+		return this.car.getSpeed();
+	}
+	
 	/**
 	 * Getter for all player skills. Returns an array of the skills organized as follows:
 	 * [0]=communicationSkills,[1]=fighterSkills,[2]=driverSkills.[3]=dealerSkills
