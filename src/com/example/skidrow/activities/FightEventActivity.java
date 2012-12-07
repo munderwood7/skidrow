@@ -196,6 +196,7 @@ public class FightEventActivity extends Activity {
     		 errorCode=-1;
     		 
     		 int bribe =0;
+    		 bribe = (int) ((Integer.parseInt(AppUtil.game.getPlayerStatInfo()[7])/3.0)*(AppUtil.game.com.getHealth()/Integer.parseInt(AppUtil.game.getPlayerStatInfo()[5])));
     		 this.showMessage2("Bribe", "Copper requests a " + bribe +"\nDo you accept?");
     	}
     }
