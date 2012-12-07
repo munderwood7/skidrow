@@ -191,6 +191,21 @@ public class Event implements Serializable
 	/**
 	 * @return the terminationNum
 	 */
+	public boolean equals(Event a) {
+        if (a.getName().equals(this.getName())) {
+        	if(a.getDrugAffected().equals(this.getDrugAffected())){
+        		if(a.getCity().equals(this.getCity())){
+        			if(a.getPriceEffect()==this.getPriceEffect()){
+        				if(a.getStepNum()==this.getStepNum()){
+        					return true;
+        				}
+        			}
+        		}
+        	}
+
+        }
+    	return false;  
+    }
 
 
 	

@@ -1,6 +1,8 @@
 package com.example.skidrow.activities;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +30,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class PlayerStatsActivity extends ListActivity {
-	public static final ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+	private ArrayList<HashMap<String,String>> list;
 	private RandomEventGenerator datasource;
 	Button saveButton;
     
@@ -36,7 +38,7 @@ public class PlayerStatsActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_stats);
-        
+        list = new ArrayList<HashMap<String,String>>();
         datasource = new RandomEventGenerator(this);
         datasource.open();
         
@@ -63,14 +65,26 @@ public class PlayerStatsActivity extends ListActivity {
      * Fills the player stats view of the layout with the appropriate values.
      */
     public void fillEventsList(){
+    	list.clear();
     	Event[] events=datasource.getAllCurrentEventsSortedByInitialStepArr();
     	Log.i("PlayerStatsActivity","Number of elements returned by datasource.getAllCurrentEventsSortedByInitialStepArr(): "+events.length);
         for(int i=0;i<events.length;i++){
                 HashMap<String,String> temp=datasource.getHashMapOfEvent(events[i]);
                 System.out.println("eventName: "+temp.get("eventName"));
                 System.out.println("price effect: "+temp.get("deltaPrice"));
-                list.add(temp);
+                if(events[i].getStepNum()<AppUtil.game.getStep()+1){
+                	 list.add(temp);
+                }
+               
         }
+        Collections.sort(list, new Comparator< HashMap<String,String>>() {
+
+			@Override
+			public int compare(HashMap<String, String> arg0, HashMap<String, String> arg1) {
+				// TODO Auto-generated method stub
+				return Integer.parseInt(arg0.get("termination"))-Integer.parseInt(arg1.get("termination"));
+			}
+		});
     }
     
     

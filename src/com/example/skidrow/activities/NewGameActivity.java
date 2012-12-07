@@ -30,6 +30,7 @@ public class NewGameActivity extends Activity {
      * True if we want to debug false otherwise
      */
     private boolean Debug=true;
+    private static final String DATABASE_NAME = "Events Database";
     private RandomEventGenerator db; 
     
     @Override
@@ -128,6 +129,7 @@ public class NewGameActivity extends Activity {
         if(ensureSkillPointsArePositiveIntegers()){
             if(sum==16 && !playerName.getText().toString().equals("")){
             	//Destroy Old database
+            	this.getBaseContext().deleteDatabase(DATABASE_NAME);
                 AppUtil.game.createGame(playerName.getText().toString(), skill[0], skill[1], skill[2], skill[3],difficLevel);
                 Intent intent = new Intent(this, PlayerStatsActivity.class);
                 //Clears the activity stack

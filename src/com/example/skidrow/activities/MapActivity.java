@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import com.example.skidrow.AppUtil;
 import com.example.skidrow.City;
 import com.example.skidrow.Event;
+import com.example.skidrow.QueueEvents;
 import com.example.skidrow.R;
 import com.example.skidrow.RandomEventGenerator;
 import com.example.skidrow.R.id;
@@ -56,7 +57,9 @@ public class MapActivity extends Activity {
      * City to be shown 
      */
     private City displayedCity;
+    private int flag=0;
     private RandomEventGenerator eventGen;
+    private QueueEvents qe;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class MapActivity extends Activity {
         setContentView(R.layout.map);
         currentCity=AppUtil.game.getCurrentCity();
         eventGen=new RandomEventGenerator(this);
+        qe=QueueEvents.getInstance();
         //eventGen= new RandomEventGenerator();
         //eventGen.generateEvent();
         fillCityList();
@@ -178,18 +182,18 @@ public class MapActivity extends Activity {
      * @param view Travel button
      */
     public void travel(View view){
-		if(AppUtil.game.getStep()==1){
+		if(AppUtil.game.getStep()==1&&flag==0){
 			eventGen.generateEvent();
+			flag=1;
 		}
     	if(AppUtil.game.checkGas(displayedCity)){
     		if(!AppUtil.game.getCurrentCity().getName().equals(displayedCity.getName())){
 	    		Event e=eventGen.peek();
 	    		if(e!=null)
-	    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nCurrent move: "+AppUtil.game.getStep()+"\nStarts: "+eventGen.getNextEventStepNum()+"\nEnds: "+(eventGen.getNextEventStepNum()+eventGen.getNextEventDuration()));
+	    			if(Debug) Log.i(TAG,"Current event: " + e.getDescription() +"\nStarts: "+eventGen.getNextEventStepNum()+"\nEnds: "+(eventGen.getNextEventStepNum()+eventGen.getNextEventDuration()));
 	            AppUtil.game.makeMove(displayedCity, eventGen.findNextEvent());
+	            if(Debug) Log.i(TAG, "*******NEW STEP: "+AppUtil.game.getStep()+"*******");
 		    	currentCity=displayedCity;
-		    	if(Debug) Log.i(TAG, "Gas left: " + AppUtil.game.getGas());
-		    	if(Debug) Log.i(TAG, "new current city -> " + currentCity.getName());
 		    	TextView distance = (TextView)this.findViewById(R.id.crntDistance);
 		    	distance.setText(getDistance(displayedCity));
 				if(eventGen.checkStartEvent()){
@@ -198,7 +202,7 @@ public class MapActivity extends Activity {
 					e=eventGen.peek();
 					if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
 					refreshBottomStats();
-					showMessage2("You are now in " + currentCity.getName()+".","Newsflash!\n\n"+eventGen.peek().getDescription());
+					showMessage2("You are now in " + currentCity.getName()+".","Newsflash!\n\n"+eventGen.peek().getDescription()+"\n\nCheck the news tab for more information.");
 	
 					
 				}
@@ -207,9 +211,10 @@ public class MapActivity extends Activity {
 					//dequeue event
 					//generate new event
 					e=eventGen.pop();
+					if(Debug) Log.i(TAG, "After poping the size of the event is:  " + eventGen.getSizeOfEventList());
 					if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
-					showMessage2("You are now in " + currentCity.getName(),"Newsflash!\n\n"+ eventGen.peek().getTerminationMessage() );
-					eventGen.generateEvent();
+					showMessage2("You are now in " + currentCity.getName(),"Newsflash!\n\n"+ e.getTerminationMessage() );
+					if(eventGen.allowed()) eventGen.generateEvent();
 				} else{
 					showMessage2("You are now in " + currentCity.getName()+".","");
 				}

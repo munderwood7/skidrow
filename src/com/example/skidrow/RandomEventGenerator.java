@@ -2,6 +2,8 @@ package com.example.skidrow;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,12 +32,66 @@ public class RandomEventGenerator implements Serializable{
 	private int currentStep;
 	private Event currE;
 	private int dbVersion;
+	private QueueEvents queue;
 	//Tag for logcat
     protected static final String TAG = "RandomEventGenerator";
     //True if we want to debug false otherwise
     private boolean Debug=true;
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
+    private String[] eventName={
+    		"Drought",
+    		"Cold",
+    		"Bullish Economy",
+    		"Music Festival",
+    		"War",
+    		"Intensified Border Control",
+    		"Recent Legislation Changes",
+    		"Bearish Economy",
+    		"Finals",
+    		"Heroin Confiscation"		
+    };
+    private String[] terminationDescriptionList={
+    		"It has been raining the last couple of days.",
+    		"The temparute has been rising.",
+    		"The economy is slowing down.",
+    		"Crazy fans burn down the music festival site.",
+    		"The war is finally over!",
+    		"Border Control funds have been reduced.",
+    		"The legislation was reverted.",
+    		"The economy is recuperating from the financial downturn.",
+    		"A nearby university has finals week next week.",
+    		"The local drug dealers were able to recuperate their confiscated drugs."
+    };
+    public String[] descriptionList={
+    		" There has been a drought for an extended period that has severely affected drug production.",
+    		" There has been a radical decrease of temperature in the surrounding areas, and homeless people are desperate to get some drugs.",
+    		" There are early signs of a bull market, and local bankers are eager to celebrate their future growth.",
+    		" An important music festival is coming to town.",
+    		" The Revolutionary Armed Forces of Colombia have intensied their efforts to overthrow the Colombian government. This has allowed Colombian drug lords to increase their drug production due to less supervision on behalf of the government. ",
+    		" Border control has been intensified at the nearby border.",
+    		" Recent legislation changes have increased the severity of punishment of illegal drugs consumption.",
+    		" An economic downturn just hit the surrounding areas, and people are forced to work long hours.",
+    		" A nearby university has finals week next week.",
+    		" The police confiscated a large quanitiy of drugs from the street."
+    }; 
+    public String[] goodAffected={
+    		"PsychedelicMushroom",
+    		"Cocaine",
+    		"Adderall",
+    		"Extacy",
+    		"Cocaine",
+    		"LSD",
+    		"Heroin"	
+    };
+    
+    public String[] cities={
+    		"Miami",
+    		"Cincinnati",
+    		"LA",
+    		"Trenton",
+    		"Atlanta"    		
+    };
     private String[] allColumns = { MySQLiteHelper.COLUMN_ID, MySQLiteHelper.COLUMN_NAME, MySQLiteHelper.COLUMN_DESCRIPTION, MySQLiteHelper.COLUMN_DRUG,
   		  MySQLiteHelper.COLUMN_PRICE_CHANGE, MySQLiteHelper.COLUMN_INITIAL_STEP, MySQLiteHelper.COLUMN_DURATION, MySQLiteHelper.COLUMN_CITY, MySQLiteHelper.COLUMN_TERMINATION_MESSAGE};
     
@@ -44,7 +100,7 @@ public class RandomEventGenerator implements Serializable{
     	dbHelper = new MySQLiteHelper(context);
   		ArrayList<String> affectedGoods = new ArrayList<String>();
   		rng=new Random();
-  		
+  		queue=QueueEvents.getInstance();
   		
   		//String name, String terminationMessage,int initialStep, int duration, String description, int priceEffect, String goodAffected, String city) {
 		eArray[0]= new Event("drought","It has been raining the last couple of days",4,4, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2, "PsychedelicMushroom","Atlanta");
@@ -68,6 +124,8 @@ public class RandomEventGenerator implements Serializable{
       dbHelper.close();
     }
     public Event createEvent(String name, String terminationMessage,int initialStep, int duration, String description, int priceEffect, String goodAffected, String city) {
+      queue.add(new Event(name, terminationMessage,initialStep, duration, description, priceEffect, goodAffected, city));
+      Log.i(TAG,"Linked list size(): "+queue.size());
       ContentValues values = new ContentValues();
       values.put(MySQLiteHelper.COLUMN_NAME, name);
       values.put(MySQLiteHelper.COLUMN_DESCRIPTION, description);
@@ -143,7 +201,7 @@ public class RandomEventGenerator implements Serializable{
                 " where "+MySQLiteHelper.COLUMN_INITIAL_STEP+" = "+String.valueOf(terminationStep), null);
     	cursor.moveToFirst();
     	Event e=cursorToEvent(cursor);
-    	if(e==null) Log.i("RandomEventGenerator","findEventWithTerminationStep is not working: NULL");
+    	if(e==null) Log.i("RandomEventGenerator","findEventWithTerminationStep returns NULL");
     	return cursorToEvent(cursor);
     }
    
@@ -151,7 +209,17 @@ public class RandomEventGenerator implements Serializable{
 
     private Event cursorToEvent(Cursor cursor) {
 	      Event e = new Event();
-	      if(cursor.getString(1)!=null){
+	     if(cursor.getString(1)!=null){
+	    	 /*Log.i("RandomEventGenerator","cursor 0:"+cursor.getLong(0));
+	    	 Log.i("RandomEventGenerator","cursor 1:"+cursor.getString(1));
+	    	 Log.i("RandomEventGenerator","cursor 2:"+cursor.getString(2));
+	    	 Log.i("RandomEventGenerator","cursor 3:"+cursor.getString(3));
+	    	 Log.i("RandomEventGenerator","cursor 4:"+cursor.getString(4));
+	    	 Log.i("RandomEventGenerator","cursor 5:"+cursor.getString(5));
+	    	 Log.i("RandomEventGenerator","cursor 6:"+cursor.getString(6));
+	    	 Log.i("RandomEventGenerator","cursor 7:"+cursor.getString(7));
+	    	 Log.i("RandomEventGenerator","cursor 8:"+cursor.getString(8));*/
+	    	 
 	    	  e.setId(cursor.getLong(0));
 		      e.setName(cursor.getString(1));
 		      e.setDescription(cursor.getString(2));
@@ -166,12 +234,21 @@ public class RandomEventGenerator implements Serializable{
        
     }
     
-    	/**
+    /**
 	 * This method generates a random event
 	 */
 	public void generateEvent(){
-		Log.i(TAG,"New event starts: "+AppUtil.getStep()+1);
-		createEvent("drought","It has been raining the last couple of days",AppUtil.getStep()+1,rng.nextInt(3)+1, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2, "PsychedelicMushroom","Atlanta");
+		Log.i(TAG,"********GENERATING EVENT**********");
+		int rNum=rng.nextInt(descriptionList.length-1);
+		//createEvent("drought","It has been raining the last couple of days",AppUtil.getStep()+1,rng.nextInt(3)+1, " There has been a drought for an extended period that has decreased the levels of psilocybin and psilocin in the last batch of shrooms.", 2, "PsychedelicMushroom","Atlanta");
+		System.out.println("event: "+eventName[rNum]);
+		System.out.println("termination: "+terminationDescriptionList[rNum]);
+		System.out.println("description: "+descriptionList[rNum]);
+		System.out.println("good affected: "+goodAffected[rng.nextInt(goodAffected.length-1)]);
+		System.out.println("city: "+cities[rng.nextInt(cities.length-1)]);
+		          // (String name,    String terminationMessage,       int initialStep,      int duration,   String description, int priceEffect, String goodAffected,                 String city) {
+		createEvent(eventName[rNum],terminationDescriptionList[rNum],AppUtil.getStep()+2+rng.nextInt(2),rng.nextInt(3)+2,descriptionList[rNum] ,2, goodAffected[rng.nextInt(goodAffected.length-1)],cities[rng.nextInt(cities.length-1)]);
+	
 	}
 
 	/**
@@ -179,12 +256,11 @@ public class RandomEventGenerator implements Serializable{
 	 * @return next event
 	 */
 	public Event pop(){
-		Event nextE=findNextEvent();
+		Event nextE=(Event)queue.pop();
 		if(nextE!=null){
-			deleteEvent(nextE);
+			Log.i(TAG,"********POPPING**********");
+			//deleteEvent(nextE);
 			return nextE;
-		}else{
-			Log.i("RandomEventGenerator","Tried to pop an event that was not in the database");
 		}
 		return null;
 	}
@@ -194,11 +270,9 @@ public class RandomEventGenerator implements Serializable{
 	 * @return next event on line
 	 */
 	public Event peek(){
-		Event nextE=findNextEvent();
+		Event nextE=(Event)queue.peek();
 		if(nextE!=null){
 			return nextE;
-		}else{
-			Log.i("RandomEventGenerator","Tried to peek but there is nothing in the database");
 		}
 		return null;
 	}
@@ -212,7 +286,6 @@ public class RandomEventGenerator implements Serializable{
 		if(e!=null){
 			return e.getName();
 		}
-		Log.i("RandomEventGenerator","Tried to getNextEventName, but nothing was in the datbase");
 		return null;
 	}
 	
@@ -225,7 +298,6 @@ public class RandomEventGenerator implements Serializable{
 		if(e!=null){
 			return e.getStepNum();
 		}
-		Log.i("RandomEventGenerator","Tried to getNextStepNum, but nothing was in the datbase");
 		return 0;
 	}
 	
@@ -238,7 +310,6 @@ public class RandomEventGenerator implements Serializable{
 		if(e!=null){
 			return e.getDuration();
 		}
-		Log.i("RandomEventGenerator","Tried to getNextStepNum, but nothing was in the datbase");
 		return 0;
 	}
 	
@@ -252,7 +323,6 @@ public class RandomEventGenerator implements Serializable{
 		if(e!=null){
 			return e.getDescription();
 		}
-		Log.i("RandomEventGenerator","Tried to getNextEventDescription, but nothing was in the datbase");
 		return null;
 	}
 	
@@ -261,10 +331,15 @@ public class RandomEventGenerator implements Serializable{
 	 * @return boolean first event
 	 */
 	public boolean checkStartEvent(){
-		Log.i(TAG,"checkStartEvent: "+(AppUtil.getStep()-getNextEventStepNum()));
+		
 		if(peek()!=null&&AppUtil.getStep()==peek().getStepNum()){
+			Log.i(TAG,"checkStartEvent-> Starts: "+peek().getStepNum()+"current move: "+AppUtil.getStep());
 			return true;
 		}
+		if(peek()==null)
+			Log.i(TAG,"checkStartEvent-> Null is the next event");
+		else 
+			Log.i(TAG,"checkStartEvent-> current step - next event initial step= "+(AppUtil.getStep()-peek().getStepNum()));
 		return false;
 	}
 	
@@ -273,10 +348,15 @@ public class RandomEventGenerator implements Serializable{
 	 * @return boolean last event
 	 */
 	public boolean checkEndEvent(){
-		Log.i(TAG,"checkEndEvent: "+(AppUtil.getStep()-(getNextEventStepNum()+getNextEventDuration())));
+		
 		if(peek()!=null&&AppUtil.getStep()==peek().getStepNum()+peek().getDuration()){
+			Log.i(TAG,"checkEndEvent-> Ends: "+(peek().getStepNum()+peek().getDuration())+" Current move: "+AppUtil.getStep());
 			return true;
 		}
+		if(peek()==null)
+			Log.i(TAG,"checkEndEvent-> Null is the next event");
+		else 
+			Log.i(TAG,"checkEndEvent-> current step - next event initial step + duration= "+(AppUtil.getStep()-peek().getStepNum()+peek().getDuration()));
 		return false;
 	}
 	
@@ -285,15 +365,12 @@ public class RandomEventGenerator implements Serializable{
 	 * @return number of different events that can happen throughout the game
 	 */
 	public int getNumberOfEventTypes(){
-		return eArray.length;
+		return eventName.length;
 	}
 	
 	public int getSizeOfEventList(){
-		List l=getAllCurrentEventsSortedByInitialStep();
-		if(l!=null){
-			return l.size();
-		}
-		return 0;
+		return queue.size();
+
 	}
 	
 	public HashMap<String,String> getHashMapOfEvent(Event e){
@@ -305,5 +382,12 @@ public class RandomEventGenerator implements Serializable{
     	temp.put("termination",Integer.toString(Math.max(0,e.getDuration()+e.getStepNum()-AppUtil.game.getStep())));
 		return temp;
 	}
+	public boolean allowed(){
+		return queue.size()==0;
+	}
+	
+	
+	
+	
 
 }
