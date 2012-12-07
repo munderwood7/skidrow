@@ -18,9 +18,9 @@ public class Player implements Serializable{
 	private static final double SMALL_CRIT_MULT = .5;
 	private static final double LARGE_CRIT_MULT = .5;
 	private static final int MAX_FORTIFY = 5;
-	private static final int TOTAL_PROB = 8;
-	private int SMALL_CRIT_PROB = 2;
-	private int LARGE_CRIT_PROB = 3;
+	private static final int TOTAL_PROB = 100;
+	private int SMALL_CRIT_PROB = 20;
+	private int LARGE_CRIT_PROB = 30;
 
 	private String name;
 	private Random rand;
@@ -223,7 +223,7 @@ public class Player implements Serializable{
 	 * @param test Used to get the average 
 	 * @return Damage done by attack
 	 */
-	public double smallAttack(boolean test){
+	public double smallAttack(boolean test, AIAgent com){
 		//This returns the expected average damage for a small attack
 		if(test){
 			return this.attack*(SMALL_CRIT_MULT/(TOTAL_PROB-SMALL_CRIT_PROB));
@@ -235,6 +235,8 @@ public class Player implements Serializable{
 			damage = damage * SMALL_CRIT_MULT;
 		}
 		
+		com.setHealth(com.getHealth()-damage);
+		
 		return damage;
 	}
 	
@@ -244,7 +246,7 @@ public class Player implements Serializable{
 	 * @param test Used to get the average damage
 	 * @return Damage done by attack
 	 */
-	public double largeAttack(boolean test){
+	public double largeAttack(boolean test, AIAgent com){
 		double damage = attack*2;
 		if(test){
 			return damage*(LARGE_CRIT_MULT/(TOTAL_PROB-LARGE_CRIT_PROB));
@@ -255,6 +257,8 @@ public class Player implements Serializable{
 			damage = damage * LARGE_CRIT_MULT;
 		}
 		
+		com.setHealth(com.getHealth()-damage);
+		
 		return damage;
 	}
 	
@@ -263,10 +267,12 @@ public class Player implements Serializable{
 			return SMALL_CRIT_PROB+(MAX_FORTIFY/2);
 		
 		int probability_increase = rand.nextInt(MAX_FORTIFY);
-		SMALL_CRIT_PROB+=probability_increase;
-		LARGE_CRIT_PROB+=probability_increase;
+		if(SMALL_CRIT_PROB+probability_increase < TOTAL_PROB){
+			SMALL_CRIT_PROB+=probability_increase;
+			LARGE_CRIT_PROB+=probability_increase;
+		}
 		
-		return 0;
+		return probability_increase;
 	}
 	
 	public double[] getOrigingalFightVals(){
