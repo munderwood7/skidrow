@@ -203,7 +203,6 @@ public class MapActivity extends Activity {
 					if(Debug) Log.i(TAG, "New event starts-> " + e.getName());
 					refreshBottomStats();
 					showMessage2("You are now in " + currentCity.getName()+".","Newsflash!\n\n"+eventGen.peek().getDescription()+"\n\nCheck the news tab for more information.");
-	
 					
 				}
 				else if(eventGen.checkEndEvent()){
@@ -215,8 +214,13 @@ public class MapActivity extends Activity {
 					if(Debug) Log.i(TAG, "Event ends-> " + e.getName());
 					showMessage2("You are now in " + currentCity.getName(),"Newsflash!\n\n"+ e.getTerminationMessage() );
 					if(eventGen.allowed()) eventGen.generateEvent();
+					
 				} else{
 					showMessage2("You are now in " + currentCity.getName()+".","");
+				}
+				if(AppUtil.game.checkForEncounter(1)){
+					Intent intent = new Intent(this, FightEventActivity.class);
+					this.startActivity(intent);
 				}
 				AppUtil.game.generateMarket();
     		}else{
